@@ -1,5 +1,23 @@
 !(function (r) {
     "use strict";
+
+    //---------------------------------------------
+  //Nivo slider
+  //---------------------------------------------
+  $('#ensign-nivoslider').nivoSlider({
+    effect: 'random',
+    slices: 15,
+    boxCols: 12,
+    boxRows: 8,
+    animSpeed: 500,
+    pauseTime: 5000,
+    startSlide: 0,
+    directionNav: true,
+    controlNavThumbs: false,
+    pauseOnHover: true,
+    manualAdvance: false,
+  });
+
     r(window).on("load", function () {
         r("#preloader").fadeOut(1e3);
     }),
@@ -255,4 +273,6 @@
             var t = document.getElementsByTagName("script")[0];
             t.parentNode.insertBefore(e, t);
         })();
+
+     
 })(jQuery);
