@@ -90,106 +90,7 @@
           <img class="d-inline-block" src="assets/img/logo-school.png" alt="Kidz School">
         </a>
 
-        <!-- cart-dropdown -->
-        <div class="dropdown cart-dropdown ms-auto me-5 d-md-none">
-          <div class="cart-icon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <a href="javascript:void(0)">
-              <span class="rounded-sm bg-pink icon-small icon-badge close-icon">
-                <i class="fas fa-times text-white" aria-hidden="true"></i>
-              </span>
-              <span class="rounded-sm bg-pink icon-small icon-badge shopping-icon">
-                <i class="fa fa-shopping-basket text-white" aria-hidden="true"></i>
-                <span class="badge bg-warning">3</span>
-              </span>
-            </a>
-          </div>
-          <div class="dropdown-menu dropdown-menu-end">
-            <ul class="bg-white list-unstyled">
-              <li class="d-flex align-items-center">
-                <i class="fa fa-shopping-basket font-size-20 me-3" aria-hidden="true"></i>
-                <h3 class="text-capitalize font-weight-bold mb-0">3 items in your cart</h3>
-              </li>
-              <hr>
-              <li>
-                <a href="product-single.html">
-                  <div class="media">
-                    <div class="image">
-                      <img class="bg-light rounded-sm px-5 py-3 me-4" src="assets/img/products/product-sm.png" alt="cart-Image">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h4 class="text-dark">Barbie Racing Car</h4>
-                        <span class="cancel">
-                          <i class="fas fa-times text-muted" aria-hidden="true"></i>
-                        </span>
-                      </div>
-                      <div class="price">
-                        <span class="text-primary font-weight-medium">$50</span>
-                      </div>
-                      <span class="text-muted font-weight-medium text-muted">Qnt: 1</span>
-                    </div>
-                  </div>
-                </a>
-                <hr>
-              </li>
-              <li>
-                <a href="product-single.html">
-                  <div class="media">
-                    <div class="image">
-                      <img class="bg-light rounded-sm px-5 py-3 me-4" src="assets/img/products/product-sm.png" alt="cart-Image">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h4 class="text-dark">Barbie Racing Car</h4>
-                        <span class="cancel">
-                          <i class="fas fa-times text-muted" aria-hidden="true"></i>
-                        </span>
-                      </div>
-                      <div class="price">
-                        <span class="text-primary font-weight-medium">$50</span>
-                      </div>
-                      <span class="text-muted font-weight-medium">Qnt: 1</span>
-                    </div>
-                  </div>
-                </a>
-                <hr>
-              </li>
-              <li>
-                <a href="product-single.html">
-                  <div class="media">
-                    <div class="image">
-                      <img class="bg-light rounded-sm px-5 py-3 me-4" src="assets/img/products/product-sm.png" alt="cart-Image">
-                    </div>
-                    <div class="media-body">
-                      <div class="d-flex justify-content-between">
-                        <h4 class="text-dark font-weight-bold">Barbie Racing Car</h4>
-                        <span class="cancel">
-                          <i class="fas fa-times text-muted" aria-hidden="true"></i>
-                        </span>
-                      </div>
-                      <div class="price">
-                        <span class="text-primary font-weight-medium">$50</span>
-                      </div>
-                      <span class="text-muted font-weight-medium">Qnt: 1</span>
-                    </div>
-                  </div>
-                </a>
-                <hr>
-              </li>
-              <li>
-                <div class="d-flex justify-content-between mb-3">
-                  <h3 class="cart-total font-weight-bold">Subtotal</h3>
-                  <h3 class="cart-price font-weight-bold">$150</h3>
-                </div>
-                <div class="cart-button d-flex justify-content-between">
-                  <button type="button" class="btn btn-danger text-uppercase px-4 shadow-sm me-3" onclick="location.href='product-checkout-step-1.html';">Checkout</button>
-                  <button type="button" class="btn btn-danger text-uppercase px-4 shadow-sm" onclick="location.href='product-cart.html';">View
-                    Cart</button>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+        
 
         <button class="navbar-toggler py-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
           aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -198,16 +99,20 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
-            <li class="nav-item dropdown bg-primary">
-              <a class="nav-link  active " href="javascript:void(0)"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item dropdown bg-primary">
+              <a class="nav-link " href="index.html">
+                <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
+                <span>Acceuil</span>
+              </a>
+            </li>
+
+            <li class="nav-item dropdown bg-purple">
+              <a class="nav-link text-blue" href="javascript:void(0)"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <i class="fas fa-school nav-icon" aria-hidden="true"></i>
                 <span>Présentation</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                <li>
-                  <a class="dropdown-item " href="index.html">L'établissement</a>
-                </li>
                 <li>
                   <a class="dropdown-item " href="index-v2.html">Activités periscolaire</a>
                 </li>
@@ -216,6 +121,10 @@
                 </li>
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Restauration</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Règlement</a>
                 </li>
               </ul>
             </li>
@@ -226,31 +135,39 @@
                 <span>Actualité</span>
               </a>
             </li>
-            
-
-            <li class="nav-item dropdown bg-success">
-              <a class="nav-link " href="component-default.html">
-                <i class="fas fa-align-justify nav-icon" aria-hidden="true"></i>
-                <span>Reglement interieur</span>
-              </a>
-            </li>
 
             <li class="nav-item dropdown bg-info">
-              <a class="nav-link " href="component-default.html">
+              <a class="nav-link" href="javascript:void(0)"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-school nav-icon" aria-hidden="true"></i>
+                <span>Bourse & quelque chose</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <li>
+                  <a class="dropdown-item " href="index.html">Bourse</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Autre</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown bg-green">
+              <a class="nav-link " href="faq.html">
                 <i class="fas fa-question-circle nav-icon" aria-hidden="true"></i>
                 <span>FAQ</span>
               </a>
             </li>
 
-            <li class="nav-item dropdown bg-purple">
-              <a class="nav-link " href="component-default.html">
+            <li class="nav-item dropdown bg-blue">
+              <a class="nav-link" href="contact.html">
                 <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
                 <span>Contact</span>
               </a>
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="component-default.html">
+              <a class="nav-link " href="https://0931490p.esidoc.fr/">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>
@@ -350,119 +267,8 @@
 
 
 
-<!-- ====================================
-———	HOME FEATURE
-===================================== -->
-<section class="pt-9 pb-6 py-md-7">
-  <div class="container">
-    <div class="section-title justify-content-center mb-4 mb-md-8 wow fadeInUp">
-      <span class="shape shape-left bg-info"></span>
-      <h2 class="text-danger">Our Features</h2>
-      <span class="shape shape-right bg-info"></span>
-    </div>
 
-    <div class="row wow fadeInUp">
-			<!-- Media -->
-      <div class="col-sm-6 col-xl-4 col-xs-12">
-        <div class="media mb-6">
-					<div class="media-icon-large bg-primary me-xl-4">
-						<i class="fas fa-graduation-cap" aria-hidden="true"></i>
-					</div>
 
-          <div class="media-body">
-            <h3 class="text-primary">Experienced Teachers</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          </div>
-        </div>
-      </div>
-
-			<!-- Media -->
-      <div class="col-sm-6 col-xl-4 col-xs-12">
-        <div class="media mb-6">
-					<div class="media-icon-large bg-success me-xl-4">
-						<i class="fas fa-leaf" aria-hidden="true"></i>
-					</div>
-
-          <div class="media-body">
-            <h3 class="text-success">Physical Activity</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          </div>
-        </div>
-      </div>
-
-			<!-- Media -->
-      <div class="col-sm-6 col-xl-4 col-xs-12">
-        <div class="media mb-6">
-					<div class="media-icon-large bg-danger me-xl-4">
-						<i class="fas fa-car" aria-hidden="true"></i>
-					</div>
-          <div class="media-body">
-            <h3 class="text-danger">Transportation</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          </div>
-        </div>
-      </div>
-
-			<!-- Media -->
-      <div class="col-sm-6 col-lg-4 col-xs-12">
-        <div class="media mb-6">
-					<div class="media-icon-large bg-info me-xl-4">
-            <i class="fas fa-utensils" aria-hidden="true"></i>
-					</div>
-          <div class="media-body">
-            <h3 class="text-info">Delicious Food</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          </div>
-        </div>
-      </div>
-
-			<!-- Media -->
-      <div class="col-sm-6 col-xl-4 col-xs-12">
-        <div class="media mb-6">
-					<div class="media-icon-large bg-purple me-xl-4">
-						<i class="fas fa-heart" aria-hidden="true"></i>
-					</div>
-          <div class="media-body">
-            <h3 class="text-purple">Love & Care</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          </div>
-        </div>
-      </div>
-
-			<!-- Media -->
-      <div class="col-sm-6 col-xl-4 col-xs-12">
-        <div class="media mb-7">
-					<div class="media-icon-large bg-pink me-xl-4">
-						<i class="fas fa-shield-alt" aria-hidden="true"></i>
-					</div>
-          <div class="media-body">
-            <h3 class="text-pink">Annual Sports</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================
-———	CALL TO ACTION
-===================================== -->
-<section class="py-9 bg-parallax" style="background-image: url(assets/img/background/background-img-1.jpg);">
-	<div class="container">
-    <div class="wow fadeInUp">
-      <div class="section-title justify-content-center">
-        <h2 class="text-white text-center">Need More Information?</h2>
-      </div>
-      <div class="text-center">
-        <p class="text-white font-size-18 mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod</p>
-        <a href="contact-us.html" class="btn btn-danger shadow-sm text-uppercase mt-4">
-          <i class="fas fa-phone-alt me-2" aria-hidden="true"></i>Contact
-        </a>
-      </div>
-    </div>
-	</div>
-</section>
 
 
 
