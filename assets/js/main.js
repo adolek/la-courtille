@@ -1,22 +1,13 @@
 !(function (r) {
     "use strict";
 
-    //---------------------------------------------
-  //Nivo slider
-  //---------------------------------------------
-  $('#ensign-nivoslider').nivoSlider({
-    effect: 'random',
-    slices: 15,
-    boxCols: 12,
-    boxRows: 8,
-    animSpeed: 500,
-    pauseTime: 5000,
-    startSlide: 0,
-    directionNav: true,
-    controlNavThumbs: false,
-    pauseOnHover: true,
-    manualAdvance: false,
-  });
+    $(".owl-carousel").owlCarousel({
+        items: 1,
+        loop:true,
+        autoplay:true,
+autoplayTimeout:7000,
+
+      });
 
     r(window).on("load", function () {
         r("#preloader").fadeOut(1e3);

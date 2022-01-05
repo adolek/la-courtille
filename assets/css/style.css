@@ -15540,3 +15540,26 @@ preview-2
     }
   }
   
+
+  
+.gallery-item {
+    position: relative;
+    .item-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  .carousel-item {
+    padding: 15vw 0;
+    background-size:cover; 
+    background-position:center;
+  }
+  
+  .cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
