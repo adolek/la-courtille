@@ -209,7 +209,6 @@ autoplayTimeout:7000,
                         ],
                     },
                     t = new google.maps.Map(document.getElementById("map"), e);
-                new google.maps.Marker({ position: { lat: 53.385873, lng: -1.471471 }, map: t, icon: "assets/img/marker.png" });
             });
     var h = r(".animated"),
         p = r(window);
