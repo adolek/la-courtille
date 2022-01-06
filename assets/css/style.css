@@ -7091,6 +7091,9 @@ textarea.form-control-lg {
 .bg-pink {
     background-color: #ea77ad!important;
 }
+.bg-zinzolin{
+    background-color: #6c0277!important;
+}
 .bg-stone {
     background-color: #2f3c43!important;
 }
@@ -12095,8 +12098,26 @@ a {
     font-size: 1rem;
     margin-right: .6325rem;
 }
+.nav-icon-square {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 15%;
+    display: inline-block;
+    color: #fff;
+    font-size: 1rem;
+    margin-right: .6325rem;
+}
+
 @media(min-width:768px) {
     .nav-icon {
+    margin: 0 auto .625rem;
+    margin-bottom: .625rem;
+    display: block;
+}
+@media(min-width:768px) {
+    .nav-icon-square {
     margin: 0 auto .625rem;
     margin-bottom: .625rem;
     display: block;
@@ -12352,6 +12373,9 @@ a {
 .nav-item.bg-green {
     background-color: transparent!important;
 }
+.nav-item.bg-zinzolin{
+    background-color: transparent!important;
+}
 .nav-item.bg-purple .nav-link i {
     background-color: #a597e7;
 }
@@ -12378,6 +12402,15 @@ a {
 }
 .nav-item.bg-green .nav-link.active span {
     color: #00cc99;
+}
+.nav-item.bg-zinzolin .nav-link i {
+    background-color: #6c0277;
+}
+.nav-item.bg-zinzolin .nav-link span {
+    border-color: #6c0277;
+}
+.nav-item.bg-zinzolin .nav-link.active span {
+    color: #6c0277;
 }
 .nav-item.bg-purple .dropdown-menu {
     border-color: #a597e7;
