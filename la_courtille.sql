@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 11 jan. 2022 à 12:28
+-- Généré le : mar. 11 jan. 2022 à 15:39
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -62,14 +62,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom` varchar(255) NOT NULL,
   `type` enum('admin','prof') NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`idUser`, `email`, `mdp`, `nom`, `type`) VALUES
-(1, 'admin@gmail.com', 'admin', 'admin', 'admin');
+(1, 'admin@gmail.com', 'admin', 'admin', 'admin'),
+(2, 'prof@gmail.com', 'prof', 'prof', 'prof');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

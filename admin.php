@@ -114,6 +114,27 @@ if (isset($_POST["ajoutArticle"])){
   
 }
 
+
+
+//si clic bouton supprimer prof
+
+if (isset($_POST["profSup"])){ 
+
+  $nom = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['nom'])); 
+
+  $supprimer = "DELETE FROM users WHERE nom = '$nom'";
+  $supression = mysqli_query($db_handle, $supprimer);
+
+  $erreur= "Professeur supprimé !";
+
+  echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+  " . $erreur . "
+ <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+ </div>";
+
+}
+
+
 }
 ?>
      
@@ -470,10 +491,49 @@ $count=-1;
             </div>
 
       </div>
+
+      
+<?php if($user['type']=="admin"): ?>
+
+<?php 
+
+$req3 = "SELECT * FROM users where type = 'prof'";
+$res3 = mysqli_query($db_handle, $req3);
+while ($prof = mysqli_fetch_assoc($res3)) { 
+$profs[] = $prof; 
+} 
+
+?>
+
+<div class="row">
+
+<div class="col-12">
+            <div class="mb-8">
+            <h3 class="element-title">Les professeurs</h3>
+
+            <?php foreach($profs as $prof):?>
+              <form action="admin.php" method="post">
+              <ul class="list-group list-group-horizontal">
+              <input style="visibility:hidden;width:0;margin:0;padding:0;border:0;" type="text" value="<?php echo $prof['nom']; ?>" name="nom">
+                <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['nom']; ?></div></li>
+                <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['email']; ?></div></li>
+                <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['mdp']; ?></div></li>
+                <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;">
+                <button class="btn btn-danger btn-sm" name="profSup" type="submit">Supprimer</button></div>
+                </li>
+              </ul>
+            </form>
+              <?php endforeach ?>
+            </div>
+          </div>
+</div>
+
+<?php endif ?>
     </div>
   </section>
   
 <?php endif ?>
+
 
   </div> <!-- element wrapper ends -->
 
