@@ -379,13 +379,13 @@ if (isset($_POST["profSup"])){
     <div class="container">
       <div class="breadcrumb-holder">
         <div>
-          <h1 class="breadcrumb-title">Connexion Admin</h1>
+          <h1 class="breadcrumb-title">  <?php if(!isset($_SESSION['email'])){echo "Connexion";} elseif(isset($_SESSION['email'])){echo "Espace";} ?> Admin</h1>
           <ul class="breadcrumb breadcrumb-transparent">
             <li class="breadcrumb-item">
               <a class="text-white" href="index.html">Accueil</a>
             </li>
             <li class="breadcrumb-item text-white active" aria-current="page">
-              Connexion Admin
+            <?php if(!isset($_SESSION['email'])){echo "Connexion";} elseif(isset($_SESSION['email'])){echo "Espace";} ?> Admin
             </li>
           </ul>
         </div>
