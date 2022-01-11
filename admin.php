@@ -372,11 +372,26 @@ $req = "SELECT * FROM users WHERE idUser = '$id'";
 $res = mysqli_query($db_handle, $req);
 $user = mysqli_fetch_assoc($res);
 
-$req2 = "SELECT * FROM articles WHERE idUser = '$id'";
+if($user['type']=="admin")
+{
+  $req2 = "SELECT * FROM articles";
 $res2 = mysqli_query($db_handle, $req2);
 while ($article = mysqli_fetch_assoc($res2)) { 
   $articles[] = $article; 
   } 
+
+}
+elseif($user['type']=="prof")
+{
+  $req2 = "SELECT * FROM articles WHERE idUser = '$id'";
+$res2 = mysqli_query($db_handle, $req2);
+while ($article = mysqli_fetch_assoc($res2)) { 
+  $articles[] = $article; 
+  } 
+
+}
+
+$count=-1;
 ?>  
  
   <!-- ====================================
@@ -389,6 +404,16 @@ while ($article = mysqli_fetch_assoc($res2)) {
       <h3 class="element-title">Vos actualités</h3>
 
       <?php foreach($articles as $article):?>
+
+        <?php $count = $count + 1;
+        $count = $count % 6;
+        if($count==0){$color="primary";}
+        elseif($count==1){$color="success";}
+        elseif($count==2){$color="danger";}
+        elseif($count==3){$color="info";}
+        elseif($count==4){$color="purple";}
+        elseif($count==5){$color="pink";}
+        ?>
   
               <div class="col-md-6 col-lg-4">
           <div class="card">
@@ -397,13 +422,13 @@ while ($article = mysqli_fetch_assoc($res2)) {
                   <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
                           </a>
                 <div class="card-img-overlay p-0">
-                  <span class="badge bg-pink badge-rounded m-4"> 14 <br> Jun</span>
+                  <span class="badge bg-<?php echo $color;?> badge-rounded m-4"> 14 <br> Jun</span>
                 </div>
                       </div>
   
-            <div class="card-body border-top-5 px-3 rounded-bottom border-pink">
+            <div class="card-body border-top-5 px-3 rounded-bottom border-<?php echo $color;?>">
               <h3 class="card-title">
-                <a class="text-pink text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre']; ?></a>
+                <a class="text-<?php echo $color;?> text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre']; ?></a>
               </h3>
                           <ul class="list-unstyled d-flex mb-1">
                 <li class="me-2">
@@ -414,7 +439,7 @@ while ($article = mysqli_fetch_assoc($res2)) {
              
               </ul>
               <p class="mb-2"><?php echo $article['texte']; ?></p>
-              <a class="btn btn-link text-hover-pink ps-0" href="blog-single-left-sidebar.html">
+              <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="blog-single-left-sidebar.html">
                 <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Read More
               </a>
             </div>
