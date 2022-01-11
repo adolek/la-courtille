@@ -116,6 +116,55 @@ if (isset($_POST["ajoutArticle"])){
 
 
 
+//si clic bouton ajout prof 
+
+if (isset($_POST["ajoutProf"])){ 
+
+  $nom = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['nom'])); 
+  $mail = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mail'])); 
+  $mdp = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mdp'])); 
+
+
+  if(empty($nom)||empty($mail)||empty($mdp))
+  {
+      $erreur= "Un champ ou plusieurs champs obligatoires sont vides";
+
+      echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+      " . $erreur . "
+     <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+     </div>";
+  
+  }
+  else{
+  
+       $sql="SELECT * FROM  users where nom like '$nom'";
+       $result = mysqli_query($db_handle, $sql);
+
+      if (mysqli_num_rows($result) != 0) 
+       {
+          $erreur= "Professeur déjà ajouté !";
+          echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+          " . $erreur . "
+         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+         </div>";
+
+       }else 
+           {
+              $sql = "INSERT INTO users(email, mdp, nom, type) VALUES('$mail', '$mdp', '$nom','prof')";
+              $result = mysqli_query($db_handle, $sql);
+              $erreur= "Nouveau professeur créé !";
+
+              echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+              " . $erreur . "
+             <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+             </div>";
+            }
+      }
+  
+}
+
+
+
 //si clic bouton supprimer prof
 
 if (isset($_POST["profSup"])){ 
@@ -526,6 +575,32 @@ $profs[] = $prof;
               <?php endforeach ?>
             </div>
           </div>
+</div>
+
+<div class="row">
+
+<div class="col-12">
+      <div class="mb-8">
+        <h3 class="element-title">Ajouter un professeur</h3>
+      <form action="admin.php" method="post">
+        <div class="form-floating mb-3">
+          <input type="text" name="nom" placeholder="titre" class="form-control" id="floatingInput">
+          <label for="floatingInput">Nom</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" name="mail" placeholder="titre" class="form-control" id="floatingInput">
+          <label for="floatingInput">Mail</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" name="mdp" placeholder="titre" class="form-control" id="floatingInput">
+          <label for="floatingInput">Mot de passe</label>
+        </div>
+
+        <button class="btn btn-primary" name="ajoutProf" type="submit">Ajouter</button>
+      </form>
+      </div>
+    </div>
+
 </div>
 
 <?php endif ?>
