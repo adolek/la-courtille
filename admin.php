@@ -74,15 +74,43 @@ if (isset($_POST["ajoutArticle"])){
   $titre = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['titre'])); 
   $texte = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['texte'])); 
 
+  $nomOrigine2 = $_FILES['monaudio']['name'];
+  $elementsChemin2 = pathinfo($nomOrigine2);
+  $extensionFichier2 = $elementsChemin2['extension'];
+  $extensionsAutorisees2 = array("mp3", "ogg", "wma");
+  $extensionsAutorisees = array("jpeg", "jpg", "JPG", "gif", "png", "webp", "svg");
+
+  $nomDestination2="";  
+
+  if (!(in_array($extensionFichier2, $extensionsAutorisees2))) {
+    echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+    L'audio téléchargé n'a pas l'extension attendue.
+   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+   </div>";
+} else {    
+    
+    // Copie dans le repertoire du script avec un nom
+    $repertoireDestination2 = dirname(__FILE__)."/assets/audio/";
+    $nomDestination2 = $titre.".".$extensionFichier2;
+
+    if (move_uploaded_file($_FILES["monaudio"]["tmp_name"], $repertoireDestination2.$nomDestination2)) {
+
+    }
+    else {
+        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+        Le fichier audio est trop volumineux pour être importé.
+      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+      </div>";
+    }
+}
+
   $nomOrigine = $_FILES['monfichier']['name'];
   $elementsChemin = pathinfo($nomOrigine);
   $extensionFichier = $elementsChemin['extension'];
-  $extensionsAutorisees = array("jpeg", "jpg", "JPG", "gif", "png", "webp");
-  if (!(in_array($extensionFichier, $extensionsAutorisees))) {
-      $erreur= "L'image téléchargée n'a pas l'extension attendue";
 
+  if (!(in_array($extensionFichier, $extensionsAutorisees))) {
       echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-      " . $erreur . "
+      L'image téléchargée n'a pas l'extension attendue ou vous avez omis d'ajouter une image.
      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
      </div>";
   } else {    
@@ -95,10 +123,8 @@ if (isset($_POST["ajoutArticle"])){
 
         if(empty($titre)||empty($texte))
         {
-            $erreur= "Un champ ou plusieurs champs obligatoires sont vides";
-      
             echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-            " . $erreur . "
+            Un champ ou plusieurs champs obligatoires sont vides.
            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
            </div>";
         
@@ -112,36 +138,31 @@ if (isset($_POST["ajoutArticle"])){
       
             if (mysqli_num_rows($result) != 0) 
              {
-                $erreur= "Article déjà ajouté !";
                 echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                " . $erreur . "
+                Article déjà ajouté !
                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
                </div>";
       
              }else 
                  {
-                    $sql = "INSERT INTO articles(idUser, titre, texte, image, date) VALUES('$id', '$titre', '$texte','$nomDestination',DATE(NOW()))";
+                    $sql = "INSERT INTO articles(idUser, titre, texte, image, audio, date) VALUES('$id', '$titre', '$texte','$nomDestination','$nomDestination2',DATE(NOW()))";
                     $result = mysqli_query($db_handle, $sql);
-                    $erreur= "Nouvel article ajouté avec succès !";
-      
                     echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                    " . $erreur . "
+                    Nouvel article ajouté avec succès.
                    <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
                    </div>";
                   }
             }
 
       } else {
-          $erreur= "L'image est trop volumineuse pour être importée.";
-
           echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-          " . $erreur . "
+          L'image est trop volumineuse pour être importée.
         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
         </div>";
       }
   }
 
-  
+
 }
 
 
@@ -565,7 +586,8 @@ $count=-1;
                   <label for="floatingTextarea2">Texte</label>
                 </div>
                 <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-                Image (formats autorisés : jpg, png, webp ou gif)</br></br><input type="file" name="monfichier" /></br>
+                Image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monfichier" /></br></br>
+                Audio (formats autorisés : mp3, ogg)</br><input type="file" name="monaudio" /></br>
                 <button class="btn mt-6 btn-primary" name="ajoutArticle" type="submit">Ajouter</button>
               </form>
               </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 11 jan. 2022 à 15:39
+-- Généré le : mer. 12 jan. 2022 à 15:34
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -34,19 +34,18 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `titre` varchar(50) NOT NULL,
   `texte` varchar(3000) NOT NULL,
   `image` varchar(255) NOT NULL,
+  `audio` varchar(255) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`idArticle`),
   KEY `idUser` (`idUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `articles`
 --
 
-INSERT INTO `articles` (`idArticle`, `idUser`, `titre`, `texte`, `image`, `date`) VALUES
-(1, 1, 'titre1', 'texte1', '', '2022-01-11'),
-(2, 1, 'titre2v zef;\"mlfezaflezm', 'texte2', '', '2022-01-11'),
-(3, 1, 'Le livre de la jungle', 'grzrlmefzef:mzeaf:mÃ¹azem:fÃ¹e', '', '2022-01-11');
+INSERT INTO `articles` (`idArticle`, `idUser`, `titre`, `texte`, `image`, `audio`, `date`) VALUES
+(9, 1, 'Les couzzz', 'fezgfzeafezfzea', 'Les couzzz.JPG', '', '2022-01-12');
 
 -- --------------------------------------------------------
 
@@ -62,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nom` varchar(255) NOT NULL,
   `type` enum('admin','prof') NOT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -70,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`idUser`, `email`, `mdp`, `nom`, `type`) VALUES
 (1, 'admin@gmail.com', 'admin', 'admin', 'admin'),
-(2, 'prof@gmail.com', 'prof', 'prof', 'prof');
+(2, 'prof@gmail.com', 'prof', 'prof', 'prof'),
+(4, 'oelsk@gmail.com', 'adolek', 'Adrien Oleksiak', 'prof');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
