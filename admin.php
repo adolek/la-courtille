@@ -74,43 +74,73 @@ if (isset($_POST["ajoutArticle"])){
   $titre = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['titre'])); 
   $texte = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['texte'])); 
 
-  if(empty($titre)||empty($texte))
-  {
-      $erreur= "Un champ ou plusieurs champs obligatoires sont vides";
+  $nomOrigine = $_FILES['monfichier']['name'];
+  $elementsChemin = pathinfo($nomOrigine);
+  $extensionFichier = $elementsChemin['extension'];
+  $extensionsAutorisees = array("jpeg", "jpg", "JPG", "gif", "png", "webp");
+  if (!(in_array($extensionFichier, $extensionsAutorisees))) {
+      $erreur= "L'image téléchargée n'a pas l'extension attendue";
 
       echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
       " . $erreur . "
      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
      </div>";
-  
-  }
-  else{
-  
-      $id = $_SESSION['id'];
-  
-       $sql="SELECT * FROM  articles where titre like '$titre' AND idUser like '$id'";
-       $result = mysqli_query($db_handle, $sql);
+  } else {    
+      
+      // Copie dans le repertoire du script avec un nom
+      $repertoireDestination = dirname(__FILE__)."/assets/img/";
+      $nomDestination = $titre.".".$extensionFichier;
 
-      if (mysqli_num_rows($result) != 0) 
-       {
-          $erreur= "Article déjà ajouté !";
+      if (move_uploaded_file($_FILES["monfichier"]["tmp_name"], $repertoireDestination.$nomDestination)) {
+
+        if(empty($titre)||empty($texte))
+        {
+            $erreur= "Un champ ou plusieurs champs obligatoires sont vides";
+      
+            echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+            " . $erreur . "
+           <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+           </div>";
+        
+        }
+        else{
+        
+            $id = $_SESSION['id'];
+        
+             $sql="SELECT * FROM  articles where titre like '$titre' AND idUser like '$id'";
+             $result = mysqli_query($db_handle, $sql);
+      
+            if (mysqli_num_rows($result) != 0) 
+             {
+                $erreur= "Article déjà ajouté !";
+                echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                " . $erreur . "
+               <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+               </div>";
+      
+             }else 
+                 {
+                    $sql = "INSERT INTO articles(idUser, titre, texte, image, date) VALUES('$id', '$titre', '$texte','$nomDestination',DATE(NOW()))";
+                    $result = mysqli_query($db_handle, $sql);
+                    $erreur= "Nouvel article ajouté avec succès !";
+      
+                    echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                    " . $erreur . "
+                   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+                   </div>";
+                  }
+            }
+
+      } else {
+          $erreur= "L'image est trop volumineuse pour être importée.";
+
           echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
           " . $erreur . "
-         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-         </div>";
-
-       }else 
-           {
-              $sql = "INSERT INTO articles(idUser, titre, texte, image, date) VALUES('$id', '$titre', '$texte','',DATE(NOW()))";
-              $result = mysqli_query($db_handle, $sql);
-              $erreur= "Nouvel article ajouté avec succès !";
-
-              echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-              " . $erreur . "
-             <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-             </div>";
-            }
+        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+        </div>";
       }
+  }
+
   
 }
 
@@ -524,7 +554,7 @@ $count=-1;
         <div class="col-12">
               <div class="mb-8">
                 <h3 class="element-title">Ajouter une actualité</h3>
-              <form action="admin.php" method="post">
+              <form action="admin.php" enctype="multipart/form-data" method="post">
                 <div class="form-floating mb-3">
                   <input type="text" name="titre" placeholder="titre" class="form-control" id="floatingInput">
                   <label for="floatingInput">Titre</label>
@@ -534,7 +564,9 @@ $count=-1;
                   <textarea class="form-control" name="texte" id="floatingInput" placeholder="texte" style="height: 100px"></textarea>
                   <label for="floatingTextarea2">Texte</label>
                 </div>
-                <button class="btn btn-primary" name="ajoutArticle" type="submit">Ajouter</button>
+                <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+                Image (formats autorisés : jpg, png, webp ou gif)</br></br><input type="file" name="monfichier" /></br>
+                <button class="btn mt-6 btn-primary" name="ajoutArticle" type="submit">Ajouter</button>
               </form>
               </div>
             </div>
