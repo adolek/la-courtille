@@ -1,11 +1,19 @@
 <?php
+///LOCALHOST///
 //identifier votre BDD
 $database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
-session_start();
+/*///SERVEUR WEB///
+//identifier votre BDD
+$database = "dbs5254611";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
+$db_found = mysqli_select_db($db_handle, $database);*/
+
+//session_start();
 
 if($db_found)
 {
@@ -482,6 +490,10 @@ if (isset($_POST["profSup"])){
 
                 <div class="form-group">
                   <button type="submit" name="button" class="btn btn-danger text-uppercase w-100">Se connecter</button>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1; padding:16px 16px 40px 16px;">
+                  <span class="psw"><a href="forgot_password.php">Mot de passe oublié ?</a></span>
                 </div>
 
               </form>

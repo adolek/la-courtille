@@ -4496,6 +4496,7 @@ textarea.form-control-lg {
 .list-group-item {
     position: relative;
     display: table;
+    width:100%;
     padding: .5rem 1rem;
     color: #222;
     text-decoration: none;
@@ -15572,4 +15573,21 @@ preview-2
 
     border: 0;
     width: 100%;
+  }
+
+  .container {
+    padding: 16px;
+  }
+  
+  span.psw {
+    float: right;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    
   }
