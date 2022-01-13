@@ -5,28 +5,27 @@
   //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
   $db_handle = mysqli_connect('localhost', 'root', '' );
   $db_found = mysqli_select_db($db_handle, $database);
-   
+  
+
+  $id = $_GET['id'];
    //si le BDD existe, faire le traitement
   if ($db_found) {
-   $sql = "SELECT * FROM articles";
-   $result = mysqli_query($db_handle, $sql);
-   
-   while ($article = mysqli_fetch_assoc($result)) {
-    $articles[]=$article;
+
     
-   
-   
-  }//end while
-   
+       $sql = "SELECT * FROM articles WHERE idArticle = '$id'";
+       $result = mysqli_query($db_handle, $sql);
+       $article = mysqli_fetch_assoc($result);
+      
+      
   }//end if
   //si le BDD n'existe pas
+
   else {
-   echo "Database not found";
+       echo "Database not found";
   }//end else
-  //fermer la connection
+  //fermer la connection*/
   mysqli_close($db_handle);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -112,11 +111,12 @@
     </div>
 
 
+
         <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img class="d-inline-block" src="assets/img/logo-school.png" alt="Kidz School">
+          <img class="d-inline-block" src="assets/img/logo-school.jpg" alt="La Courtille">
         </a>
 
         
@@ -128,10 +128,8 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
-            
-
-            <li class="nav-item dropdown bg-primary">
-              <a class="nav-link " href="index.html">
+              <li class="nav-item dropdown bg-primary">
+              <a class="nav-link active" href="index.html">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Acceuil</span>
               </a>
@@ -164,9 +162,9 @@
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link active" href="component-default.html">
+              <a class="nav-link " href="actualites.html">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
-                <span>Actualités</span>
+                <span>Actualité</span>
               </a>
             </li>
 
@@ -194,7 +192,7 @@
             </li>
 
             <li class="nav-item dropdown bg-blue">
-              <a class="nav-link " href="contact.html">
+              <a class="nav-link" href="contact.html">
                 <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
                 <span>Contact</span>
               </a>
@@ -206,89 +204,63 @@
                 <span>CDI</span>
               </a>
             </li>
+            <li class="nav-item dropdown bg-zinzolin">
+              <a class="nav-link " href="admin.html">
+                <i class="fas fa-users-cog nav-icon-square" aria-hidden="true"></i>
+                <span>Admin</span>
+              </a>
+            </li>
+            
           </ul>
         </div>
       </div>
     </nav>
   </header>
+  <div class="main-wrapper home">
 
-  <div class="main-wrapper blog-grid">
-
-
-    <!-- ====================================
-    ——— BREADCRUMB
-    ===================================== -->
-    <section class="breadcrumb-bg" style="background-image: url(assets/img/tableau.jpg); ">
-      <div class="container">
-        <div class="breadcrumb-holder">
-          <div>
-            <h1 class="breadcrumb-title">Actualités</h1>
-            <ul class="breadcrumb breadcrumb-transparent">
-              <li class="breadcrumb-item">
-                <a class="text-white" href="index.html">Accueil</a>
-              </li>
-              <li class="breadcrumb-item text-white active" aria-current="page">
-                Actualités
-              </li>
-            </ul>
-          </div>
+<!-- ====================================
+——— BLOG DETAILS
+===================================== -->
+ <section class="py-8 py-md-10">
+  <div class="container">
+    <div class="card">
+      <div class="position-relative">
+        <img class="card-img-top" src="assets/img/blog/blog-single-blog.jpg" alt="Card image cap">
+        <div class="card-img-overlay">
+          <span class="badge badge-rounded bg-primary"><?php echo $article['date'];?></span>
         </div>
       </div>
-    </section>
-  
-  <!-- ====================================
-  ——— BLOG GRID
-  ===================================== -->
-  <section class="py-8 py-md-10">
-    <div class="container">
-      <div class="row">
-              
-  
-        <?php foreach ($articles as $article) : ?>
+      <div class="card-body border-top-5 px-3 rounded-bottom border-primary">
+        <h3 class="card-title text-primary mb-5"><?php echo $article['titre'];?></h3>
+        <ul class="list-unstyled d-flex mb-5">
+          <li class="">
+            <div class="text-muted d-inline-block me-3"><i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $article['idUser'];?></div>
+          </li>
+        </ul>
+        <ul class="list-unstyled d-flex mb-5">
+          <li class="">
+            <figure>
+              <figcaption><i class="fas fa-headphones-alt me-2" aria-hidden="true"></i> Fichier Audio</figcaption>
+                  <audio controls>
+                      <source src="assets/audio/<?php echo $article['audio'];?>.mp3" >
+                            
+                      Votre navigateur ne supporte pas la balise audio.
+                  </audio>
+              </figure>
+          </li>
+        </ul>
 
-        <div class="col-md-6 col-lg-4">
-          <div class="card">
-             <div class="position-relative">
-                <a href="blog-single-left-sidebar.html">
-                  <img class="card-img-top" src="assets/img/blog/blog-course-4.jpg" alt="Card image">
-               </a>
-                <div class="card-img-overlay p-0">
-                  <span class="badge bg-info badge-rounded m-4"> <?php echo $article['date'];?></span>
-                </div>
-              </div>
-  
-            <div class="card-body border-top-5 px-3 rounded-bottom border-info">
-              <h3 class="card-title">
-                <a class="text-info text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre'];?></a>
-              </h3>
-                  <ul class="list-unstyled d-flex mb-1">
-                    <li class="me-2">
-                      <a class="text-muted" href="blog-single-left-sidebar.html">
-                        <i class="fa fa-user me-2" aria-hidden="true"></i>Jone Doe
-                      </a>
-                    </li>
-                  </ul>
-              <p class="mb-2"> <?php echo $article['texte'];?></p>
-              
-              <a class="btn btn-link text-hover-info ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
-                <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Voir l'article
-              </a>
-
-            </div>
-          </div>
-        </div>
-
-
-  <?php endforeach?>
         
-  
-            
+        
+        
+        <p class="card-text text-justify mb-6"><?php echo $article['texte'];?></p>
+
+      
       </div>
     </div>
-  </section>
-  
-  </div> <!-- element wrapper ends -->
-  
+</section>
+
+
 <!-- ====================================
 ——— FOOTER
 ===================================== -->
@@ -313,84 +285,30 @@
     </div>
   </div>
 
-  <div class="pt-8  bg-repeat" style="background-image: url(assets/img/enfantheureux.jpg);">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-sm col-lg col-xs">
-          <h4 class="section-title-sm font-weight-bold text-white mb-6">Infos contact</h4>
-          <ul class="list-unstyled">
-            <li class="mb-4">
-                <i class="fas fa-phone-square-alt me-2" aria-hidden="true"></i>Téléphone : 01 86 78 34 30
-            </li>
-            <li class="mb-4">
-                <i class="fas fa-envelope-square me-2" aria-hidden="true"></i>Mail : <a href="mailto:roedianto.yohann@gmail.com">ecole@gmail.com</a>
-            </li>
-            <li class="mb-4">
-                <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>12 Rue Jacques Vache, 93200 Saint Denis
-            </li>
-            <li class="mb-3">
-                  <table>
-                    <thead>
-                        <tr>
-
-                            <th colspan="2"><h4 class="section-title-sm font-weight-bold text-white">Horaires d'ouverture du secrétariat :</h4></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>8h30 - 17h30</td>
-                            <td>lundi, mardi et vendredi</td>
-                        </tr>
-                        <tr>
-                            <td>8h30 - 12h30</td>
-                            <td>mercredi et jeudi</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </li>
-
-            
-          </ul>
-        </div>
-
-        <div class="col-sm col-lg col-xs">
-          <h4 class="section-title-sm font-weight-bold text-white mb-6">Adresse</h4>
-
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3760.14170228514!2d2.3788464799816476!3d48.9401035485792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66bf96ad25cab%3A0xaf44150bdcedc736!2sColl%C3%A8ge%20la%20Courtille!5e0!3m2!1sfr!2sfr!4v1641385695534!5m2!1sfr!2sfr" width="100%" height="75%" allowfullscreen="" loading="lazy"></iframe>
-                
-        </div>
-
-        
-  </div>
-
   <!-- Copy Right -->
   
-    </div>
-  </div>
-
   <div class="copyright">
     <div class="container">
       <div class="row py-4 align-items-center">
         <div class="col-sm-7 col-xs-12 order-1 order-md-0">
           <p class="copyright-text"><span id="copy-year"></span> © Copyright Collège La Courtille. Tous droits réservés.</a></p>
         </div>
-      </div>
-      </div>
-      </div>
- 
- 
 
-</footer>
-  
-  <!--scrolling-->
-  <div class="">
-    <a href="#pageTop" class="back-to-top" id="back-to-top" style="opacity: 1;">
-      <i class="fas fa-arrow-up" aria-hidden="true"></i>
-    </a>
+      </div>
+    </div>
   </div>
 
-  <!-- Javascript -->
+</footer>
+
+
+<!--scrolling-->
+<div class="">
+  <a href="#pageTop" class="back-to-top" id="back-to-top" style="opacity: 1;">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </a>
+</div>
+
+<!-- Javascript -->
 <script src='assets/js/jquery.min.js'></script>
 <script src='assets/js/bootstrap.bundle.min.js'></script>
 
@@ -427,4 +345,3 @@
 </body>
 
 </html>
-
