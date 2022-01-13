@@ -20,22 +20,33 @@ if(isset($_POST['id']) && isset($_POST['pw']))
     
     if($username !== "" && $password !== "")
     {
-        $requete = "SELECT count(*) FROM users where 
-              email = '".$username."' and mdp = '".$password."' ";
+        $passhash ="";
+        $req = "SELECT * FROM users";
+        $res = mysqli_query($db_handle, $req);
+        while ($user = mysqli_fetch_assoc($res)) { 
+          $users[] = $user; 
+        }
+        foreach($users as $user)
+        {
+          if (password_verify($password, $user['mdp'])) {
+            $passhash = $user['mdp'];
+          } 
+        }
+       
+        $requete = "SELECT count(*) FROM users where email = '".$username."' and mdp = '".$passhash."' ";
         $exec_requete = mysqli_query($db_handle,$requete);
         $reponse      = mysqli_fetch_array($exec_requete);
         $count = $reponse['count(*)'];
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
            $_SESSION['email'] = $username;
-           $erreur = "Utilisateur et mot de passe correctes";
 
            echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-           " . $erreur . "
+           Identifiant et mot de passe corrects.
           <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
           </div>";
          
-           $req = "SELECT * FROM users WHERE email = '$username' AND mdp = '$password'";
+           $req = "SELECT * FROM users WHERE email = '$username' AND mdp = '$passhash'";
            $res = mysqli_query($db_handle, $req);
            $user = mysqli_fetch_assoc($res);
 
@@ -44,18 +55,16 @@ if(isset($_POST['id']) && isset($_POST['pw']))
         }
         else
         {
-           echo"Utilisateur ou mot de passe incorrects";
            echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-           " . $erreur . "
+           Identifiant ou mot de passe incorrects.
           <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
           </div>";
         }
     }
     else
     {
-       echo"Utilisateur ou mot de passe vides";
        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-       " . $erreur . "
+       Identifiant ou mot de passe vides.
       <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
       </div>";
     }
@@ -201,7 +210,11 @@ if (isset($_POST["ajoutProf"])){
 
        }else 
            {
-              $sql = "INSERT INTO users(email, mdp, nom, type) VALUES('$mail', '$mdp', '$nom','prof')";
+              $options = [
+                  'cost' => 12,
+              ];
+              $hashpass = password_hash($mdp, PASSWORD_BCRYPT, $options);
+              $sql = "INSERT INTO users(email, mdp, nom, type) VALUES('$mail', '$hashpass', '$nom','prof')";
               $result = mysqli_query($db_handle, $sql);
               $erreur= "Nouveau professeur créé !";
 
