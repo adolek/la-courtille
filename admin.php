@@ -13,7 +13,7 @@ $database = "dbs5254611";
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
 $db_found = mysqli_select_db($db_handle, $database);*/
 
-//session_start();
+session_start();
 
 if($db_found)
 {
@@ -95,7 +95,7 @@ if (isset($_POST["ajoutArticle"])){
   $elementsChemin2 = pathinfo($nomOrigine2);
   $extensionFichier2 = $elementsChemin2['extension'];
   $extensionsAutorisees2 = array("mp3", "ogg", "wma");
-  $extensionsAutorisees = array("jpeg", "jpg", "JPG", "gif", "png", "webp", "svg");
+  $extensionsAutorisees = array("jpeg", "jpg", "JPG", "JPEG", "gif", "png", "webp", "svg");
 
   $nomDestination2="";  
 
@@ -235,8 +235,6 @@ if (isset($_POST["ajoutProf"])){
   
 }
 
-
-
 //si clic bouton supprimer prof
 
 if (isset($_POST["profSup"])){ 
@@ -247,6 +245,41 @@ if (isset($_POST["profSup"])){
   $supression = mysqli_query($db_handle, $supprimer);
 
   $erreur= "Professeur supprimé !";
+
+  echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+  " . $erreur . "
+ <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+ </div>";
+
+}
+
+//si clic bouton enregistrer les modifications
+
+if (isset($_POST["modifArticle"])){
+
+  $titre = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['titre'])); 
+  $texte = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['texte'])); 
+  $id = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['id'])); 
+
+  $req = "UPDATE articles SET titre = '$titre', texte = '$texte' WHERE idArticle = '$id'";
+  $update = mysqli_query($db_handle, $req);
+
+  echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+  Article modifié avec succès !
+ <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+ </div>";
+
+}
+
+
+if($_GET['delete']==1)
+{
+  $id = $_GET['id'];
+
+  $supprimer = "DELETE FROM articles WHERE idArticle = '$id'";
+  $supression = mysqli_query($db_handle, $supprimer);
+
+  $erreur= "Article supprimé !";
 
   echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
   " . $erreur . "
@@ -568,13 +601,13 @@ $count=-1;
                   <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
                           </a>
                 <div class="card-img-overlay p-0">
-                  <span class="badge bg-<?php echo $color;?> badge-rounded m-4"> 14 <br> Jun</span>
+                  <span class="badge bg-<?php echo $color;?> badge-rounded m-4"><?php echo $article['date'];?></span>
                 </div>
                       </div>
   
             <div class="card-body border-top-5 px-3 rounded-bottom border-<?php echo $color;?>">
               <h3 class="card-title">
-                <a class="text-<?php echo $color;?> text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre']; ?></a>
+                <a class="text-<?php echo $color;?> text-capitalize d-block text-truncate" href="pageArticle.php?id=<?php echo $article['idArticle'];?>"><?php echo $article['titre']; ?></a>
               </h3>
                           <ul class="list-unstyled d-flex mb-1">
                 <li class="me-2">
@@ -585,8 +618,11 @@ $count=-1;
              
               </ul>
               <p class="mb-2"><?php echo $article['texte']; ?></p>
-              <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="blog-single-left-sidebar.html">
-                <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Read More
+              <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>&edit=1">
+                <i class="fa fa-edit me-1" aria-hidden="true"></i> Modifier l'article
+              </a>
+              <a class="btn btn-link text-danger ps-0" href="admin.php?id=<?php echo $article['idArticle'];?>&delete=1">
+                <i class="fa fa-trash me-1" aria-hidden="true"></i> Supprimer l'article
               </a>
             </div>
           </div>
@@ -610,7 +646,7 @@ $count=-1;
                   <textarea class="form-control" name="texte" id="floatingInput" placeholder="texte" style="height: 100px"></textarea>
                   <label for="floatingTextarea2">Texte</label>
                 </div>
-                <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
                 Image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monfichier" /></br></br>
                 Audio (formats autorisés : mp3, ogg)</br><input type="file" name="monaudio" /></br>
                 <button class="btn mt-6 btn-primary" name="ajoutArticle" type="submit">Ajouter</button>

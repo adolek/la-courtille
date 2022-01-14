@@ -1,30 +1,35 @@
 <?php
-  //identifier le nom de base de données
-  $database = "la_courtille";
-  //connectez-vous dans votre BDD
-  //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
-  $db_handle = mysqli_connect('localhost', 'root', '' );
-  $db_found = mysqli_select_db($db_handle, $database);
-  
+///LOCALHOST///
+//identifier votre BDD
+$database = "la_courtille";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
-  $id = $_GET['id'];
+/*///SERVEUR WEB///
+//identifier votre BDD
+$database = "dbs5254611";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
+$db_found = mysqli_select_db($db_handle, $database);*/
+  
    //si le BDD existe, faire le traitement
   if ($db_found) {
 
-    
-       $sql = "SELECT * FROM articles WHERE idArticle = '$id'";
-       $result = mysqli_query($db_handle, $sql);
-       $article = mysqli_fetch_assoc($result);
-      
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM articles WHERE idArticle = '$id'";
+    $result = mysqli_query($db_handle, $sql);
+    $article = mysqli_fetch_assoc($result);
+
+    $idUser = $article['idUser'];
+    $sql2 = "SELECT * FROM users WHERE idUser = '$idUser'";
+    $result2 = mysqli_query($db_handle, $sql2);
+    $user = mysqli_fetch_assoc($result2);
+    $nom = $user['nom'];
       
   }//end if
-  //si le BDD n'existe pas
 
-  else {
-       echo "Database not found";
-  }//end else
-  //fermer la connection*/
-  mysqli_close($db_handle);
 ?>
 
 <!DOCTYPE html>
@@ -221,6 +226,7 @@
 <!-- ====================================
 ——— BLOG DETAILS
 ===================================== -->
+<?php if(!$_GET['edit']):?>
  <section class="py-8 py-md-10">
   <div class="container">
     <div class="card">
@@ -234,7 +240,7 @@
         <h3 class="card-title text-primary mb-5"><?php echo $article['titre'];?></h3>
         <ul class="list-unstyled d-flex mb-5">
           <li class="">
-            <div class="text-muted d-inline-block me-3"><i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $article['idUser'];?></div>
+            <div class="text-muted d-inline-block me-3"><i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $nom;?></div>
           </li>
         </ul>
         <ul class="list-unstyled d-flex mb-5">
@@ -249,17 +255,58 @@
               </figure>
           </li>
         </ul>
-
-        
-        
-        
         <p class="card-text text-justify mb-6"><?php echo $article['texte'];?></p>
-
-      
       </div>
     </div>
 </section>
+<?php endif ?>
 
+<?php if($_GET['edit']==1): ?>
+
+  <section class="py-8 py-md-10">
+  <div class="container">
+    <div class="card">
+      <div class="position-relative">
+        <img class="card-img-top" src="assets/img/<?php echo $article['image'];?>" alt="Card image cap">
+        <div class="card-img-overlay">
+          <span class="badge badge-rounded bg-primary"><?php echo $article['date'];?></span>
+        </div>
+      </div>
+      <form action="admin.php" method="post">
+      <div class="card-body border-top-5 px-3 rounded-bottom border-primary">
+          <input type="text" class="text-primary form-control card-title mb-5"  name="titre" value="<?php echo $article['titre'];?>">
+        <ul class="list-unstyled d-flex mb-5">
+          <li class="">
+            <div class="text-muted d-inline-block me-3"><i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $nom;?></div>
+          </li>
+        </ul>
+        <ul class="list-unstyled d-flex mb-5">
+          <li class="">
+            <figure>
+              <figcaption><i class="fas fa-headphones-alt me-2" aria-hidden="true"></i> Fichier Audio</figcaption>
+                  <audio controls>
+                      <source src="assets/audio/<?php echo $article['audio'];?>.mp3" >
+                            
+                      Votre navigateur ne supporte pas la balise audio.
+                  </audio>
+              </figure>
+          </li>
+        </ul>
+          <textarea class="form-control card-text text-justify mb-6" name="texte" style="height: 600px" ><?php echo $article['texte'];?></textarea>
+      </div>
+      <input type="text" style="visibility:hidden;" name="id" value="<?php echo $article['idArticle'];?>">
+
+    </div>
+    <div class="container"> 
+      <div class="row">
+        <button class="btn col-3 mt-6 btn-primary" name="modifArticle" type="submit">Enregistrer les modifications</button>
+        <button class="btn offset-6 col-3 mt-6 btn-danger" type="submit" formaction="admin.php">Annuler</button>
+      </div>
+    </div>
+    </form>
+</section>
+
+<?php endif ?>
 
 <!-- ====================================
 ——— FOOTER
