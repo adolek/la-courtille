@@ -1,6 +1,42 @@
 <?php session_start(); ?>
 <?php echo $_SESSION['email']; ?>
 
+<!--Actualité -->
+<?php
+  //identifier le nom de base de données
+  $database = "la_courtille";
+  //connectez-vous dans votre BDD
+  //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
+  $db_handle = mysqli_connect('localhost', 'root', '' );
+  $db_found = mysqli_select_db($db_handle, $database);
+   
+   //si le BDD existe, faire le traitement
+  if ($db_found) {
+   $sql = "SELECT * FROM `articles` ORDER BY `articles`.`date` DESC";
+   $result = mysqli_query($db_handle, $sql);
+   
+   while ($temp = mysqli_fetch_assoc($result)) { 
+    $temps[] = $temp; 
+  }//end while
+   
+  }//end if
+  //si le BDD n'existe pas
+  else {
+   echo "Database not found";
+  }//end else
+
+$articles = [];
+for ($i=0; $i<3; $i++) {
+     $articles[$i]=$temps[$i];   
+    }
+    
+
+
+  //fermer la connection
+  mysqli_close($db_handle);
+?>
+<!--Fin Actualité -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -285,126 +321,61 @@
 <!-- ====================================
 ———	BLOG SECTION
 ===================================== -->
-<section class="pt-9 pb-7" id="blog">
-  <div class="container">
+<!--<section class="pt-9 pb-7" id="blog">-->
+  <section class="py-8 py-md-10">
+    <div class="container">
     <div class="section-title justify-content-center mb-4 mb-md-8 wow fadeInUp">
       <span class="shape shape-left bg-info"></span>
-      <h2 class="text-danger">Latest News</h2>
+      <h2 class="text-danger">Les dernières actualités</h2>
       <span class="shape shape-right bg-info"></span>
     </div>
 
-    <div class="row wow fadeInUp">
-			<div class="col-md-4">
-        <div class="card">
-					<div class="position-relative">
-	          <a href="blog-single-left-sidebar.html">
-	            <img class="card-img-top lazyestload" data-src="assets/img/blog/blog-img1.jpg" src="assets/img/blog/blog-img1.jpg" alt="Card image">
-						</a>
-            <div class="card-img-overlay p-0">
-              <span class="badge badge-rounded bg-primary m-4"> 10 <br> July</span>
+    <div class="container">
+      <div class="row">
+              
+  
+        <?php foreach ($articles as $article) : ?>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+             <div class="position-relative">
+                <a href="blog-single-left-sidebar.html">
+                  <img class="card-img-top" src="assets/img/blog/blog-course-4.jpg" alt="Card image">
+               </a>
+                <div class="card-img-overlay p-0">
+                  <span class="badge bg-info badge-rounded m-4"> <?php echo $article['date'];?></span>
+                </div>
+              </div>
+  
+            <div class="card-body border-top-5 px-3 rounded-bottom border-info">
+              <h3 class="card-title">
+                <a class="text-info text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre'];?></a>
+              </h3>
+                  <ul class="list-unstyled d-flex mb-1">
+                    <li class="me-2">
+                      <a class="text-muted" href="blog-single-left-sidebar.html">
+                        <i class="fa fa-user me-2" aria-hidden="true"></i>Jone Doe
+                      </a>
+                    </li>
+                  </ul>
+              <p class="mb-2"> <?php echo $article['texte'];?></p>
+              
+              <a class="btn btn-link text-hover-info ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
+                <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Voir l'article
+              </a>
+
             </div>
-					</div>
-
-          <div class="card-body border-top-5 px-3 border-primary">
-            <h3 class="card-title">
-              <a class="text-primary text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html">The standard chunk of Lorem.</a>
-            </h3>
-            <ul class="list-unstyled d-flex flex-md-column flex-lg-row">
-              <li class="me-2">
-								<a class="text-muted" href="blog-single-left-sidebar.html">
-									<i class="fa fa-user me-2" aria-hidden="true"></i>Jone Doe
-								</a>
-              </li>
-              <li class="me-2">
-								<a class="text-muted" href="blog-single-left-sidebar.html">
-									<i class="fas fa-comments me-2" aria-hidden="true"></i>4 Comments
-								</a>
-              </li>
-            </ul>
-            <p class="mb-2"> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature.</p>
-            <a class="btn btn-link text-hover-warning ps-0" href="blog-single-left-sidebar.html">
-              <i class="fas fa-angle-double-right me-1" aria-hidden="true"></i> Read More
-            </a>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-4">
-        <div class="card">
-					<div class="position-relative">
-						<a href="blog-single-left-sidebar.html">
-	            <img class="card-img-top lazyestload" data-src="assets/img/blog/blog-img2.jpg" src="assets/img/blog/blog-img2.jpg" alt="Card image">
-						</a>
-            <div class="card-img-overlay p-0">
-              <span class="badge bg-success badge-rounded m-4"> 14 <br> Jun</span>
-            </div>
-					</div>
 
-          <div class="card-body border-top-5 px-3 border-success">
-            <h3 class="card-title">
-              <a class="text-success text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html">Vestibulum congue massa vitae.</a>
-            </h3>
-						<ul class="list-unstyled d-flex flex-md-column flex-lg-row">
-              <li class="me-2">
-								<a class="text-muted" href="blog-single-left-sidebar.html">
-									<i class="fa fa-user me-2" aria-hidden="true"></i>Jone Doe
-								</a>
-              </li>
-              <li class="me-2">
-								<a class="text-muted" href="blog-single-left-sidebar.html">
-									<i class="fas fa-comments me-2" aria-hidden="true"></i>4 Comments
-								</a>
-              </li>
-            </ul>
-            <p class="mb-2"> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature.</p>
-            <a class="btn btn-link text-hover-success ps-0" href="blog-single-left-sidebar.html">
-              <i class="fas fa-angle-double-right me-1" aria-hidden="true"></i> Read More
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card">
-					<div class="position-relative">
-						<a href="blog-single-left-sidebar.html">
-	            <img class="card-img-top lazyestload" data-src="assets/img/blog/blog-img3.jpg" src="assets/img/blog/blog-img3.jpg" alt="Card image">
-						</a>
-	          <div class="card-img-overlay p-0">
-	            <span class="badge bg-danger badge-rounded m-4"> 14 <br> Jun</span>
-	          </div>
-					</div>
-
-          <div class="card-body border-top-5 px-3 border-danger">
-            <h3 class="card-title">
-              <a class="text-danger text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html">Vestibulum congue massa vitae.</a>
-            </h3>
-						<ul class="list-unstyled d-flex flex-md-column flex-lg-row">
-              <li class="me-2">
-								<a class="text-muted" href="blog-single-left-sidebar.html">
-									<i class="fa fa-user me-2" aria-hidden="true"></i>Jone Doe
-								</a>
-              </li>
-              <li class="me-2">
-								<a class="text-muted" href="blog-single-left-sidebar.html">
-									<i class="fas fa-comments me-2" aria-hidden="true"></i>4 Comments
-								</a>
-              </li>
-            </ul>
-            <p class="mb-2"> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classi cal Latin literature.</p>
-            <a class="btn btn-link text-hover-danger ps-0" href="blog-single-left-sidebar.html">
-              <i class="fas fa-angle-double-right me-1" aria-hidden="true"></i> Read More
-            </a>
-          </div>
-        </div>
+  <?php endforeach?>
+        
+  
+            
       </div>
     </div>
-
-    <div class="btn-aria text-center mt-4 wow fadeInUp">
-			<a href="blog-grid.html" class="btn btn-danger text-uppercase">View More</a>
-		</div>
-  </div>
-</section>
+  </section>
 
 <!-- ====================================
 ———	FAQ SECTION
