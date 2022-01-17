@@ -134,7 +134,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.html">
+              <a class="nav-link" href="index.html">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Acceuil</span>
               </a>
@@ -183,7 +183,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link " href="actualites.html">
+              <a class="nav-link active" href="actualites.html">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
                 <span>Actualité</span>
               </a>
