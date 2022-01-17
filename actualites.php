@@ -112,11 +112,11 @@
     </div>
 
 
-        <!-- Navbar -->
+       <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img class="d-inline-block" src="assets/img/logo-school.png" alt="Kidz School">
+          <img class="d-inline-block" src="assets/img/logo-school.jpg" alt="La Courtille">
         </a>
 
         
@@ -128,10 +128,8 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
-            
-
-            <li class="nav-item dropdown bg-primary">
-              <a class="nav-link " href="index.html">
+              <li class="nav-item dropdown bg-primary">
+              <a class="nav-link active" href="index.html">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Acceuil</span>
               </a>
@@ -153,6 +151,11 @@
                 <li>
                   <a class="dropdown-item " href="index-v3.html">Projet des élèves</a>
                 </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">FabLab</a>
+                </li>
+
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Restauration</a>
                 </li>
@@ -160,28 +163,48 @@
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
                 </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Organigramme</a>
+                </li>
+
+                
+
               </ul>
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link active" href="component-default.html">
+              <a class="nav-link " href="actualites.html">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
-                <span>Actualités</span>
+                <span>Actualité</span>
               </a>
             </li>
 
             <li class="nav-item dropdown bg-info">
               <a class="nav-link" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-school nav-icon" aria-hidden="true"></i>
-                <span>Bourse & quelque chose</span>
+                <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
+                <span>Espace Administratif</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
                   <a class="dropdown-item " href="index.html">Bourse</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Autre</a>
+                  <a class="dropdown-item " href="index-v2.html">Cantine</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Stage</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Tarification livre perdu</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Voyage</a>
                 </li>
               </ul>
             </li>
@@ -194,7 +217,7 @@
             </li>
 
             <li class="nav-item dropdown bg-blue">
-              <a class="nav-link " href="contact.html">
+              <a class="nav-link" href="contact.html">
                 <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
                 <span>Contact</span>
               </a>

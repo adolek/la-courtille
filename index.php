@@ -124,6 +124,11 @@
                 <li>
                   <a class="dropdown-item " href="index-v3.html">Projet des élèves</a>
                 </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">FabLab</a>
+                </li>
+
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Restauration</a>
                 </li>
@@ -131,6 +136,17 @@
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
                 </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Organigramme</a>
+                </li>
+
+                
+
               </ul>
             </li>
 
@@ -144,15 +160,24 @@
             <li class="nav-item dropdown bg-info">
               <a class="nav-link" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-school nav-icon" aria-hidden="true"></i>
-                <span>Bourse & quelque chose</span>
+                <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
+                <span>Espace Administratif</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
                   <a class="dropdown-item " href="index.html">Bourse</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Autre</a>
+                  <a class="dropdown-item " href="index-v2.html">Cantine</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Stage</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Tarification livre perdu</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Voyage</a>
                 </li>
               </ul>
             </li>

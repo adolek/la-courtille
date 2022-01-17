@@ -378,11 +378,11 @@ if($_GET['delete']==1)
     </div>
 
 
-    <!-- Navbar -->
+   <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img class="d-inline-block" src="assets/img/logo-school.png" alt="Kidz School">
+          <img class="d-inline-block" src="assets/img/logo-school.jpg" alt="La Courtille">
         </a>
 
         
@@ -395,7 +395,7 @@ if($_GET['delete']==1)
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link " href="index.php">
+              <a class="nav-link active" href="index.html">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Acceuil</span>
               </a>
@@ -417,6 +417,11 @@ if($_GET['delete']==1)
                 <li>
                   <a class="dropdown-item " href="index-v3.html">Projet des élèves</a>
                 </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">FabLab</a>
+                </li>
+
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Restauration</a>
                 </li>
@@ -424,6 +429,17 @@ if($_GET['delete']==1)
                 <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
                 </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Organigramme</a>
+                </li>
+
+                
+
               </ul>
             </li>
 
@@ -437,15 +453,24 @@ if($_GET['delete']==1)
             <li class="nav-item dropdown bg-info">
               <a class="nav-link" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-school nav-icon" aria-hidden="true"></i>
-                <span>Bourse & quelque chose</span>
+                <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
+                <span>Espace Administratif</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
                   <a class="dropdown-item " href="index.html">Bourse</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Autre</a>
+                  <a class="dropdown-item " href="index-v2.html">Cantine</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Stage</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Tarification livre perdu</a>
+                </li>
+                <li>
+                  <a class="dropdown-item " href="index-v2.html">Voyage</a>
                 </li>
               </ul>
             </li>
