@@ -358,7 +358,12 @@ for ($i=0; $i<3; $i++) {
                       </a>
                     </li>
                   </ul>
-              <p class="mb-2"> <?php echo $article['texte'];?></p>
+              <p class="mb-2"> 
+                  <script type="text/javascript">  
+                    var texte = "<?php echo $article['texte'];?>";
+                    document.write(texte.slice(0, 150)+"...");
+                  </script>
+              </p>
               
               <a class="btn btn-link text-hover-info ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
                 <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Voir l'article
