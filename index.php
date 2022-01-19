@@ -29,9 +29,7 @@ $articles = [];
 for ($i=0; $i<3; $i++) {
      $articles[$i]=$temps[$i];   
     }
-    
-
-
+  
   //fermer la connection
   mysqli_close($db_handle);
 ?>
@@ -138,7 +136,7 @@ for ($i=0; $i<3; $i++) {
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.html">
+              <a class="nav-link active" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Acceuil</span>
               </a>
@@ -152,13 +150,19 @@ for ($i=0; $i<3; $i++) {
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Activités periscolaire</a>
+                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
                 </li>
+
                 <li>
                   <a class="dropdown-item " href="index-v3.html">Sortie</a>
                 </li>
+
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet des élèves</a>
+                  <a class="dropdown-item " href="index-v4.html">Association sportive</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
                 </li>
 
                 <li>
@@ -181,6 +185,13 @@ for ($i=0; $i<3; $i++) {
                   <a class="dropdown-item " href="index-v4.html">Organigramme</a>
                 </li>
 
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="faq.html">F.A.Q.</a>
+                </li>
                 
 
               </ul>
@@ -197,23 +208,35 @@ for ($i=0; $i<3; $i++) {
               <a class="nav-link" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
-                <span>Espace Administratif</span>
+                <span>Intendance</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index.html">Bourse</a>
+                  <a class="dropdown-item " href="javascript:void(0)">
+                    Bourse <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="bourse-college.html">Collège</a></li>
+                    <li><a class="" href="bourse-lycee.html">Lycée</a></li>
+                  </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Cantine</a>
+                  <a class="dropdown-item " href="javascript:void(0)">
+                    Demi-pension<i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="bourse-college.html">Inscription</a></li>
+                    <li><a class="" href="bourse-lycee.html">Paiement</a></li>
+                  </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Stage</a>
+                  <a class="dropdown-item " href="index-v2.html">Inscription Noël</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Tarification livre perdu</a>
+                  <a class="dropdown-item " href="index-v2.html">Inscription Ramadan</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Voyage</a>
+                  <a class="dropdown-item " href="index-v2.html">Tarification particulière</a>
                 </li>
               </ul>
             </li>
@@ -221,8 +244,28 @@ for ($i=0; $i<3; $i++) {
             <li class="nav-item dropdown bg-green">
               <a class="nav-link " href="faq.html">
                 <i class="fas fa-question-circle nav-icon" aria-hidden="true"></i>
-                <span>FAQ</span>
+                <span>Secrétariat</span>
               </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe par trimestre</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Dates des brevets blancs</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Date du DNB</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Date et planning de la rentrée scolaire</a>
+                  </li>
+                </ul>
             </li>
 
             <li class="nav-item dropdown bg-blue">
@@ -319,7 +362,7 @@ for ($i=0; $i<3; $i++) {
 
 
 <!-- ====================================
-———	BLOG SECTION
+——— BLOG SECTION
 ===================================== -->
 <!--<section class="pt-9 pb-7" id="blog">-->
   <section class="py-8 py-md-10">
@@ -340,7 +383,7 @@ for ($i=0; $i<3; $i++) {
           <div class="card">
              <div class="position-relative">
                 <a href="blog-single-left-sidebar.html">
-                  <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
+                  <img class="card-img-top" src="assets/img/blog/blog-course-4.jpg" alt="Card image">
                </a>
                 <div class="card-img-overlay p-0">
                   <span class="badge bg-info badge-rounded m-4"> <?php echo $article['date'];?></span>
@@ -383,7 +426,7 @@ for ($i=0; $i<3; $i++) {
   </section>
 
 <!-- ====================================
-———	FAQ SECTION
+——— FAQ SECTION
 ===================================== -->
 <section class="bg-light pt-9 pb-7" id="blog">
   <div class="container">
@@ -470,15 +513,15 @@ for ($i=0; $i<3; $i++) {
     </div>
 
     <div class="btn-aria text-center mt-4 wow fadeInUp">
-			<a href="faq.html" class="btn btn-danger text-uppercase">Voir plus</a>
-		</div>
+      <a href="faq.html" class="btn btn-danger text-uppercase">Voir plus</a>
+    </div>
   </div>
 </section>
 
 </div> <!-- element wrapper ends -->
 
 <!-- ====================================
-———	FOOTER
+——— FOOTER
 ===================================== -->
 <footer class="footer-bg-img">
   <!-- Footer Color Bar -->
