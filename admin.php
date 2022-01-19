@@ -192,25 +192,34 @@ if (isset($_POST["ajoutProf"])){
   $mail = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mail'])); 
   $mdp = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mdp'])); 
 
+  $choixType ="";
 
-  if(empty($nom)||empty($mail)||empty($mdp))
+  if(empty($nom)||empty($mail)||empty($mdp)||sizeof($_POST['type'])!=1)
   {
-      $erreur= "Un champ ou plusieurs champs obligatoires sont vides";
-
-      echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-      " . $erreur . "
-     <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-     </div>";
+        if(sizeof($_POST['type'])!=1 && !empty($_POST['type'])){
+          $erreur= "Erreur, vous ne pouvez choisir qu'un seul type d'utilisateur lors de la création d'un nouveau compte.";
+        }
+        else{
+          $erreur= "Un champ ou plusieurs champs obligatoires sont vides";
+        }
+        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+        " . $erreur . "
+       <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+       </div>";
   
   }
   else{
   
-       $sql="SELECT * FROM  users where nom like '$nom'";
-       $result = mysqli_query($db_handle, $sql);
+      foreach ($_POST['type'] as $check){
+        $choixType = $check;
+      }
+      
+      $sql="SELECT * FROM  users where nom like '$nom'";
+      $result = mysqli_query($db_handle, $sql);
 
       if (mysqli_num_rows($result) != 0) 
        {
-          $erreur= "Professeur déjà ajouté !";
+          $erreur= "Cet utilisateur a déjà été ajouté.";
           echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
           " . $erreur . "
          <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
@@ -222,9 +231,9 @@ if (isset($_POST["ajoutProf"])){
                   'cost' => 12,
               ];
               $hashpass = password_hash($mdp, PASSWORD_BCRYPT, $options);
-              $sql = "INSERT INTO users(email, mdp, nom, type) VALUES('$mail', '$hashpass', '$nom','prof')";
+              $sql = "INSERT INTO users(email, mdp, nom, type) VALUES('$mail', '$hashpass', '$nom','$choixType')";
               $result = mysqli_query($db_handle, $sql);
-              $erreur= "Nouveau professeur créé !";
+              $erreur= "Nouvel utilisateur créé !";
 
               echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
               " . $erreur . "
@@ -244,7 +253,7 @@ if (isset($_POST["profSup"])){
   $supprimer = "DELETE FROM users WHERE nom = '$nom'";
   $supression = mysqli_query($db_handle, $supprimer);
 
-  $erreur= "Professeur supprimé !";
+  $erreur= "Compte supprimé !";
 
   echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
   " . $erreur . "
@@ -642,7 +651,12 @@ $count=-1;
                 </li>
              
               </ul>
-              <p class="mb-2"><?php echo $article['texte']; ?></p>
+              <p class="mb-2"> 
+                  <script type="text/javascript">  
+                    var texte = "<?php echo $article['texte'];?>";
+                    document.write(texte.slice(0, 150)+"...");
+                  </script>
+              </p>
               <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>&edit=1">
                 <i class="fa fa-edit me-1" aria-hidden="true"></i> Modifier l'article
               </a>
@@ -686,7 +700,7 @@ $count=-1;
 
 <?php 
 
-$req3 = "SELECT * FROM users where type = 'prof'";
+$req3 = "SELECT * FROM users where type = 'prof' OR type = 'documentaliste' OR type = 'secretariat'";
 $res3 = mysqli_query($db_handle, $req3);
 while ($prof = mysqli_fetch_assoc($res3)) { 
 $profs[] = $prof; 
@@ -698,7 +712,7 @@ $profs[] = $prof;
 
 <div class="col-12">
             <div class="mb-8">
-            <h3 class="element-title">Les professeurs</h3>
+            <h3 class="element-title">Les comptes</h3>
 
             <?php foreach($profs as $prof):?>
               <form action="admin.php" method="post">
@@ -706,6 +720,7 @@ $profs[] = $prof;
               <input style="visibility:hidden;width:0;margin:0;padding:0;border:0;" type="text" value="<?php echo $prof['nom']; ?>" name="nom">
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['nom']; ?></div></li>
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['email']; ?></div></li>
+                <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['type']; ?></div></li>
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['mdp']; ?></div></li>
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;">
                 <button class="btn btn-danger btn-sm" name="profSup" type="submit">Supprimer</button></div>
@@ -721,7 +736,7 @@ $profs[] = $prof;
 
 <div class="col-12">
       <div class="mb-8">
-        <h3 class="element-title">Ajouter un professeur</h3>
+        <h3 class="element-title">Ajouter un compte</h3>
       <form action="admin.php" method="post">
         <div class="form-floating mb-3">
           <input type="text" name="nom" placeholder="titre" class="form-control" id="floatingInput">
@@ -735,8 +750,34 @@ $profs[] = $prof;
           <input type="text" name="mdp" placeholder="titre" class="form-control" id="floatingInput">
           <label for="floatingInput">Mot de passe</label>
         </div>
+        <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="type[]" value="prof" id="flexCheckChecked" checked>
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Professeur
+                      </label>
+                    </div>
 
-        <button class="btn btn-primary" name="ajoutProf" type="submit">Ajouter</button>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="type[]" value="documentaliste" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Documentaliste
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="type[]" value="secretariat" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Secrétariat
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="type[]" value="admin" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Administrateur
+                      </label>
+                    </div>
+        
+        <button class="btn btn-primary mt-3" name="ajoutProf" type="submit">Ajouter</button>
       </form>
       </div>
     </div>

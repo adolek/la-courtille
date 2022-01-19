@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 18 jan. 2022 à 08:19
--- Version du serveur : 5.7.36
--- Version de PHP : 7.4.26
+-- Généré le : mer. 19 jan. 2022 à 12:15
+-- Version du serveur :  5.7.31
+-- Version de PHP : 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +48,7 @@ INSERT INTO `articles` (`idArticle`, `idUser`, `titre`, `texte`, `image`, `audio
 (9, 1, 'Les couzzz', 'fezgfzeafezfzea', 'Les couzzz.JPG', '', '2022-01-12'),
 (2, 1, 'La cantine', 'La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv ', '', '', '2022-01-05'),
 (1, 1, 'Les Rûches', 'Dans les ruches, il y a des abeilles', 'Les abeilles.JPG', '', '2022-01-12'),
-(23, 1, 'les Classe', 'La classe est un espace ou les eleve peuvent étudier', '', '', '2022-01-05');
+(23, 1, 'les Classe de neige', 'La classe est un espace ou les eleve peuvent ï¿½tudier', '', '', '2022-01-05');
 
 -- --------------------------------------------------------
 
@@ -62,10 +62,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `type` enum('admin','prof') NOT NULL,
+  `type` enum('admin','prof','secretariat','documentaliste') NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -74,7 +74,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`idUser`, `email`, `mdp`, `nom`, `type`, `token`) VALUES
 (1, 'admin@gmail.com', '$2y$12$0QjUsZOYNUXgxwmD8SMSwO2VSDk6QMnO9GJbrPpPjX2xucQF/iqLK', 'admin', 'admin', NULL),
 (5, 'moi@mail', '$2y$12$ikGUrGgNLqUK/2QbUfSopO2o4tiWG0bxGjMtP0E5zfNtn3S24KWaW', 'moi', 'prof', NULL),
-(6, 'mail', '$2y$12$I4EF8PMNImgif16gGNNEde0saDAdY.3RxJGvrGggD77kh8Bdoe/cm', 'ad', 'prof', NULL);
+(6, 'mail', '$2y$12$I4EF8PMNImgif16gGNNEde0saDAdY.3RxJGvrGggD77kh8Bdoe/cm', 'ad', 'prof', NULL),
+(7, 'm@', '$2y$12$CY13sZrSc3mJez1pXXZxveqnsHQfDAlrIjM.drL3IxoWgNGsdF7JW', 'madame', 'documentaliste', NULL),
+(9, 'm@', '$2y$12$lzM6ewetm0oCL/T4GNzM1uyOgJrRqwXBsAh4Ar7HAKyKXA6g53VK2', 'fzzf', 'secretariat', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
