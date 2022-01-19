@@ -269,6 +269,16 @@
   
         <?php foreach ($articles as $article) : ?>
 
+          <?php $count = $count + 1;
+        $count = $count % 6;
+        if($count==0){$color="primary";}
+        elseif($count==1){$color="success";}
+        elseif($count==2){$color="danger";}
+        elseif($count==3){$color="info";}
+        elseif($count==4){$color="purple";}
+        elseif($count==5){$color="pink";}
+        ?>
+
         <div class="col-md-6 col-lg-4">
           <div class="card">
              <div class="position-relative">

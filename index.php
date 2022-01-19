@@ -340,7 +340,7 @@ for ($i=0; $i<3; $i++) {
           <div class="card">
              <div class="position-relative">
                 <a href="blog-single-left-sidebar.html">
-                  <img class="card-img-top" src="assets/img/blog/blog-course-4.jpg" alt="Card image">
+                  <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
                </a>
                 <div class="card-img-overlay p-0">
                   <span class="badge bg-info badge-rounded m-4"> <?php echo $article['date'];?></span>
