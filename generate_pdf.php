@@ -31,9 +31,37 @@
    
     session_start();
 
+    $inscription='';
+    $yesorno='';
+    $new='';
     $nomEleve = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['nomEleve'])); 
     $prenomEleve = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['prenomEleve'])); 
-   
+    $classe = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['classe'])); 
+    $naissance = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['naissance'])); 
+    $nomResponsable = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['nomResponsable'])); 
+    $prenomResponsable = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['prenomResponsable'])); 
+    $nomEntier = $nomResponsable . '  ' . $prenomResponsable;
+    $adresse = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['adresse'])); 
+    $cp = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['cp'])); 
+    $ville = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['ville'])); 
+    $mail = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mail'])); 
+    $telPerso = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['telPerso'])); 
+    $telPro = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['telPro'])); 
+    $lieu = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['lieu'])); 
+    $dateFait = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['dateFait'])); 
+
+    foreach ($_POST['yesorno'] as $check){
+        $inscription = $check;
+    }
+
+    foreach ($_POST['new'] as $n){
+        $new = $n;
+    }
+
+    foreach ($_POST['inscription'] as $check){
+        $yesorno = $check;
+    }
+
 
     $pdf=new PDF();
     
@@ -43,7 +71,108 @@
     $pdf->useTemplate($tplIdx); 
 
     $pdf->SetFont('Arial','',14);
-    $pdf->RotatedText(100,60,$nomEleve,90);
+    $pdf->RotatedText(58,220,$nomEleve,90);
+
+    $pdf->SetFont('Arial','',14);
+    $pdf->RotatedText(58,124,$prenomEleve,90);
+
+    $pdf->SetFont('Arial','',14);
+    $pdf->RotatedText(58,55,$classe,90);
+
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(66,227,$naissance,90);
+
+    if($yesorno == 'oui'){
+        $pdf->SetFont('Arial','',11);
+        $pdf->RotatedText(75,217,'x',90);
+        
+    }
+    if($yesorno == 'non'){
+        $pdf->SetFont('Arial','',11);
+        $pdf->RotatedText(75,202,'x',90);
+        
+    }
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(83,255,'x',90);
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(83,215,'x',90);
+
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(107,252,$nomResponsable,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(107,118,$prenomResponsable,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(115,250,$adresse,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(115,114,$cp,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(115,71,$ville,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(123,211,$mail,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(131,223,$telPerso,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(131,93,$telPro,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(140,227,$nomEntier,90);
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(157,269,'x',90);
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(166,222,'x',90);
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(166,185,'x',90);
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(166,147,'x',90);
+   
+    foreach($_POST['jours'] as $jour)
+    {
+        if($jour == 'lun'){
+            $pdf->SetFont('Arial','',11);
+            $pdf->RotatedText(175,182,'x',90);
+            
+        }
+        elseif($jour == 'mar'){
+            $pdf->SetFont('Arial','',11);
+            $pdf->RotatedText(175,143,'x',90);
+            
+        }
+        elseif($jour == 'jeu'){
+            $pdf->SetFont('Arial','',11);
+            $pdf->RotatedText(175,104,'x',90);
+            
+        }
+        elseif($jour == 'ven'){
+            $pdf->SetFont('Arial','',11);
+            $pdf->RotatedText(175,67,'x',90);
+            
+        }
+    }
+
+    $pdf->SetFont('Arial','',11);
+    $pdf->RotatedText(186,269,'x',90);
+
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(193,253,$lieu,90);
+    $pdf->SetFont('Arial','',13);
+    $pdf->RotatedText(193,121,$dateFait,90);
+
+
+    $pdf->AddPage();
+    $pdf->setSourceFile('assets/pdf/verso inscription tarification.pdf'); 
+    $tplIdx1 = $pdf->importPage(1); 
+    $pdf->useTemplate($tplIdx1); 
+
+    $pdf->AddPage();
+    $pdf->setSourceFile('assets/pdf/reglement dp.pdf'); 
+    $tplIdx2 = $pdf->importPage(1); 
+    $pdf->useTemplate($tplIdx2); 
+
 
 
 /*

@@ -721,7 +721,6 @@ $profs[] = $prof;
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['nom']; ?></div></li>
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['email']; ?></div></li>
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['type']; ?></div></li>
-                <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;"><?php echo $prof['mdp']; ?></div></li>
                 <li class="list-group-item" style="width:100%;text-align:center;display:table;"><div style="display:table-cell;vertical-align:middle;">
                 <button class="btn btn-danger btn-sm" name="profSup" type="submit">Supprimer</button></div>
                 </li>
