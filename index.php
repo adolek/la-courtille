@@ -241,7 +241,7 @@ for ($i=0; $i<3; $i++) {
               </ul>
             </li>
 
-            <li class="nav-item dropdown bg-green">
+            <li class="nav-item dropdown bg-success">
               <a class="nav-link " href="faq.html">
                 <i class="fas fa-question-circle nav-icon" aria-hidden="true"></i>
                 <span>Secrétariat</span>
@@ -254,7 +254,7 @@ for ($i=0; $i<3; $i++) {
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe par trimestre</a>
+                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Dates des brevets blancs</a>
@@ -263,7 +263,7 @@ for ($i=0; $i<3; $i++) {
                     <a class="dropdown-item " href="index-v2.html">Date du DNB</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Date et planning de la rentrée scolaire</a>
+                    <a class="dropdown-item " href="index-v2.html">Planning de la rentrée scolaire</a>
                   </li>
                 </ul>
             </li>
@@ -324,8 +324,11 @@ for ($i=0; $i<3; $i++) {
     <div class="row wow fadeInUp">
       <div class="col-sm-6 col-xs-12">
         <div>
-          <div class="section-title mb-4 mb-md-8 wow fadeInUp">
-            <h2 class="text-danger">Le collège La Courtille</h2>
+
+            <div class="section-title mb-4 mb-md-8 wow fadeInUp">
+      
+      <h2 class="text-danger">Questions fréquentes</h2>
+      
           </div>
           <div class="align-items-baseline mb-4 px-3 font-weight-medium font-size-20">
           <div> Le college la Courtille est un lieu propice à l'education des jeunnes adolescents </div>
