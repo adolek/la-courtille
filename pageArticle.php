@@ -249,7 +249,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
   <div class="container">
     <div class="card">
       <div class="position-relative">
-        <img class="card-img-top" src="assets/img/blog/blog-single-blog.jpg" alt="Card image cap">
+        <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image cap">
         <div class="card-img-overlay">
           <span class="badge badge-rounded bg-primary"><?php echo $article['date'];?></span>
         </div>

@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-<?php echo $_SESSION['email']; ?>
 
 <!--Actualité -->
 <?php
@@ -123,7 +122,7 @@ for ($i=0; $i<3; $i++) {
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <img class="d-inline-block" src="assets/img/logo-school.jpg" alt="La Courtille">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
         </a>
 
         
@@ -243,7 +242,7 @@ for ($i=0; $i<3; $i++) {
 
             <li class="nav-item dropdown bg-success">
               <a class="nav-link " href="faq.html">
-                <i class="fas fa-question-circle nav-icon" aria-hidden="true"></i>
+                <i class="fas fa-user-edit nav-icon" aria-hidden="true"></i>
                 <span>Secrétariat</span>
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
@@ -324,11 +323,8 @@ for ($i=0; $i<3; $i++) {
     <div class="row wow fadeInUp">
       <div class="col-sm-6 col-xs-12">
         <div>
-
-            <div class="section-title mb-4 mb-md-8 wow fadeInUp">
-      
-      <h2 class="text-danger">Questions fréquentes</h2>
-      
+          <div class="section-title mb-4 mb-md-8 wow fadeInUp">
+            <h2 class="text-danger">Le collège la Courtille</h2>
           </div>
           <div class="align-items-baseline mb-4 px-3 font-weight-medium font-size-20">
           <div> Le college la Courtille est un lieu propice à l'education des jeunnes adolescents </div>
@@ -385,7 +381,7 @@ for ($i=0; $i<3; $i++) {
         <div class="col-md-6 col-lg-4">
           <div class="card">
              <div class="position-relative">
-                <a href="blog-single-left-sidebar.html">
+                <a href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
                   <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
                </a>
                 <div class="card-img-overlay p-0">
