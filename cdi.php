@@ -12,6 +12,16 @@ $database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
 $db_found = mysqli_select_db($db_handle, $database);*/
+
+if ($db_found) {
+
+    $sql = "SELECT * FROM activites";
+    $result = mysqli_query($db_handle, $sql);
+    while ($activite = mysqli_fetch_assoc($result)) { 
+        $activites[] = $activite; 
+      }
+      
+  }//end if
   
 
 ?>
@@ -321,18 +331,19 @@ $db_found = mysqli_select_db($db_handle, $database);*/
     </div>
 
     <div class="row justify-content-between">
+        <?php foreach($activites as $activite): ?>
       <div class="col-md-6 col-lg-4 px-5 mb-6">
         <div class="card">
-        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <img class="img-fluid rounded" src="assets/img/AfficheSiestesContées.jpg" alt="Card image cap"></a>
+        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $activite['idActivite'];?>">
+        <img class="img-fluid rounded" src="assets/img/<?php echo $activite['image'];?>" alt="Card image cap"></a>
          <!-- Modal -->
-         <div class="modal fade mb-8" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         <div class="modal fade mb-8" id="exampleModal<?php echo $activite['idActivite'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog " role="document">
                   <div class="modal-content">
                     
                     <div class="modal-body text-center">
-                      <img class="img-modal" src="assets/img/AfficheSiestesContées.jpg">
+                      <img class="img-modal" src="assets/img/<?php echo $activite['image'];?>">
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -343,52 +354,8 @@ $db_found = mysqli_select_db($db_handle, $database);*/
 
         </div>
       </div>
+      <?php endforeach?>
 
-      <div class="col-md-6 col-lg-4 px-5 mb-6">
-        <div class="card">
-        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <img class="img-fluid rounded" src="assets/img/Ouvrir l'école aux parents pour la réussite des enfants.jpg" alt="Card image cap"></a>
-         <!-- Modal -->
-         <div class="modal fade mb-8" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog " role="document">
-                  <div class="modal-content">
-                    
-                    <div class="modal-body text-center">
-                      <img class="img-modal" src="assets/img/Ouvrir l'école aux parents pour la réussite des enfants.jpg">
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 px-5 mb-6">
-        <div class="card">
-        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <img class="img-fluid rounded" src="assets/img/affichePlanningSilenceOnLit.jpg" alt="Card image cap"></a>
-         <!-- Modal -->
-         <div class="modal fade mb-8" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog " role="document">
-                  <div class="modal-content">
-                    
-                    <div class="modal-body text-center">
-                      <img class="img-modal" src="assets/img/affichePlanningSilenceOnLit.jpg">
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-        </div>
-      </div>
     </div>
   </div>
 </section>

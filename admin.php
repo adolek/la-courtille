@@ -184,6 +184,45 @@ if (isset($_POST["ajoutArticle"])){
 
 }
 
+if (isset($_POST["ajoutActivite"])){
+
+  $titre = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['titre'])); 
+
+  $nomOrigine = $_FILES['monimage']['name'];
+  $elementsChemin = pathinfo($nomOrigine);
+  $extensionFichier = $elementsChemin['extension'];
+  $extensionsAutorisees = array("jpeg", "jpg", "JPG", "JPEG", "gif", "png", "webp", "svg");
+
+  if (!(in_array($extensionFichier, $extensionsAutorisees))) {
+    echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+    L'image téléchargée n'a pas l'extension attendue.
+   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+   </div>";
+  } else {    
+    
+    // Copie dans le repertoire du script avec un nom
+    $repertoireDestination = dirname(__FILE__)."/assets/img/";
+    $nomDestination = $titre.".".$extensionFichier;
+
+    if (move_uploaded_file($_FILES["monimage"]["tmp_name"], $repertoireDestination.$nomDestination)) {
+
+        $sql = "INSERT INTO activites(image) VALUES('$nomDestination')";
+        $result = mysqli_query($db_handle, $sql);
+        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+        Activité ajoutée avec succès !
+      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+      </div>";
+    }
+    else {
+        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+        Le fichier image est trop volumineux pour être importé.
+      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+      </div>";
+    }
+}
+
+}
+
 
 
 //si clic bouton ajout prof 
@@ -661,6 +700,35 @@ while ($article = mysqli_fetch_assoc($res2)) {
 
 $count=-1;
 ?>  
+
+<?php if($user['type']=="documentaliste"): ?>
+
+  <section class="py-8 py-md-10">
+    <div class="container">
+
+  <div class="row">
+
+<div class="col-12">
+      <div class="mb-1">
+        <h3 class="element-title">Ajouter une activité - Espace CDI</h3>
+      <form action="admin.php" enctype="multipart/form-data" method="post">
+      <div class="form-floating mb-3">
+                  <input type="text" name="titre" placeholder="Nom de l'activité" class="form-control" id="floatingInput">
+                  <label for="floatingInput">Nom de l'activité</label>
+                </div>
+        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+        Image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monimage" /></br></br>
+        <button class="btn mt-6 btn-primary" name="ajoutActivite" type="submit">Ajouter</button>
+      </form>
+      </div>
+    </div>
+
+</div>
+</div>
+</section>
+
+<?php endif ?>
+
  
   <!-- ====================================
   ———	BLOG GRID
