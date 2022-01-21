@@ -13,7 +13,9 @@ $database = "dbs5254611";
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
 $db_found = mysqli_select_db($db_handle, $database);*/
 
-session_start();
+
+//session_start();
+
 
 if($db_found)
 {
@@ -297,6 +299,33 @@ if($_GET['delete']==1)
 
 }
 
+if (isset($_POST["chTarif"])){
+
+  $nomOrigine = $_FILES['pdf']['name'];
+  $elementsChemin = pathinfo($nomOrigine);
+  $extensionFichier = $elementsChemin['extension'];
+  $extensionsAutorisees = array("pdf");
+  if (!(in_array($extensionFichier, $extensionsAutorisees))) {
+    echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+    Le fichier téléchargé n'a pas l'extension attendue.
+   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+   </div>";
+  } else {    
+      
+      // Copie dans le repertoire du script avec un nom
+      $repertoireDestination = dirname(__FILE__)."/assets/pdf/";
+      $nomDestination = "verso inscription tarification.pdf";
+
+      if (move_uploaded_file($_FILES["pdf"]["tmp_name"], $repertoireDestination.$nomDestination)) {
+        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                    Votre nouvelle tarification a bien été prise en compte.
+                   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+                   </div>";
+
+      }
+  }
+
+}
 
 }
 ?>
@@ -514,17 +543,43 @@ if($_GET['delete']==1)
   <!-- ====================================
   ———	BREADCRUMB
   ===================================== -->
+<?php
+  
+$id = $_SESSION['id'];
+$type='';
+
+$req = "SELECT * FROM users WHERE idUser = '$id'";
+$res = mysqli_query($db_handle, $req);
+$user = mysqli_fetch_assoc($res);
+
+if($user['type']=="admin")
+{
+  $type="admin";
+}
+elseif($user['type']=="prof")
+{
+  $type="prof";
+}
+elseif($user['type']=="documentaliste")
+{
+  $type="documentaliste";
+}
+elseif($user['type']=="secretariat")
+{
+  $type="secretariat";
+}
+?>
   <section class="breadcrumb-bg" style="background-image: url(assets/img/tableau.jpg); ">
     <div class="container">
       <div class="breadcrumb-holder">
         <div>
-          <h1 class="breadcrumb-title">  <?php if(!isset($_SESSION['email'])){echo "Connexion";} elseif(isset($_SESSION['email'])){echo "Espace";} ?> Admin</h1>
+          <h1 class="breadcrumb-title">  <?php if(!isset($_SESSION['email'])){echo "Connexion";} elseif(isset($_SESSION['email'])){echo "Espace";} ?> <?php if($type=="admin"){echo "Administrateur";}elseif($type=="prof"){echo "Professeur";}elseif($type=="secretariat"){echo "Secrétariat";}elseif($type=="documentaliste"){echo "Documentaliste";}?></h1>
           <ul class="breadcrumb breadcrumb-transparent">
             <li class="breadcrumb-item">
               <a class="text-white" href="index.html">Accueil</a>
             </li>
             <li class="breadcrumb-item text-white active" aria-current="page">
-            <?php if(!isset($_SESSION['email'])){echo "Connexion";} elseif(isset($_SESSION['email'])){echo "Espace";} ?> Admin
+            <?php if(!isset($_SESSION['email'])){echo "Connexion";} elseif(isset($_SESSION['email'])){echo "Espace";} ?> <?php if($type=="admin"){echo "administrateur";}elseif($type=="prof"){echo "professeur";}elseif($type=="secretariat"){echo "secrétariat";}elseif($type=="documentaliste"){echo "documentaliste";}?>
             </li>
           </ul>
         </div>
@@ -789,6 +844,29 @@ $profs[] = $prof;
   
 <?php endif ?>
 
+<?php if($user['type']=="secretariat"): ?>
+
+  <section class="pb-8 pb-md-10">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-12">
+              <div class="mb-8">
+                <h3 class="element-title">Tarifications de la demi-pension</h3>
+              <form action="admin.php" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
+                Fichier PDF</br><input type="file" name="pdf" /></br></br>
+                <button class="btn mt-6 btn-primary" name="chTarif" type="submit">Modifier la tarification</button>
+              </form>
+              </div>
+            </div>
+
+      </div>
+
+    </div>
+  </section>
+
+<?php endif ?>
 
   </div> <!-- element wrapper ends -->
 

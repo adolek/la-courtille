@@ -1,4 +1,25 @@
 <?php
+  
+  require_once('rotation.php');
+
+  class PDF extends PDF_Rotate
+  {
+  function RotatedText($x,$y,$txt,$angle)
+  {
+      //Text rotated around its origin
+      $this->Rotate($angle,$x,$y);
+      $this->Text($x,$y,$txt);
+      $this->Rotate(0);
+  }
+
+  function RotatedImage($file,$x,$y,$w,$h,$angle)
+  {
+      //Image rotated around its upper-left corner
+      $this->Rotate($angle,$x,$y);
+      $this->Image($file,$x,$y,$w,$h);
+      $this->Rotate(0);
+  }
+  }
   //identifier le nom de base de données
   $database = "la_courtille";
   //connectez-vous dans votre BDD
@@ -7,6 +28,203 @@
   $db_found = mysqli_select_db($db_handle, $database);
    
   session_start();
+
+  if (isset($_POST["form"])){
+
+    $inscription='';
+    $yesorno='';
+    $new='';
+    $nomEleve = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['nomEleve'])); 
+    $prenomEleve = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['prenomEleve'])); 
+    $classe = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['classe'])); 
+    $naissance = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['naissance'])); 
+    $nomResponsable = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['nomResponsable'])); 
+    $prenomResponsable = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['prenomResponsable'])); 
+    $nomEntier = $nomResponsable . '  ' . $prenomResponsable;
+    $adresse = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['adresse'])); 
+    $cp = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['cp'])); 
+    $ville = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['ville'])); 
+    $mail = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['mail'])); 
+    $telPerso = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['telPerso'])); 
+    $telPro = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['telPro'])); 
+    $lieu = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['lieu'])); 
+    $dateFait = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['dateFait'])); 
+
+    $forfait = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['forfait'])); 
+
+
+    if(empty($forfait)||empty($nomEleve)||empty($prenomEleve)||empty($classe)||empty($naissance)||empty($nomResponsable)||empty($prenomResponsable)||empty($adresse)||empty($cp)||empty($ville)||empty($mail)||empty($telPerso)||empty($telPro)||empty($lieu)||empty($dateFait)||empty($_POST['yesorno'])||empty($_POST['new'])||empty($_POST['inscription']))
+    {
+          $erreur= "Un champ ou plusieurs champs n'ont pas été remplis.";
+          
+          echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+          " . $erreur . "
+         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+         </div>";
+    
+    }
+    else{
+
+        foreach ($_POST['yesorno'] as $check){
+            $yesorno = $check;
+        }
+
+        foreach ($_POST['new'] as $check){
+            $new = $check;
+        }
+    
+        foreach ($_POST['inscription'] as $check){
+            $inscription = $check;
+        }
+        $error='';
+
+        if($yesorno == "oui" && !empty($new)){
+
+            $error.= "Si vous avez répondu oui à l'affirmation <strong>J'ai une carte de cantine</strong>, merci de laisser les cases situées juste en dessous décochées.<br><br>";
+ 
+        }
+        if(sizeof($_POST['yesorno'])==2 || sizeof($_POST['new'])==2 || sizeof($_POST['inscription'])==2){
+          $error.= "Vous ne pouvez pas cocher 2 cases correspondant à une même question.";
+        }
+
+        if(!empty($error)){
+          echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+          " . $error . "
+         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+         </div>";  
+        }
+        else{
+          $pdf=new PDF();
+        
+          $pdf->AddPage();
+          $pdf->setSourceFile('assets/pdf/recto formulaire d\'inscription.pdf'); 
+          $tplIdx = $pdf->importPage(1); 
+          $pdf->useTemplate($tplIdx); 
+      
+          $pdf->SetFont('Arial','',14);
+          $pdf->RotatedText(58,220,utf8_decode($nomEleve),90);
+      
+          $pdf->SetFont('Arial','',14);
+          $pdf->RotatedText(58,124,utf8_decode($prenomEleve),90);
+      
+          $pdf->SetFont('Arial','',14);
+          $pdf->RotatedText(58,55,utf8_decode($classe),90);
+      
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(66,227,utf8_decode($naissance),90);
+      
+          if($yesorno == 'oui'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(75,217,'x',90);
+              
+          }
+          if($yesorno == 'non'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(75,202,'x',90);
+              
+          }
+          if($new == 'nouveau'){
+            $pdf->SetFont('Arial','',11);
+            $pdf->RotatedText(83,255,'x',90);
+          }
+          if($new == 'perdu'){
+            
+            $pdf->SetFont('Arial','',11);
+            $pdf->RotatedText(83,215,'x',90);
+          }
+         
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(107,252,utf8_decode($nomResponsable),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(107,118,utf8_decode($prenomResponsable),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(115,250,utf8_decode($adresse),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(115,114,utf8_decode($cp),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(115,71,utf8_decode($ville),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(123,211,utf8_decode($mail),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(131,223,utf8_decode($telPerso),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(131,93,utf8_decode($telPro),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(140,227,utf8_decode($nomEntier),90);
+  
+          if($inscription == 'oui'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(157,269,'x',90);
+          }
+      
+          if($forfait == '2'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(166,222,'x',90);
+          }
+          if($forfait == '3'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(166,185,'x',90);
+          }
+          if($forfait == '4'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(166,147,'x',90);
+          }
+  
+          foreach($_POST['jours'] as $jour)
+          {
+              if($jour == 'lun'){
+                  $pdf->SetFont('Arial','',11);
+                  $pdf->RotatedText(175,182,'x',90);
+                  
+              }
+              elseif($jour == 'mar'){
+                  $pdf->SetFont('Arial','',11);
+                  $pdf->RotatedText(175,143,'x',90);
+                  
+              }
+              elseif($jour == 'jeu'){
+                  $pdf->SetFont('Arial','',11);
+                  $pdf->RotatedText(175,104,'x',90);
+                  
+              }
+              elseif($jour == 'ven'){
+                  $pdf->SetFont('Arial','',11);
+                  $pdf->RotatedText(175,67,'x',90);
+                  
+              }
+          }
+  
+          if($inscription == 'non'){
+              $pdf->SetFont('Arial','',11);
+              $pdf->RotatedText(186,269,'x',90);
+          }
+  
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(193,253,utf8_decode($lieu),90);
+          $pdf->SetFont('Arial','',13);
+          $pdf->RotatedText(193,121,utf8_decode($dateFait),90);
+      
+      
+          $pdf->AddPage();
+          $pdf->setSourceFile('assets/pdf/verso inscription tarification.pdf'); 
+          $tplIdx1 = $pdf->importPage(1); 
+          $pdf->useTemplate($tplIdx1); 
+      
+          $pdf->AddPage();
+          $pdf->setSourceFile('assets/pdf/reglement dp.pdf'); 
+          $tplIdx2 = $pdf->importPage(1); 
+          $pdf->useTemplate($tplIdx2); 
+      
+         $pdf->Output('assets/pdf/VYWQ_15_12_2020.pdf', 'I'); //SALIDA DEL PDF
+          //    $pdf->Output('original_update.pdf', 'F');
+          //    $pdf->Output('original_update.pdf', 'I'); //PARA ABRIL EL PDF EN OTRA VENTANA
+          //	  $pdf->Output('original_update.pdf', 'D'); //PARA FORZAR LA DESCARGA
+        }
+    
+    }
+
+  }
+
 
 ?>
 
@@ -250,17 +468,17 @@
 <div class="col-12">
       <div class="mb-8">
         <h3 class="element-title">Fiche d'inscription cantine 2021-2022</h3>
-      <form action="generate_pdf.php" method="post">
+      <form action="inscription_cantine.php" method="post">
       <p class="mb-4 font-size-20">Informations sur l'élève :</p>
         <div class="mb-3">
         <div class="row">
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Nom</label>
-          <input type="text" class="form-control" name="nomEleve" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="nomEleve" value="<?php if(!empty($nomEleve)){echo $nomEleve;} ?>" id="exampleFormControlInput1" >
           </div>
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Prénom</label>
-          <input type="text" class="form-control" name="prenomEleve" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="prenomEleve" value="<?php if(!empty($prenomEleve)){echo $prenomEleve;} ?>" id="exampleFormControlInput1" >
           </div>
           </div>
         </div>
@@ -269,11 +487,11 @@
         <div class="row">
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Classe</label>
-          <input type="text" class="form-control" name="classe" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="classe" value="<?php if(!empty($classe)){echo $classe;} ?>" id="exampleFormControlInput1" >
           </div>
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Date de naissance</label>
-          <input type="date" class="form-control" name="naissance" id="exampleFormControlInput1" >
+          <input type="date" class="form-control" name="naissance" value="<?php if(!empty($naissance)){echo $naissance;} ?>" id="exampleFormControlInput1" >
           </div>
           </div>
           </div>
@@ -281,26 +499,26 @@
        
         <p>J'ai une carte de cantine :</p>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="yesorno[]" value="oui" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="yesorno[]" value="oui" id="flexCheckDefault" <?php if($yesorno == 'oui'){echo "checked";}?>>
           <label class="form-check-label" for="flexCheckDefault">
             Oui
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="yesorno[]" value="non" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="yesorno[]" value="non" id="flexCheckDefault" <?php if($yesorno == 'non'){echo "checked";}?>>
           <label class="form-check-label" for="flexCheckDefault">
             Non
           </label>
         </div>
         <p>Si non :</p>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="new[]" value="nouveau" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="new[]" value="nouveau" id="flexCheckDefault" <?php if($new == 'nouveau'){echo "checked";}?>>
           <label class="form-check-label" for="flexCheckDefault">
             Je suis nouveau
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="new[]" value="perdu" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="new[]" value="perdu" id="flexCheckDefault" <?php if($new == 'perdu'){echo "checked";}?>>
           <label class="form-check-label" for="flexCheckDefault">
             J'ai perdu ma carte et je dois la renouveller*
           </label>
@@ -311,92 +529,92 @@
         <div class="row">
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Nom</label>
-          <input type="text" class="form-control" name="nomResponsable" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="nomResponsable" value="<?php if(!empty($nomResponsable)){echo $nomResponsable;} ?>" id="exampleFormControlInput1" >
           </div>
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Prénom</label>
-          <input type="text" class="form-control" name="prenomResponsable" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="prenomResponsable" value="<?php if(!empty($prenomResponsable)){echo $prenomResponsable;} ?>" id="exampleFormControlInput1" >
           </div>
           </div>
           </div>
         
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Adresse</label>
-          <input type="text" class="form-control" name="adresse" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="adresse" value="<?php if(!empty($adresse)){echo $adresse;} ?>" id="exampleFormControlInput1" >
         </div>
         <div class="mb-3">
         <div class="row">
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Code postal</label>
-          <input type="number" class="form-control" name="cp" id="exampleFormControlInput1" >
+          <input type="number" class="form-control" name="cp" value="<?php if(!empty($cp)){echo $cp;} ?>" id="exampleFormControlInput1" >
           </div>
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Ville</label>
-          <input type="text" class="form-control" name="ville" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="ville" value="<?php if(!empty($ville)){echo $ville;} ?>" id="exampleFormControlInput1" >
           </div>
         </div>
         </div>
         
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Adresse email</label>
-          <input type="mail" class="form-control" name="mail" id="exampleFormControlInput1" >
+          <input type="mail" class="form-control" name="mail" value="<?php if(!empty($mail)){echo $mail;} ?>" id="exampleFormControlInput1" >
         </div>        
         <div class="mb-3">
         <div class="row">
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Téléphone personnel</label>
-          <input type="text" class="form-control" name="telPerso" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="telPerso" value="<?php if(!empty($telPerso)){echo $telPerso;} ?>" id="exampleFormControlInput1" >
           </div>  
           <div class="col-6">
           <label for="exampleFormControlInput1" class="form-label">Téléphone professionnel</label>
-          <input type="text" class="form-control" name="telPro" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="telPro" value="<?php if(!empty($telPro)){echo $telPro;} ?>" id="exampleFormControlInput1" >
           </div>  
           </div>  
         </div>        
 
         <p class="mb-4 mt-6 font-size-20">Inscription :</p>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="inscription[]" value="oui" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="inscription[]" value="oui" id="flexCheckDefault" <?php if($inscription == 'oui'){echo "checked";}?>>
           <label class="form-check-label" for="flexCheckDefault">
           J’inscris mon enfant pour l’année scolaire 2021/2022
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="inscription[]" value="non" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="inscription[]" value="non" id="flexCheckDefault" <?php if($inscription == 'non'){echo "checked";}?>>
           <label class="form-check-label" for="flexCheckDefault">
           Je n’inscris pas mon enfant à la cantine pour l’année scolaire 2021/2022
           </label>
         </div>
         <div class="mb-3 mt-3">
                     <label for="exampleFormControlSelect1" class="form-label">Forfait choisi</label>
-                    <select class="form-select form-control" name="forfait" aria-label="Default select example">
-                      <option selected>Veuillez sélectionner :</option>
-                      <option value="2">2 jours</option>
-                      <option value="3">3 jours</option>
-                      <option value="4">4 jours</option>
+                    <select class="form-select form-control" name="forfait" id="forfait" aria-label="Default select example">
+                      <option <?php if($forfait != '2'||$forfait!='3'||$forfait!='4'){echo "selected";}?>>Veuillez sélectionner :</option>
+                      <option value="2" <?php if($forfait == '2'){echo "selected";}?>>2 jours</option>
+                      <option value="3" <?php if($forfait == '3'){echo "selected";}?>>3 jours</option>
+                      <option value="4" <?php if($forfait == '4'){echo "selected";}?>>4 jours</option>
                     </select>
                   </div>
          <p>Jours de restauration choisis :</p>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="jours[]" value="lun" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="jours[]" value="lun" id="flexCheckDefault" <?php foreach($_POST['jours'] as $jour){if($jour == 'lun'){echo "checked";}}?>>
           <label class="form-check-label" for="flexCheckDefault">
           Lundi
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="jours[]" value="mar" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="jours[]" value="mar" id="flexCheckDefault" <?php foreach($_POST['jours'] as $jour){if($jour == 'mar'){echo "checked";}}?>>
           <label class="form-check-label" for="flexCheckDefault">
           Mardi
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="jours[]" value="jeu" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="jours[]" value="jeu" id="flexCheckDefault" <?php foreach($_POST['jours'] as $jour){if($jour == 'jeu'){echo "checked";}}?>>
           <label class="form-check-label" for="flexCheckDefault">
           Jeudi
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="jours[]" value="ven" id="flexCheckDefault">
+          <input class="form-check-input" type="checkbox" name="jours[]" value="ven" id="flexCheckDefault" <?php foreach($_POST['jours'] as $jour){if($jour == 'ven'){echo "checked";}}?>>
           <label class="form-check-label" for="flexCheckDefault">
           Vendredi
           </label>
@@ -405,11 +623,11 @@
           <div class="row">
           <div class="col-4">
           <label for="exampleFormControlInput1" class="form-label">Fait à :</label>
-          <input type="text" class="form-control" name="lieu" id="exampleFormControlInput1" >
+          <input type="text" class="form-control" name="lieu" value="<?php if(!empty($lieu)){echo $lieu;} ?>" id="exampleFormControlInput1" >
           </div>
           <div class="col-4 offset-4">
           <label for="exampleFormControlInput1" class="form-label">Le :</label>
-          <input type="date" class="form-control" name="dateFait" id="exampleFormControlInput1" >
+          <input type="date" class="form-control" name="dateFait" value="<?php if(!empty($dateFait)){echo $dateFait;} ?>" id="exampleFormControlInput1" >
           </div>
           </div>
         </div>
