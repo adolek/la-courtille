@@ -338,6 +338,22 @@ if($_GET['delete']==1)
 
 }
 
+if($_GET['deleteActivite']==1)
+{
+  $id = $_GET['id'];
+
+  $supprimer = "DELETE FROM activites WHERE idActivte = '$id'";
+  $supression = mysqli_query($db_handle, $supprimer);
+
+  $erreur= "Activité supprimée !";
+
+  echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+  " . $erreur . "
+ <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+ </div>";
+
+}
+
 if (isset($_POST["chTarif"])){
 
   $nomOrigine = $_FILES['pdf']['name'];
@@ -703,7 +719,7 @@ $count=-1;
 
 <?php if($user['type']=="documentaliste"): ?>
 
-  <section class="py-8 py-md-10">
+  <section class="pt-8 pt-md-10 pb-3">
     <div class="container">
 
   <div class="row">
@@ -725,6 +741,43 @@ $count=-1;
 
 </div>
 </div>
+</section>
+
+<section class="">
+    <div class="container">
+      <div class="row mb-6">
+
+      <h3 class="element-title">Les activités</h3>
+
+      <?php
+              $req = "SELECT * FROM activites";
+              $res = mysqli_query($db_handle, $req);
+              while ($activite = mysqli_fetch_assoc($res)) { 
+                $activites[] = $activite; 
+              }
+      ?>
+
+      <?php foreach($activites as $activite):?>
+  
+              <div class="col-md-6 col-lg-4">
+          <div class="card">
+                      <div class="position-relative">
+                  <img class="card-img-top" src="assets/img/<?php echo $activite['image']; ?>" alt="Card image">
+                          
+                      </div>
+  
+            <div class="card-body border-top-5 px-3 rounded-bottom border-primary">
+              
+              <a class="btn btn-link text-danger ps-0" href="admin.php?id=<?php echo $activite['idActivite'];?>&deleteActivite=1">
+                <i class="fa fa-trash me-1" aria-hidden="true"></i> Supprimer l'activité
+              </a>
+            </div>
+          </div>
+        </div>
+        <?php endforeach ?>
+
+      </div>
+    </div>
 </section>
 
 <?php endif ?>

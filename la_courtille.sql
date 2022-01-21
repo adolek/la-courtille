@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 19 jan. 2022 à 12:15
+-- Généré le : ven. 21 jan. 2022 à 16:04
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `la_courtille`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `activites`
+--
+
+DROP TABLE IF EXISTS `activites`;
+CREATE TABLE IF NOT EXISTS `activites` (
+  `idActivite` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`idActivite`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `activites`
+--
+
+INSERT INTO `activites` (`idActivite`, `image`) VALUES
+(1, 'affichePlanningSilenceOnLit.jpg'),
+(2, 'AfficheSiestesContÃ©es.jpg'),
+(3, 'Ouvrir l\'Ã©cole aux parents pour la rÃ©ussite des enfants.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `type` enum('admin','prof','secretariat','documentaliste') NOT NULL,
   `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
@@ -75,8 +97,8 @@ INSERT INTO `users` (`idUser`, `email`, `mdp`, `nom`, `type`, `token`) VALUES
 (1, 'admin@gmail.com', '$2y$12$0QjUsZOYNUXgxwmD8SMSwO2VSDk6QMnO9GJbrPpPjX2xucQF/iqLK', 'admin', 'admin', NULL),
 (5, 'moi@mail', '$2y$12$ikGUrGgNLqUK/2QbUfSopO2o4tiWG0bxGjMtP0E5zfNtn3S24KWaW', 'moi', 'prof', NULL),
 (6, 'mail', '$2y$12$I4EF8PMNImgif16gGNNEde0saDAdY.3RxJGvrGggD77kh8Bdoe/cm', 'ad', 'prof', NULL),
-(7, 'm@', '$2y$12$CY13sZrSc3mJez1pXXZxveqnsHQfDAlrIjM.drL3IxoWgNGsdF7JW', 'madame', 'documentaliste', NULL),
-(9, 'm@', '$2y$12$lzM6ewetm0oCL/T4GNzM1uyOgJrRqwXBsAh4Ar7HAKyKXA6g53VK2', 'fzzf', 'secretariat', NULL);
+(13, '1', '$2y$12$Et8xsURhmTrqZBP4Rab1xusC43Mii2G0Ft.Euxzb/z0E5h.3ZFGFS', 'elle', 'documentaliste', NULL),
+(12, 'yes', '$2y$12$0PogDeZ/IFoa09rdx.GKNOn/hCReWUTauCHGEAXUlSdgZwqCa5tSW', 'secretaire', 'secretariat', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
