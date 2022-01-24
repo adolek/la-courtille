@@ -26,8 +26,8 @@ if ($db_found) {
   
 	session_start();
 	$id_session = $_SESSION['id'];
-
 	error_reporting(0);
+
 	$edit=$_GET['edit'];
 	error_reporting(E_ALL);
 	
@@ -35,7 +35,7 @@ if ($db_found) {
 
 	$req = "SELECT * FROM users WHERE idUser = '$id_session'";
 	$res = mysqli_query($db_handle, $req);
-    $user = mysqli_fetch_assoc($res);
+  $user = mysqli_fetch_assoc($res);
 
     $type = $user['type'];
     //echo "$type";
@@ -117,11 +117,18 @@ if ($db_found) {
   ——— HEADER
   ===================================== -->
 <?php if($type == "admin" && $edit != "1") : ?>
-  	<div class="mybutton">
+  	<div class="boutonModifier">
   		<a href="association-sportive.php?edit=1">
 			<button class="btn mt-6 btn-primary" >Modifier</button>
 		</a>
 	</div>
+<?php endif ?>
+<?php if($edit == "1") : ?>
+    <div class="boutonTerminer">
+      <a href="association-sportive.php">
+      <button class="btn mt-6 btn-danger" >Terminer</button>
+    </a>
+  </div>
 <?php endif ?>
 
 
@@ -319,9 +326,11 @@ if (isset($_POST["savemodif"])){
 <section class="bg-light py-8 py-md-10">
   <div class="container">
      <div class="section-title mb-4 wow fadeInUp">
+      <!--=========SECTION DE MODIFICATION DES INFORMATION=========-->
   		<?php if($edit != "1") : ?>
         <h2 class="text-danger">L’association  sportive a repris depuis le <?php echo "$m1"; ?> !</h2>
     	<?php endif ?>
+      
     	<?php if($edit == "1") : ?>
     		<form action="association-sportive.php?edit=1" method="post">
     			<ul>
@@ -330,16 +339,13 @@ if (isset($_POST["savemodif"])){
 			      		<input type="text" class="text-danger"  name="modif1" value="<?php echo $m1;?>"> !
 			        	</h2>
     				</li>
-    			</ul>
-    			
-				  	<div class="mybutton">
-				  	
+    			</ul>   			
+				  <div class="boutonModifier">  	
 						<button class="btn mt-6 btn-primary" name="savemodif" type="submit" >Enregistrer</button>
-						
 					</div>
         </form>
-        
     	<?php endif ?>
+    <!--========FIN SECTION DE MODIFICATION DES INFORMATION=========-->
     </div>
     <div class="section-title px-5 wow fadeInUp">
       <h3 class="text-danger"><i>Nous vous attendons nombreux en <strong class="text-primary"> basket ball </strong>, <strong class="text-info">natation</strong> et <strong class="text-success">football</strong></i></h3>
