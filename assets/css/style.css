@@ -15605,7 +15605,7 @@ preview-2
 /*bouton fixe*/
 
 .boutonModifier {
-    position: fixed;
+    position:fixed;
     bottom: 80px;
     left: 20px;
     }
@@ -15614,3 +15614,8 @@ preview-2
     bottom: 20px;
     left: 20px;
     }
+ .boutonDeco {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+}

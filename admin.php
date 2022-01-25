@@ -5,8 +5,8 @@ $database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
-
-/*///SERVEUR WEB///
+/*
+///SERVEUR WEB///
 //identifier votre BDD
 $database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
@@ -14,7 +14,7 @@ $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p2
 $db_found = mysqli_select_db($db_handle, $database);*/
 
 
-//session_start();
+session_start();
 
 
 if($db_found)
@@ -321,6 +321,16 @@ if (isset($_POST["modifArticle"])){
 
 }
 
+if($_GET['out']==1){
+
+  $_SESSION['id']=NULL;
+  $_SESSION['email']=NULL;
+  echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+  Déconnecté
+ <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+ </div>";
+
+}
 
 if($_GET['delete']==1)
 {
@@ -988,6 +998,25 @@ $profs[] = $prof;
   </section>
 
 <?php endif ?>
+
+<?php if($_SESSION['id']) :?>
+<section class="">
+    <div class="container">
+      <div class="row">
+
+        <div class="boutonDeco">
+         <a href="admin.php?out=1">
+          <button class="btn btn-sm mt-6 offset-11 col-1  btn-danger" >Déconnexion</button>
+         </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <?php endif ?>
+
 
   </div> <!-- element wrapper ends -->
 
