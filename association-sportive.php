@@ -16,6 +16,26 @@ $db_found = mysqli_select_db($db_handle, $database);*/
 
 if ($db_found) {
 
+  if (isset($_POST["savemodif"])){
+
+      for($i=0; $i<3; $i++)
+      {
+        $modi = "modif".$i;
+        $textmodif1 = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST[$modi])); 
+
+        $y=$i+1;
+        $req = "UPDATE modification SET textModif = '$textmodif1' WHERE idModif = '$y'";
+        $update = mysqli_query($db_handle, $req);
+
+      }
+        
+        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+        Article modifié avec succès !
+       <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+       </div>";
+
+      }
+
     $sql = "SELECT * FROM modification";
     $result = mysqli_query($db_handle, $sql);
     while ($modif = mysqli_fetch_assoc($result)) { 
@@ -25,9 +45,8 @@ if ($db_found) {
   }//end if
   
 	session_start();
+  error_reporting(0);
 	$id_session = $_SESSION['id'];
-	error_reporting(0);
-
 	$edit=$_GET['edit'];
 	error_reporting(E_ALL);
 	
@@ -38,15 +57,28 @@ if ($db_found) {
   $user = mysqli_fetch_assoc($res);
 
     $type = $user['type'];
-    //echo "$type";
+    foreach ($modifs as $key => $modif) {
+      # code...
+      if ($modif['idModif'] == $key+1)
+      {
+        
+        $tid=$modif['idModif'];
+        $ttext=$modif['textModif'];
+        $idm[$key] = $tid;
+        $m[$key] = $ttext;
+      }
+    }
+    /*foreach ($idm as $idms) {
+    echo $idms.' '; // Avec insertion d'un espace entre 2 valeurs
+}*/
 
-    foreach ($modifs as $modif) {
+    /*foreach ($modifs as $modif) {
     	if ($modif['idModif'] == "1")
     	{
     		$idm1 = $modif['idModif'];
     		$m1 = $modif['textModif'];
     	}
-    }
+    }*/
     //echo "$m1";
 
 ?>
@@ -134,20 +166,7 @@ if ($db_found) {
 
 <?php
 
-if (isset($_POST["savemodif"])){
 
-  $textmodif1 = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['modif1'])); 
-
-
-  $req = "UPDATE modification SET textModif = '$textmodif1' WHERE idModif = '$idm1'";
-  $update = mysqli_query($db_handle, $req);
-
-  echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-  Article modifié avec succès !
- <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
- </div>";
-
-}
 
 
 ?>
@@ -323,27 +342,22 @@ if (isset($_POST["savemodif"])){
 <!-- ====================================
 ——— ABOUT MEDIA
 ===================================== -->
+<?php if($edit == "1") : ?>
+<form action="association-sportive.php?edit=1" method="post">
+<?php endif ?>
 <section class="bg-light py-8 py-md-10">
   <div class="container">
      <div class="section-title mb-4 wow fadeInUp">
       <!--=========SECTION DE MODIFICATION DES INFORMATION=========-->
   		<?php if($edit != "1") : ?>
-        <h2 class="text-danger">L’association  sportive a repris depuis le <?php echo "$m1"; ?> !</h2>
+        <h2 class="text-danger">L’association  sportive a repris depuis le <?php echo "$m[0]"; ?> !</h2>
     	<?php endif ?>
       
     	<?php if($edit == "1") : ?>
-    		<form action="association-sportive.php?edit=1" method="post">
-    			<ul>
-    				<li>
     					<h2 class="text-danger">L’association  sportive a repris depuis le
-			      		<input type="text" class="text-danger"  name="modif1" value="<?php echo $m1;?>"> !
-			        	</h2>
-    				</li>
-    			</ul>   			
-				  <div class="boutonModifier">  	
-						<button class="btn mt-6 btn-primary" name="savemodif" type="submit" >Enregistrer</button>
-					</div>
-        </form>
+			      		<input type="text" class="text-danger"  name="modif0" value="<?php echo $m[0];?>"> !
+			        </h2>		
+				
     	<?php endif ?>
     <!--========FIN SECTION DE MODIFICATION DES INFORMATION=========-->
     </div>
@@ -364,8 +378,19 @@ if (isset($_POST["savemodif"])){
           <div class="align-items-baseline mb-4 px-3 font-weight-medium font-size-20">
           <ul class="list-unstyled mb-5 px-2">
             <li class="text-muted mb-2"><i class="fa fa-check me-2" aria-hidden="true"></i>
-              <u><i>Heure</i></u> : de <strong class="text-danger">13h30 à 15H pour les 6ème et 5ème</strong><br>
-              Et de <strong class="text-info">15h à 16h30 pour les 4ème et 3ème</strong>
+              <?php if($edit != "1") : ?>
+              <u><i>Heure</i></u> : de <strong class="text-danger"><?php echo $m[1];?></strong><br>
+              Et de <strong class="text-info"><?php echo $m[2];?></strong>
+              <?php endif ?>
+
+              <?php if($edit == "1") : ?>
+              <u><i>Heure</i></u> : de <strong class="text-danger">
+                <input type="text" class="text-danger"  name="modif1" value="<?php echo $m[1];?>"></strong><br>
+              Et de <strong class="text-info"><input type="text" class="text-danger"  name="modif2" value="<?php echo $m[2];?>"></strong>
+              <?php endif ?>
+
+
+
             </li>
             <li class="text-muted mb-2"><i class="fa fa-check me-2" aria-hidden="true"></i><u><i>Lieu</i></u> : Rendez-vous devant le Gymnase La Courtille et à l’heure !</li>
             <li class="text-muted mb-2"><i class="fa fa-check me-2" aria-hidden="true"></i><u><i>Affaires</i></u> : Tenue de sport, bouteille d’eau ou gourde et pas d’objet de valeurs.</li>
@@ -503,6 +528,12 @@ if (isset($_POST["savemodif"])){
     
   </div>
 </section>
+    <?php if($edit == "1") : ?>
+        <div class="boutonModifier">
+           <button class="btn mt-6 btn-primary" name="savemodif" type="submit">Enregistrer</button>
+        </div>
+        </form>
+    <?php endif?>
 <!-- ====================================
 ——— FOOTER
 ===================================== -->
