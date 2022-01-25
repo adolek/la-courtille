@@ -25,6 +25,7 @@
   }//end else
   //fermer la connection
   mysqli_close($db_handle);
+  $count=-1;
 ?>
 
 
@@ -286,13 +287,13 @@
                   <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
                </a>
                 <div class="card-img-overlay p-0">
-                  <span class="badge bg-info badge-rounded m-4"> <?php echo $article['date'];?></span>
+                  <span class="badge bg-<?php echo $color;?> badge-rounded m-4"> <?php echo $article['date'];?></span>
                 </div>
               </div>
   
-            <div class="card-body border-top-5 px-3 rounded-bottom border-info">
+            <div class="card-body border-top-5 px-3 rounded-bottom border-<?php echo $color;?>">
               <h3 class="card-title">
-                <a class="text-info text-capitalize d-block text-truncate" href="pageArticle.php?id=<?php echo $article['idArticle'];?>"><?php echo $article['titre'];?></a>
+                <a class="text-<?php echo $color;?> text-capitalize d-block text-truncate" href="pageArticle.php?id=<?php echo $article['idArticle'];?>"><?php echo $article['titre'];?></a>
               </h3>
                   <ul class="list-unstyled d-flex mb-1">
                     <li class="me-2">
@@ -307,7 +308,7 @@
                   </script>
               </p>
               
-              <a class="btn btn-link text-hover-info ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
+              <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
                 <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Voir l'article
               </a>
 
