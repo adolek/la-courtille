@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 21 jan. 2022 à 16:04
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Généré le : mar. 25 jan. 2022 à 09:14
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,17 +60,43 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `date` date NOT NULL,
   PRIMARY KEY (`idArticle`),
   KEY `idUser` (`idUser`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `articles`
 --
 
 INSERT INTO `articles` (`idArticle`, `idUser`, `titre`, `texte`, `image`, `audio`, `date`) VALUES
-(9, 1, 'Les couzzz', 'fezgfzeafezfzea', 'Les couzzz.JPG', '', '2022-01-12'),
+(9, 1, 'Les cousins', 'ljnlk,l', 'Les couzzz.JPG', '', '2022-01-12'),
 (2, 1, 'La cantine', 'La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv ', '', '', '2022-01-05'),
-(1, 1, 'Les Rûches', 'Dans les ruches, il y a des abeilles', 'Les abeilles.JPG', '', '2022-01-12'),
+(24, 1, 'actu 1', 'dsfxcgvbhjncfvgbhnjdctfvgybhunj', 'actu 1.jpeg', '', '2022-01-24'),
 (23, 1, 'les Classe de neige', 'La classe est un espace ou les eleve peuvent ï¿½tudier', '', '', '2022-01-05');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `modification`
+--
+
+DROP TABLE IF EXISTS `modification`;
+CREATE TABLE IF NOT EXISTS `modification` (
+  `idModif` int(11) NOT NULL AUTO_INCREMENT,
+  `textModif` text,
+  PRIMARY KEY (`idModif`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `modification`
+--
+
+INSERT INTO `modification` (`idModif`, `textModif`) VALUES
+(1, 'mercredi 29 septembre'),
+(2, '13h30 à 15H pour les 6ème et 5ème'),
+(3, '15h à 16h30 pour les 4ème et 3ème'),
+(4, '14h à 15h30 pour le groupe 1'),
+(5, '15h30 à 17h pour le groupe 2'),
+(6, '13h30 à 15H pour les 6ème et 5ème'),
+(7, '13h30 à 15H pour les 6ème et 5ème');
 
 -- --------------------------------------------------------
 
@@ -94,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`idUser`, `email`, `mdp`, `nom`, `type`, `token`) VALUES
-(1, 'admin@gmail.com', '$2y$12$0QjUsZOYNUXgxwmD8SMSwO2VSDk6QMnO9GJbrPpPjX2xucQF/iqLK', 'admin', 'admin', NULL),
+(1, 'admin@gmail.com', '$2y$12$0QjUsZOYNUXgxwmD8SMSwO2VSDk6QMnO9GJbrPpPjX2xucQF/iqLK', 'nom_admin', 'admin', NULL),
 (5, 'moi@mail', '$2y$12$ikGUrGgNLqUK/2QbUfSopO2o4tiWG0bxGjMtP0E5zfNtn3S24KWaW', 'moi', 'prof', NULL),
 (6, 'mail', '$2y$12$I4EF8PMNImgif16gGNNEde0saDAdY.3RxJGvrGggD77kh8Bdoe/cm', 'ad', 'prof', NULL),
 (13, '1', '$2y$12$Et8xsURhmTrqZBP4Rab1xusC43Mii2G0Ft.Euxzb/z0E5h.3ZFGFS', 'elle', 'documentaliste', NULL),
