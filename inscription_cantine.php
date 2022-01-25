@@ -26,6 +26,14 @@
   //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
   $db_handle = mysqli_connect('localhost', 'root', '' );
   $db_found = mysqli_select_db($db_handle, $database);
+ /* 
+///SERVEUR WEB///
+//identifier votre BDD
+$database = "dbs5254611";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
+$db_found = mysqli_select_db($db_handle, $database);*/
+
    
   session_start();
 
@@ -53,7 +61,7 @@
     $forfait = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['forfait'])); 
 
 
-    if(empty($forfait)||empty($nomEleve)||empty($prenomEleve)||empty($classe)||empty($naissance)||empty($nomResponsable)||empty($prenomResponsable)||empty($adresse)||empty($cp)||empty($ville)||empty($mail)||empty($telPerso)||empty($telPro)||empty($lieu)||empty($dateFait)||empty($_POST['yesorno'])||empty($_POST['new'])||empty($_POST['inscription']))
+    if(empty($forfait)||empty($nomEleve)||empty($prenomEleve)||empty($classe)||empty($naissance)||empty($nomResponsable)||empty($prenomResponsable)||empty($adresse)||empty($cp)||empty($ville)||empty($mail)||empty($telPerso)||empty($telPro)||empty($lieu)||empty($dateFait)||empty($_POST['yesorno'])||empty($_POST['inscription']))
     {
           $erreur= "Un champ ou plusieurs champs n'ont pas été remplis.";
           
@@ -68,9 +76,10 @@
         foreach ($_POST['yesorno'] as $check){
             $yesorno = $check;
         }
-
+        if(!empty($_POST['new'])){
         foreach ($_POST['new'] as $check){
             $new = $check;
+        }
         }
     
         foreach ($_POST['inscription'] as $check){
@@ -83,9 +92,16 @@
             $error.= "Si vous avez répondu oui à l'affirmation <strong>J'ai une carte de cantine</strong>, merci de laisser les cases situées juste en dessous décochées.<br><br>";
  
         }
+        if($yesorno == "non" && empty($new)){
+
+          $error.= "Si vous n'avez pas de carte de cantine merci d'indiquer la raison en cochant la case correspondante.<br><br>";
+
+        } 
+        if(!empty($_POST['new'])){
+
         if(sizeof($_POST['yesorno'])==2 || sizeof($_POST['new'])==2 || sizeof($_POST['inscription'])==2){
           $error.= "Vous ne pouvez pas cocher 2 cases correspondant à une même question.";
-        }
+        }}
 
         if(!empty($error)){
           echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
