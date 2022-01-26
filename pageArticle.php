@@ -314,6 +314,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
             <div class="text-muted d-inline-block me-3"><i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $nom;?></div>
           </li>
         </ul>
+        <?php if(!empty($article['audio'])) : ?>
         <ul class="list-unstyled d-flex mb-5">
           <li class="">
             <figure>
@@ -326,6 +327,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
               </figure>
           </li>
         </ul>
+        <?php endif ?>
         <p class="card-text text-justify mb-6"><?php echo $article['texte'];?></p>
       </div>
     </div>
