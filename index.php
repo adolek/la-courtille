@@ -121,7 +121,7 @@ for ($i=0; $i<3; $i++) {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
           <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
         </a>
 
@@ -197,7 +197,7 @@ for ($i=0; $i<3; $i++) {
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link " href="actualites.html">
+              <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
                 <span>Actualité</span>
               </a>
@@ -224,7 +224,7 @@ for ($i=0; $i<3; $i++) {
                     Demi-pension<i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </a>
                   <ul class="sub-menu">
-                    <li><a class="" href="bourse-college.html">Inscription</a></li>
+                    <li><a class="" href="inscription_cantine.php">Inscription</a></li>
                     <li><a class="" href="bourse-lycee.html">Paiement</a></li>
                   </ul>
                 </li>
@@ -275,10 +275,18 @@ for ($i=0; $i<3; $i++) {
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="https://0931490p.esidoc.fr/">
+              <a class="nav-link " href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li>
+                    <a class="dropdown-item " href="cdi.php">Le C.D.I.</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="https://0931490p.esidoc.fr/">Site externe</a>
+                  </li>
+                </ul>
             </li>
           </ul>
         </div>

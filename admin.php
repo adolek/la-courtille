@@ -484,8 +484,8 @@ if (isset($_POST["chTarif"])){
    <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img class="d-inline-block" src="assets/img/logo-school.jpg" alt="La Courtille">
+        <a class="navbar-brand" href="index.php">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
         </a>
 
         
@@ -498,7 +498,7 @@ if (isset($_POST["chTarif"])){
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link active" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Acceuil</span>
               </a>
@@ -512,13 +512,19 @@ if (isset($_POST["chTarif"])){
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Activités periscolaire</a>
+                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
                 </li>
+
                 <li>
                   <a class="dropdown-item " href="index-v3.html">Sortie</a>
                 </li>
+
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet des élèves</a>
+                  <a class="dropdown-item " href="index-v4.html">Association sportive</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
                 </li>
 
                 <li>
@@ -541,13 +547,20 @@ if (isset($_POST["chTarif"])){
                   <a class="dropdown-item " href="index-v4.html">Organigramme</a>
                 </li>
 
+                <li>
+                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="faq.html">F.A.Q.</a>
+                </li>
                 
 
               </ul>
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link " href="actualites.html">
+              <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
                 <span>Actualité</span>
               </a>
@@ -557,32 +570,64 @@ if (isset($_POST["chTarif"])){
               <a class="nav-link" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
-                <span>Espace Administratif</span>
+                <span>Intendance</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index.html">Bourse</a>
+                  <a class="dropdown-item " href="javascript:void(0)">
+                    Bourse <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="bourse-college.html">Collège</a></li>
+                    <li><a class="" href="bourse-lycee.html">Lycée</a></li>
+                  </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Cantine</a>
+                  <a class="dropdown-item " href="javascript:void(0)">
+                    Demi-pension<i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="inscription_cantine.php">Inscription</a></li>
+                    <li><a class="" href="bourse-lycee.html">Paiement</a></li>
+                  </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Stage</a>
+                  <a class="dropdown-item " href="index-v2.html">Inscription Noël</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Tarification livre perdu</a>
+                  <a class="dropdown-item " href="index-v2.html">Inscription Ramadan</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Voyage</a>
+                  <a class="dropdown-item " href="index-v2.html">Tarification particulière</a>
                 </li>
               </ul>
             </li>
 
-            <li class="nav-item dropdown bg-green">
+            <li class="nav-item dropdown bg-success">
               <a class="nav-link " href="faq.html">
-                <i class="fas fa-question-circle nav-icon" aria-hidden="true"></i>
-                <span>FAQ</span>
+                <i class="fas fa-user-edit nav-icon" aria-hidden="true"></i>
+                <span>Secrétariat</span>
               </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Dates des brevets blancs</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Date du DNB</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="index-v2.html">Planning de la rentrée scolaire</a>
+                  </li>
+                </ul>
             </li>
 
             <li class="nav-item dropdown bg-blue">
@@ -593,10 +638,18 @@ if (isset($_POST["chTarif"])){
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="https://0931490p.esidoc.fr/">
+              <a class="nav-link " href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li>
+                    <a class="dropdown-item " href="cdi.php">Le C.D.I.</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="https://0931490p.esidoc.fr/">Site externe</a>
+                  </li>
+                </ul>
             </li>
           </ul>
         </div>
