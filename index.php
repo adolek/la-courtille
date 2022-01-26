@@ -43,7 +43,7 @@ for ($i=0; $i<3; $i++) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Acceuil - La Courtille</title>
+  <title>Accueil - La Courtille</title>
 
   <!-- Plugins css Style -->
   <link href='assets/css/all.min.css' rel='stylesheet'>
@@ -137,7 +137,7 @@ for ($i=0; $i<3; $i++) {
               <li class="nav-item dropdown bg-primary">
               <a class="nav-link active" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
-                <span>Acceuil</span>
+                <span>Accueil</span>
               </a>
             </li>
 

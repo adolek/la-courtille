@@ -130,7 +130,7 @@ if ($db_found) {
               <li class="nav-item dropdown bg-primary">
               <a class="nav-link active" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
-                <span>Acceuil</span>
+                <span>Accueil</span>
               </a>
             </li>
 

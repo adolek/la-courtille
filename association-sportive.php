@@ -164,13 +164,6 @@ if ($db_found) {
 <?php endif ?>
 
 
-<?php
-
-
-
-
-?>
-
   <header class="header" id="pageTop">
     <!-- Top Color Bar -->
     <div class="color-bars">
@@ -193,6 +186,7 @@ if ($db_found) {
     </div>
 
 
+
        <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container">
@@ -212,7 +206,7 @@ if ($db_found) {
               <li class="nav-item dropdown bg-primary">
               <a class="nav-link active" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
-                <span>Acceuil</span>
+                <span>Accueil</span>
               </a>
             </li>
 

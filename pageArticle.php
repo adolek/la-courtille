@@ -41,7 +41,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact - La Courtille</title>
+  <title>Article - La Courtille</title>
 
   <!-- Plugins css Style -->
   <link href='assets/css/all.min.css' rel='stylesheet'>
@@ -136,7 +136,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
               <li class="nav-item dropdown bg-primary">
               <a class="nav-link active" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
-                <span>Acceuil</span>
+                <span>Accueil</span>
               </a>
             </li>
 
