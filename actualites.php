@@ -231,7 +231,8 @@ session_start();
                   </a>
                   <ul class="sub-menu">
                     <li><a class="" href="inscription_cantine.php">Inscription</a></li>
-                    <li><a class="" href="bourse-lycee.html">Paiement</a></li>
+                    <li><a class="" href="paiement_cantine.html">Paiement</a></li>
+                    <li><a class="" href="reglement_cantine.html">Règlement</a></li>
                   </ul>
                 </li>
                 <li>
