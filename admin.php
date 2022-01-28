@@ -1052,10 +1052,14 @@ $profs[] = $prof;
         <div class="col-12">
               <div class="mb-8">
                 <h3 class="element-title">Tarifications de la demi-pension</h3>
+                <p>Avant de publier votre fichier PDF, il faut que celui-ci soit pivoté sur la gauche au format portrait. Voir <a href="assets/pdf/verso inscription tarification.pdf">exemple</a>.</p>
+                <p>Pour cela, nous vous recommandons d'utiliser l'outil suivant : <a href="https://smallpdf.com/fr/rotation-pdf">smallpdf.com/fr/rotation-pdf</a>. Il vous suffit de <strong>cliquer-glisser</strong> ou de cliquer sur "<strong>choisir les fichiers</strong>" pour publier votre fichier. Ensuite pivotez le document en cliquant sur le bouton "<strong>gauche</strong>" puis cliquez sur "<strong>appliquer changements</strong>". Il ne vous reste ensuite plus qu'à télécharger le document PDF généré.</p>
+                <p>Autre solution, si vous avez un logiciel de PDF tel que Adobe Acrobat Reader, vous pouvez pivoter vous même le document sur ce logiciel et l'enregister. Assurez-vous bien qu'ensuite quand vous réouvrez le fichier, celui-ci apparaisse directement en mode portrait. Si ce n'est pas le cas, utilisez la solution du dessus qui fonctionne à 100%.</p>
+                <p>Une fois cela fait, vous pouvez ensuite publier le nouveau document PDF en cliquant sur le bouton juste en dessous :</p>
               <form action="admin.php" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
                 Fichier PDF</br><input type="file" name="pdf" /></br></br>
-                <button class="btn mt-6 btn-primary" name="chTarif" type="submit">Modifier la tarification</button>
+                <button class="btn mt-6 btn-primary" name="chTarif" type="submit">Appliquer la nouvelle tarification</button>
               </form>
               </div>
             </div>
