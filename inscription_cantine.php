@@ -31,7 +31,7 @@
 //identifier votre BDD
 $database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
-$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
 $db_found = mysqli_select_db($db_handle, $database);*/
 
    
@@ -331,9 +331,9 @@ $db_found = mysqli_select_db($db_handle, $database);*/
 
        <!-- Navbar -->
    <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
-      <div class="container">
+      <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80" >
         </a>
 
         
@@ -360,11 +360,11 @@ $db_found = mysqli_select_db($db_handle, $database);*/
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
+                  <a class="dropdown-item " href="index-v2.html">L'établissement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Sortie</a>
+                  <a class="dropdown-item " href="index-v3.html">Sorties</a>
                 </li>
 
                 <li>
@@ -372,7 +372,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
+                  <a class="dropdown-item " href="index-v3.html">Projets et ateliers</a>
                 </li>
 
                 <li>
@@ -380,15 +380,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Restauration</a>
-                </li>
-
-                <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
                 </li>
 
                 <li>
@@ -410,7 +402,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
             <li class="nav-item dropdown bg-danger">
               <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
-                <span>Actualité</span>
+                <span>Actualités</span>
               </a>
             </li>
 
@@ -478,13 +470,6 @@ $db_found = mysqli_select_db($db_handle, $database);*/
                 </ul>
             </li>
 
-            <li class="nav-item dropdown bg-blue">
-              <a class="nav-link" href="contact.html">
-                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
-                <span>Contact</span>
-              </a>
-            </li>
-
             <li class="nav-item dropdown bg-pink">
               <a class="nav-link " href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
@@ -499,6 +484,20 @@ $db_found = mysqli_select_db($db_handle, $database);*/
                   </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown bg-blue">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+            <?php if($_SESSION['email']): ?>
+              <li class="nav-item dropdown bg-secondary">
+              <a class="nav-link" href="admin.php">
+                <i class="fas fa-user-circle nav-icon" style="color:#6c757d;font-size:2.4em;" aria-hidden="true"></i>
+                <span>Admin</span>
+              </a>
+            </li>
+            <?php endif ?>
           </ul>
         </div>
       </div>

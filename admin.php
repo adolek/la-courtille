@@ -1,17 +1,17 @@
 <?php
 ///LOCALHOST///
 //identifier votre BDD
-$database = "la_courtille";
+/*$database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
-/*
+$db_found = mysqli_select_db($db_handle, $database);*/
+
 ///SERVEUR WEB///
 //identifier votre BDD
 $database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
-$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
+$db_found = mysqli_select_db($db_handle, $database);
 
 
 session_start();
@@ -483,9 +483,9 @@ if (isset($_POST["chTarif"])){
 
    <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
-      <div class="container">
+      <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80" >
         </a>
 
         
@@ -512,11 +512,11 @@ if (isset($_POST["chTarif"])){
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
+                  <a class="dropdown-item " href="index-v2.html">L'établissement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Sortie</a>
+                  <a class="dropdown-item " href="index-v3.html">Sorties</a>
                 </li>
 
                 <li>
@@ -524,7 +524,7 @@ if (isset($_POST["chTarif"])){
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
+                  <a class="dropdown-item " href="index-v3.html">Projets et ateliers</a>
                 </li>
 
                 <li>
@@ -532,15 +532,7 @@ if (isset($_POST["chTarif"])){
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Restauration</a>
-                </li>
-
-                <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
                 </li>
 
                 <li>
@@ -562,7 +554,7 @@ if (isset($_POST["chTarif"])){
             <li class="nav-item dropdown bg-danger">
               <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
-                <span>Actualité</span>
+                <span>Actualités</span>
               </a>
             </li>
 
@@ -629,14 +621,6 @@ if (isset($_POST["chTarif"])){
                   </li>
                 </ul>
             </li>
-
-            <li class="nav-item dropdown bg-blue">
-              <a class="nav-link" href="contact.html">
-                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
-                <span>Contact</span>
-              </a>
-            </li>
-
             <li class="nav-item dropdown bg-pink">
               <a class="nav-link " href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
@@ -651,6 +635,21 @@ if (isset($_POST["chTarif"])){
                   </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown bg-blue">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+
+            <?php if($_SESSION['email']): ?>
+              <li class="nav-item dropdown bg-secondary">
+              <a class="nav-link" href="admin.php">
+                <i class="fas fa-user-circle nav-icon" style="color:#6c757d;font-size:2.4em;" aria-hidden="true"></i>
+                <span>Admin</span>
+              </a>
+            </li>
+            <?php endif ?>
           </ul>
         </div>
       </div>
@@ -767,7 +766,7 @@ while ($article = mysqli_fetch_assoc($res2)) {
   } 
 
 }
-elseif($user['type']=="prof")
+elseif($user['type']=="prof" || $user['type']=="documentaliste" || $user['type']=="secretariat")
 {
   $req2 = "SELECT * FROM articles WHERE idUser = '$id'";
 $res2 = mysqli_query($db_handle, $req2);
@@ -776,74 +775,20 @@ while ($article = mysqli_fetch_assoc($res2)) {
   } 
 
 }
+$users=[];
+$i=0;
+foreach($articles as $article){
+ $idUser = $article['idUser'];
+ $sql2 = "SELECT * FROM users WHERE idUser like '$idUser'";
+ $result2 = mysqli_query($db_handle, $sql2);
+ $user = mysqli_fetch_assoc($result2);
+ $users[$i] = $user['nom'];
+ $i = $i+1;
+}
 
 $count=-1;
+$current=-1;
 ?>  
-
-<?php if($user['type']=="documentaliste"): ?>
-
-  <section class="pt-8 pt-md-10 pb-3">
-    <div class="container">
-
-  <div class="row">
-
-<div class="col-12">
-      <div class="mb-1">
-        <h3 class="element-title">Ajouter une activité - Espace CDI</h3>
-      <form action="admin.php" enctype="multipart/form-data" method="post">
-      <div class="form-floating mb-3">
-                  <input type="text" name="titre" placeholder="Nom de l'activité" class="form-control" id="floatingInput">
-                  <label for="floatingInput">Nom de l'activité</label>
-                </div>
-        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-        Image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monimage" /></br></br>
-        <button class="btn mt-6 btn-primary" name="ajoutActivite" type="submit">Ajouter</button>
-      </form>
-      </div>
-    </div>
-
-</div>
-</div>
-</section>
-
-<section class="">
-    <div class="container">
-      <div class="row mb-6">
-
-      <h3 class="element-title">Les activités</h3>
-
-      <?php
-              $req = "SELECT * FROM activites";
-              $res = mysqli_query($db_handle, $req);
-              while ($activite = mysqli_fetch_assoc($res)) { 
-                $activites[] = $activite; 
-              }
-      ?>
-
-      <?php foreach($activites as $activite):?>
-  
-              <div class="col-md-6 col-lg-4">
-          <div class="card">
-                      <div class="position-relative">
-                  <img class="card-img-top" src="assets/img/<?php echo $activite['image']; ?>" alt="Card image">
-                          
-                      </div>
-  
-            <div class="card-body border-top-5 px-3 rounded-bottom border-primary">
-              
-              <a class="btn btn-link text-danger ps-0" href="admin.php?id=<?php echo $activite['idActivite'];?>&deleteActivite=1">
-                <i class="fa fa-trash me-1" aria-hidden="true"></i> Supprimer l'activité
-              </a>
-            </div>
-          </div>
-        </div>
-        <?php endforeach ?>
-
-      </div>
-    </div>
-</section>
-
-<?php endif ?>
 
  
   <!-- ====================================
@@ -857,7 +802,8 @@ $count=-1;
 
       <?php foreach($articles as $article):?>
 
-        <?php $count = $count + 1;
+        <?php $current = $current+1;
+        $count = $count + 1;
         $count = $count % 6;
         if($count==0){$color="primary";}
         elseif($count==1){$color="success";}
@@ -865,6 +811,7 @@ $count=-1;
         elseif($count==3){$color="info";}
         elseif($count==4){$color="purple";}
         elseif($count==5){$color="pink";}
+
         ?>
   
               <div class="col-md-6 col-lg-4">
@@ -885,7 +832,7 @@ $count=-1;
                           <ul class="list-unstyled d-flex mb-1">
                 <li class="me-2">
                                   <a class="text-muted" href="blog-single-left-sidebar.html">
-                                      <i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $user['nom']; ?>
+                                      <i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $users[$current]; ?>
                                   </a>
                 </li>
              
@@ -933,6 +880,73 @@ $count=-1;
             </div>
 
       </div>
+
+      <?php if($user['type']=="documentaliste"): ?>
+
+<section class="">
+    <div class="container">
+      <div class="row mb-6">
+
+      <h3 class="element-title">Les activités</h3>
+
+      <?php
+              $req = "SELECT * FROM activites";
+              $res = mysqli_query($db_handle, $req);
+              while ($activite = mysqli_fetch_assoc($res)) { 
+                $activites[] = $activite; 
+              }
+      ?>
+
+      <?php foreach($activites as $activite):?>
+  
+              <div class="col-md-6 col-lg-4">
+          <div class="card">
+                      <div class="position-relative">
+                  <img class="card-img-top" src="assets/img/<?php echo $activite['image']; ?>" alt="Card image">
+                          
+                      </div>
+  
+            <div class="card-body border-top-5 px-3 rounded-bottom border-primary">
+              
+              <a class="btn btn-link text-danger ps-0" href="admin.php?id=<?php echo $activite['idActivite'];?>&deleteActivite=1">
+                <i class="fa fa-trash me-1" aria-hidden="true"></i> Supprimer l'activité
+              </a>
+            </div>
+          </div>
+        </div>
+        <?php endforeach ?>
+
+      </div>
+    </div>
+</section>
+
+<section class="pt-8 pt-md-10 pb-3">
+    <div class="container">
+
+  <div class="row">
+
+<div class="col-12">
+      <div class="mb-1">
+        <h3 class="element-title">Ajouter une activité - Espace CDI</h3>
+      <form action="admin.php" enctype="multipart/form-data" method="post">
+      <div class="form-floating mb-3">
+                  <input type="text" name="titre" placeholder="Nom de l'activité" class="form-control" id="floatingInput">
+                  <label for="floatingInput">Nom de l'activité (sans accents ni espaces svp)*</label>
+                </div>
+        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+        Image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monimage" /></br></br>
+        <p>* Cette information n'apparaîtra pas dans le site.</p>
+
+        <button class="btn mt-6 btn-primary" name="ajoutActivite" type="submit">Ajouter</button>
+      </form>
+      </div>
+    </div>
+
+</div>
+</div>
+</section>
+
+<?php endif ?>
 
       
 <?php if($user['type']=="admin"): ?>

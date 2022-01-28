@@ -2,17 +2,19 @@
 
 ///LOCALHOST///
 //identifier votre BDD
-$database = "la_courtille";
+/*$database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
+$db_found = mysqli_select_db($db_handle, $database);*/
 
-/*///SERVEUR WEB///
+///SERVEUR WEB///
 //identifier votre BDD
 $database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
-$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'Rg3p23t!vuA4u@k');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
+$db_found = mysqli_select_db($db_handle, $database);
+
+session_start();
 
 if ($db_found) {
 
@@ -30,7 +32,7 @@ if ($db_found) {
       }
         
         echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-        Article modifié avec succès !
+        Page modifiée avec succès !
        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
        </div>";
 
@@ -44,13 +46,12 @@ if ($db_found) {
       
   }//end if
   
-	session_start();
-  error_reporting(0);
+
+  //error_reporting(0);
 	$id_session = $_SESSION['id'];
 	$edit=$_GET['edit'];
-	error_reporting(E_ALL);
+	//error_reporting(E_ALL);
 	
-
 
 	$req = "SELECT * FROM users WHERE idUser = '$id_session'";
 	$res = mysqli_query($db_handle, $req);
@@ -189,9 +190,9 @@ if ($db_found) {
 
        <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
-      <div class="container">
+      <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80" >
         </a>
 
         
@@ -218,11 +219,11 @@ if ($db_found) {
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
+                  <a class="dropdown-item " href="index-v2.html">L'établissement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Sortie</a>
+                  <a class="dropdown-item " href="index-v3.html">Sorties</a>
                 </li>
 
                 <li>
@@ -230,7 +231,7 @@ if ($db_found) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
+                  <a class="dropdown-item " href="index-v3.html">Projets et ateliers</a>
                 </li>
 
                 <li>
@@ -238,15 +239,7 @@ if ($db_found) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Restauration</a>
-                </li>
-
-                <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
                 </li>
 
                 <li>
@@ -268,7 +261,7 @@ if ($db_found) {
             <li class="nav-item dropdown bg-danger">
               <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
-                <span>Actualité</span>
+                <span>Actualités</span>
               </a>
             </li>
 
@@ -336,13 +329,6 @@ if ($db_found) {
                 </ul>
             </li>
 
-            <li class="nav-item dropdown bg-blue">
-              <a class="nav-link" href="contact.html">
-                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
-                <span>Contact</span>
-              </a>
-            </li>
-
             <li class="nav-item dropdown bg-pink">
               <a class="nav-link " href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
@@ -357,6 +343,20 @@ if ($db_found) {
                   </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown bg-blue">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+            <?php if($_SESSION['email']): ?>
+              <li class="nav-item dropdown bg-secondary">
+              <a class="nav-link" href="admin.php">
+                <i class="fas fa-user-circle nav-icon" style="color:#6c757d;font-size:2.4em;" aria-hidden="true"></i>
+                <span>Admin</span>
+              </a>
+            </li>
+            <?php endif ?>
           </ul>
         </div>
       </div>

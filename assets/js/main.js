@@ -31,7 +31,7 @@ autoplayTimeout:7000,
                 r(window).trigger("resize"),
                 r(window).trigger("scroll");
         }),
-        991 < r(window).width() &&
+        1090 < r(window).width() &&
             r(".navbar-expand-lg .navbar-nav .dropdown").hover(
                 function () {
                     r(this).addClass("").find(".dropdown-menu").addClass("show");
@@ -40,7 +40,7 @@ autoplayTimeout:7000,
                     r(this).find(".dropdown-menu").removeClass("show");
                 }
             ),
-        767 < r(window).width() &&
+        850 < r(window).width() &&
             r(".navbar-expand-md .navbar-nav .dropdown").hover(
                 function () {
                     r(this).addClass("").find(".dropdown-menu").addClass("show");

@@ -2,12 +2,16 @@
 
 <!--Actualité -->
 <?php
-  //identifier le nom de base de données
+  /*//identifier le nom de base de données
   $database = "la_courtille";
   //connectez-vous dans votre BDD
   //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
   $db_handle = mysqli_connect('localhost', 'root', '' );
-  $db_found = mysqli_select_db($db_handle, $database);
+  $db_found = mysqli_select_db($db_handle, $database);*/
+  $database = "dbs5254611";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
+$db_found = mysqli_select_db($db_handle, $database);
    
    //si le BDD existe, faire le traitement
   if ($db_found) {
@@ -24,11 +28,23 @@
    echo "Database not found";
   }//end else
 
+$count=-1;
+$current=-1;
 $articles = [];
 for ($i=0; $i<3; $i++) {
      $articles[$i]=$temps[$i];   
     }
-  
+
+    $users=[];
+    $i=0;
+    foreach($articles as $article){
+     $idUser = $article['idUser'];
+     $sql2 = "SELECT * FROM users WHERE idUser like '$idUser'";
+     $result2 = mysqli_query($db_handle, $sql2);
+     $user = mysqli_fetch_assoc($result2);
+     $users[$i] = $user['nom'];
+     $i = $i+1;
+    }
   //fermer la connection
   mysqli_close($db_handle);
 ?>
@@ -120,9 +136,9 @@ for ($i=0; $i<3; $i++) {
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
-      <div class="container">
+      <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80">
         </a>
 
         
@@ -149,11 +165,11 @@ for ($i=0; $i<3; $i++) {
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
+                  <a class="dropdown-item " href="index-v2.html">L'établissement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Sortie</a>
+                  <a class="dropdown-item " href="index-v3.html">Sorties</a>
                 </li>
 
                 <li>
@@ -161,7 +177,7 @@ for ($i=0; $i<3; $i++) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
+                  <a class="dropdown-item " href="index-v3.html">Projets et ateliers</a>
                 </li>
 
                 <li>
@@ -169,15 +185,7 @@ for ($i=0; $i<3; $i++) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Restauration</a>
-                </li>
-
-                <li>
                   <a class="dropdown-item " href="index-v4.html">Règlement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
                 </li>
 
                 <li>
@@ -199,7 +207,7 @@ for ($i=0; $i<3; $i++) {
             <li class="nav-item dropdown bg-danger">
               <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
-                <span>Actualité</span>
+                <span>Actualités</span>
               </a>
             </li>
 
@@ -267,13 +275,6 @@ for ($i=0; $i<3; $i++) {
                 </ul>
             </li>
 
-            <li class="nav-item dropdown bg-blue">
-              <a class="nav-link" href="contact.html">
-                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
-                <span>Contact</span>
-              </a>
-            </li>
-
             <li class="nav-item dropdown bg-pink">
               <a class="nav-link " href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
@@ -288,6 +289,20 @@ for ($i=0; $i<3; $i++) {
                   </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown bg-blue">
+              <a class="nav-link" href="contact.html">
+                <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+            <?php if($_SESSION['email']): ?>
+              <li class="nav-item dropdown bg-secondary">
+              <a class="nav-link" href="admin.php">
+                <i class="fas fa-user-circle nav-icon" style="color:#6c757d;font-size:2.4em;" aria-hidden="true"></i>
+                <span>Admin</span>
+              </a>
+            </li>
+            <?php endif ?>
           </ul>
         </div>
       </div>
@@ -334,7 +349,7 @@ for ($i=0; $i<3; $i++) {
           <div class="section-title mb-4 mb-md-8 wow fadeInUp">
             <h2 class="text-danger">Le collège la Courtille</h2>
           </div>
-          <div class="align-items-baseline mb-4 px-3 font-weight-medium font-size-20">
+          <div class="align-items-baseline mb-4 px-5 font-weight-medium font-size-20">
           <div> Le college la Courtille est un lieu propice à l'education des jeunnes adolescents </div>
           <div> Retrouvez au college la Courtille : </div>
 
@@ -382,9 +397,19 @@ for ($i=0; $i<3; $i++) {
 
     <div class="container">
       <div class="row">
-              
   
         <?php foreach ($articles as $article) : ?>
+
+          <?php $count = $count + 1;
+          $current = $current + 1;
+        $count = $count % 6;
+        if($count==0){$color="primary";}
+        elseif($count==1){$color="success";}
+        elseif($count==2){$color="danger";}
+        elseif($count==3){$color="info";}
+        elseif($count==4){$color="purple";}
+        elseif($count==5){$color="pink";}
+        ?>
 
         <div class="col-md-6 col-lg-4">
           <div class="card">
@@ -393,18 +418,18 @@ for ($i=0; $i<3; $i++) {
                   <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
                </a>
                 <div class="card-img-overlay p-0">
-                  <span class="badge bg-info badge-rounded m-4"> <?php echo $article['date'];?></span>
+                  <span class="badge bg-<?php echo $color; ?> badge-rounded m-4"> <?php echo $article['date'];?></span>
                 </div>
               </div>
   
-            <div class="card-body border-top-5 px-3 rounded-bottom border-info">
+            <div class="card-body border-top-5 px-3 rounded-bottom border-<?php echo $color; ?>">
               <h3 class="card-title">
-                <a class="text-info text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre'];?></a>
+                <a class="text-<?php echo $color; ?> text-capitalize d-block text-truncate" href="blog-single-left-sidebar.html"><?php echo $article['titre'];?></a>
               </h3>
                   <ul class="list-unstyled d-flex mb-1">
                     <li class="me-2">
                       <a class="text-muted" href="blog-single-left-sidebar.html">
-                        <i class="fa fa-user me-2" aria-hidden="true"></i>Jone Doe
+                        <i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $users[$current]; ?>
                       </a>
                     </li>
                   </ul>
@@ -415,7 +440,7 @@ for ($i=0; $i<3; $i++) {
                   </script>
               </p>
               
-              <a class="btn btn-link text-hover-info ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
+              <a class="btn btn-link text-hover-<?php echo $color; ?> ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
                 <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Voir l'article
               </a>
 
@@ -446,22 +471,18 @@ for ($i=0; $i<3; $i++) {
     <div class="row">
       <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="accordion" id="accordionOne">
-          <div class="card">
+        <div class="card">
             <div class="card-header bg-primary" id="headingOne">
               <h5 class="icon-bg" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <span>Where does it come from?</span>
+                <span>Comment se rendre au collège La Courtille ?</span>
               </h5>
             </div>
 
             <div id="collapseOne" class="accordion-collapse collapse show shadow-sm rounded-sm" aria-labelledby="headingOne" data-bs-parent="#accordionOne">
               <div class="card-body">
-                <p class="mb-6">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                <p class="mb-6">Le collège est desservi par les bus <strong>105, 153 et 250</strong> qui sont reliés au <strong>RER B</strong>.</p>
+                <p class="mb-0">Voir la page <a href="contact.html"> contact </a> pour l'itinéraire précis.</p>
 
-                <p class="mb-6">Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil)
-                by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The
-                first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-
-                <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem </p>
               </div>
             </div>
           </div>
@@ -469,21 +490,15 @@ for ($i=0; $i<3; $i++) {
           <div class="card">
             <div class="card-header bg-success" id="headingTwo">
               <h5 class="icon-bg collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <span>How do I list multiple rooms?</span>
+                <span>Quels sont les sports proposés par l'Association Sportive (A.S.) ?</span>
               </h5>
             </div>
 
             <div id="collapseTwo" class="accordion-collapse collapse shadow-sm rounded-sm" aria-labelledby="headingTwo" data-bs-parent="#accordionOne">
               <div class="card-body">
-                <p class="mb-6">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+                <p class="mb-6">L'A.S. propose 3 sports : <strong>basket-ball</strong>, la <strong>natation</strong> et le <strong>football</strong>.</p>
+                <p class="mb-0">Retrouvez toutes les informations relatives à l'A.S. sur <a href="association-sportive.php">la page dédiée.</a></p>
 
-                <p class="mb-6">Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of
-                  Good and Evil)
-                  by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
-                  The
-                  first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-
-                <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem </p>
               </div>
             </div>
           </div>
@@ -491,27 +506,14 @@ for ($i=0; $i<3; $i++) {
           <div class="card">
             <div class="card-header bg-danger" id="headingThree">
               <h5 class="icon-bg collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                <span>How do I list multiple rooms?</span>
+                <span>Ai-je le droit à des aides pour la scolarité de mon enfant ?</span>
               </h5>
             </div>
 
             <div id="collapseThree" class="accordion-collapse collapse shadow-sm rounded-sm" aria-labelledby="headingThree" data-bs-parent="#accordionOne">
               <div class="card-body">
-                <p class="mb-6">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                  classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                  Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
-                  passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-              
-                <p class="mb-6">Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-                  of
-                  Good and Evil)
-                  by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
-                  The
-                  first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-              
-                <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                  alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-                  are going to use a passage of Lorem </p>
+                <p class="mb-6">Oui, il existe plusieurs aides : </p>
+
               </div>
             </div>
           </div>
