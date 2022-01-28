@@ -368,7 +368,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Association sportive</a>
+                  <a class="dropdown-item " href="association-sportive.php">Association sportive</a>
                 </li>
 
                 <li>
