@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 25 jan. 2022 à 09:14
+-- Généré le : sam. 29 jan. 2022 à 15:09
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `modification` (
   `idModif` int(11) NOT NULL AUTO_INCREMENT,
   `textModif` text,
   PRIMARY KEY (`idModif`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `modification`
@@ -91,12 +91,14 @@ CREATE TABLE IF NOT EXISTS `modification` (
 
 INSERT INTO `modification` (`idModif`, `textModif`) VALUES
 (1, 'mercredi 29 septembre'),
-(2, '13h30 à 15H pour les 6ème et 5ème'),
-(3, '15h à 16h30 pour les 4ème et 3ème'),
-(4, '14h à 15h30 pour le groupe 1'),
-(5, '15h30 à 17h pour le groupe 2'),
-(6, '13h30 à 15H pour les 6ème et 5ème'),
-(7, '13h30 à 15H pour les 6ème et 5ème');
+(2, '13h30 Ã  15h pour les 6Ã¨me et 5Ã¨me'),
+(3, '15h Ã  16h30 pour les 4Ã¨me et 3Ã¨me'),
+(4, '14h Ã  15h30 pour le groupe 1'),
+(5, '15h30 Ã  17h pour le groupe 2'),
+(6, '13h30 Ã  15h pour les 6Ã¨me et 5Ã¨me'),
+(7, '15h Ã  16h30 pour les 4Ã¨me et 3Ã¨me'),
+(8, 'sefdxgsx'),
+(9, 'Obtenir des gnÃ´mes calms');
 
 -- --------------------------------------------------------
 
