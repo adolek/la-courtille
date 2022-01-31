@@ -1,32 +1,93 @@
 <?php
-/*
+
 ///LOCALHOST///
 //identifier votre BDD
 $database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_found = mysqli_select_db($db_handle, $database);
 
 ///SERVEUR WEB///
 //identifier votre BDD
-$database = "dbs5254611";
+/*$database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
-$db_found = mysqli_select_db($db_handle, $database);
+$db_found = mysqli_select_db($db_handle, $database);*/
 
 session_start();
 
 if ($db_found) {
 
-    $sql = "SELECT * FROM activites";
+  $sql = "SELECT * FROM activites";
+  $result = mysqli_query($db_handle, $sql);
+  while ($activite = mysqli_fetch_assoc($result)) { 
+       $activites[] = $activite; 
+     }
+
+  if (isset($_POST["savemodif"])){
+
+      for($i=9; $i<10; $i++)//jusqu'au nombre de modification
+      {
+        $modi = "modif".$i;
+        $textmodif1 = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST[$modi])); 
+
+        $y=$i+1;
+        $req = "UPDATE modification SET textModif = '$textmodif1' WHERE idModif = '$y'";
+        $update = mysqli_query($db_handle, $req);
+
+      }
+        
+        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+        Page modifiée avec succès !
+       <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+       </div>";
+
+      }
+
+    $sql = "SELECT * FROM modification";
     $result = mysqli_query($db_handle, $sql);
-    while ($activite = mysqli_fetch_assoc($result)) { 
-        $activites[] = $activite; 
+    while ($modif = mysqli_fetch_assoc($result)) { 
+        $modifs[] = $modif; 
       }
       
   }//end if
-  else{echo "database not found";}
   
+
+  error_reporting(0);
+  $id_session = $_SESSION['id'];
+  $edit=$_GET['edit'];
+  
+  
+
+  $req = "SELECT * FROM users WHERE idUser = '$id_session'";
+  $res = mysqli_query($db_handle, $req);
+  $user = mysqli_fetch_assoc($res);
+
+    $type = $user['type'];
+    error_reporting(E_ALL);
+    foreach ($modifs as $key => $modif) {
+      # code...
+      if ($modif['idModif'] == $key+1)
+      {
+        
+        $tid=$modif['idModif'];
+        $ttext=$modif['textModif'];
+        $idm[$key] = $tid;
+        $m[$key] = $ttext;
+      }
+    }
+    /*foreach ($idm as $idms) {
+    echo $idms.' '; // Avec insertion d'un espace entre 2 valeurs
+}*/
+
+    /*foreach ($modifs as $modif) {
+      if ($modif['idModif'] == "1")
+      {
+        $idm1 = $modif['idModif'];
+        $m1 = $modif['textModif'];
+      }
+    }*/
+    //echo "$m1";
 
 ?>
 
@@ -92,6 +153,22 @@ if ($db_found) {
   <!-- ====================================
   ——— HEADER
   ===================================== -->
+
+  <?php if($type == "admin" && $edit != "1") : ?>
+    <div class="boutonModifier">
+      <a href="cdi.php?edit=1">
+      <button class="btn mt-6 btn-primary" >Modifier</button>
+    </a>
+  </div>
+<?php endif ?>
+<?php if($edit == "1") : ?>
+    <div class="boutonTerminer">
+      <a href="cdi.php">
+      <button class="btn mt-6 btn-danger" >Terminer</button>
+    </a>
+  </div>
+<?php endif ?>
+
   <header class="header" id="pageTop">
     <!-- Top Color Bar -->
     <div class="color-bars">
@@ -317,6 +394,9 @@ if ($db_found) {
 ——— ABOUT MEDIA
 ===================================== -->
 
+<?php if($edit == "1") : ?>
+<form action="cdi.php?edit=1" method="post">
+<?php endif ?>
 
 <section class="pt-7 pt-md-10">
   <div class="container">
@@ -340,7 +420,14 @@ if ($db_found) {
 						</li>
             <li class="d-flex align-items-baseline text-muted mb-2">
 							<i class="fa fa-desktop me-2" aria-hidden="true"></i>
-							<p><small class="text-danger font-size-15 mb-4">8 ordinateurs</small> sont à la disposition des élèves et des tablettes avec un accès contrôlé à Internet. Pour y accéder, il est nécessaire de demander l'autorisation de même que pour le prêt d’un casque.</p>
+              
+              <?php if($edit != "1") : ?>
+							<p><small class="text-danger font-size-15 mb-4"><?php echo $m[9];?></small> sont à la disposition des élèves et des tablettes avec un accès contrôlé à Internet. Pour y accéder, il est nécessaire de demander l'autorisation de même que pour le prêt d’un casque.</p>
+              <?php endif ?>
+
+              <?php if($edit == "1") : ?>
+              <p><small class="text-danger font-size-15 mb-4"><input type="text" class="text-danger"  style="text-align: center; font-weight: bold;" name="modif9" value="<?php echo $m[9];?>"></small> sont à la disposition des élèves et des tablettes avec un accès contrôlé à Internet. Pour y accéder, il est nécessaire de demander l'autorisation de même que pour le prêt d’un casque.</p>
+              <?php endif ?>
             </li>
             
           </ul>
@@ -376,6 +463,13 @@ if ($db_found) {
     
   </div>
 </section>
+  
+      <?php if($edit == "1") : ?>
+        <div class="boutonModifier">
+           <button class="btn mt-6 btn-primary" name="savemodif" type="submit">Enregistrer</button>
+        </div>
+        </form>
+    <?php endif?>
 
 
 <!-- ====================================
