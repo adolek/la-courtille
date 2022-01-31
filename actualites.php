@@ -149,7 +149,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -191,7 +191,7 @@ session_start();
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                  <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
                 <li>
@@ -203,7 +203,7 @@ session_start();
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link " href="actualites.php">
+              <a class="nav-link active" href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
                 <span>Actualités</span>
               </a>
@@ -254,7 +254,7 @@ session_start();
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>

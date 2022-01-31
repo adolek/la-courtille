@@ -1,18 +1,18 @@
 <?php
-
+/*
 ///LOCALHOST///
 //identifier votre BDD
 $database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
+$db_found = mysqli_select_db($db_handle, $database);*/
 
 ///SERVEUR WEB///
 //identifier votre BDD
-/*$database = "dbs5254611";
+$database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_found = mysqli_select_db($db_handle, $database);
 
 session_start();
 
@@ -206,14 +206,14 @@ if ($db_found) {
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
             </li>
 
             <li class="nav-item dropdown bg-purple">
-              <a class="nav-link text-blue" href="javascript:void(0)"
+              <a class="nav-link active text-blue" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <i class="fas fa-school nav-icon" aria-hidden="true"></i>
                 <span>Présentation</span>
@@ -311,7 +311,7 @@ if ($db_found) {
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>

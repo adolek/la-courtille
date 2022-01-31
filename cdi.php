@@ -132,7 +132,7 @@ if ($db_found) {
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -174,7 +174,7 @@ if ($db_found) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                  <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
                 <li>
@@ -237,7 +237,7 @@ if ($db_found) {
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
@@ -258,7 +258,7 @@ if ($db_found) {
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="cdi.php">
+              <a class="nav-link active" href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>

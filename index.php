@@ -193,7 +193,7 @@ for ($i=0; $i<3; $i++) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                  <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
                 <li>
@@ -256,7 +256,7 @@ for ($i=0; $i<3; $i++) {
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
@@ -481,8 +481,8 @@ for ($i=0; $i<3; $i++) {
 
             <div id="collapseOne" class="accordion-collapse collapse show shadow-sm rounded-sm" aria-labelledby="headingOne" data-bs-parent="#accordionOne">
               <div class="card-body">
-                <p class="mb-6">Le collège est desservi par les bus <strong>105, 153 et 250</strong> qui sont reliés au <strong>RER B</strong>.</p>
-                <p class="mb-0">Voir la page <a href="contact.html"> contact </a> pour l'itinéraire précis.</p>
+                <p class="mb-6">Le collège est desservi par les bus <strong>150, 153 et 250</strong> qui sont reliés au <strong>RER B</strong>.</p>
+                <p class="mb-0">Voir sur <a href="https://goo.gl/maps/77dsywbnqQsHLb1h6">Google Maps</a> l'itinéraire précis via les transports en commun.</p>
 
               </div>
             </div>
@@ -554,12 +554,12 @@ for ($i=0; $i<3; $i++) {
     </div>
   </div>
 
-  <div class="pt-8 pb-7  bg-repeat" style="background-image: url(assets/img/enfantheureux.jpg);">
+  <div class="pt-8  bg-repeat" style="background-image: url(assets/img/enfantheureux.jpg);">
     <div class="container">
       <div class="row">
         
         <div class="col-sm col-lg col-xs">
-          <h4 class="section-title-sm font-weight-bold text-white mb-6">Info contact</h4>
+          <h4 class="section-title-sm font-weight-bold text-white mb-6">Infos contact</h4>
           <ul class="list-unstyled">
             <li class="mb-4">
                 <i class="fas fa-phone-square-alt me-2" aria-hidden="true"></i>Téléphone : 01 86 78 34 30
@@ -575,7 +575,7 @@ for ($i=0; $i<3; $i++) {
                     <thead>
                         <tr>
 
-                            <th colspan="2"><h4 class="section-title-sm font-weight-bold text-white">Horaires d'ouverture du secretariat :</h4></th>
+                            <th colspan="2"><h4 class="section-title-sm font-weight-bold text-white">Horaires d'ouverture du secrétariat :</h4></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -616,174 +616,14 @@ for ($i=0; $i<3; $i++) {
         <div class="col-sm-7 col-xs-12 order-1 order-md-0">
           <p class="copyright-text"><span id="copy-year"></span> © Copyright Collège La Courtille. Tous droits réservés.</a></p>
         </div>
-
       </div>
+      </div>
+      </div>
+ 
  
 
 </footer>
 
-<!-- Modal Login -->
-<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="bg-warning rounded-top p-2">
-        <h3 class="text-white font-weight-bold mb-0 ms-2">Login</h3>
-      </div>
-
-      <div class="rounded-bottom-md border-top-0">
-        <div class="p-3">
-          <form action="#" method="POST" role="form">
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="User name" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="password" class="form-control border" placeholder="Password" required="">
-            </div>
-
-            <div class="form-group">
-              <button type="submit" class="btn btn-danger text-uppercase w-100">Log In</button>
-            </div>
-
-            <div class="form-group text-center text-secondary mb-0">
-              <a class="text-danger" href="javascript:void(0)">Forgot password?</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Create Account -->
-<div class="modal fade" id="modal-createAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-sm rounded" role="document">
-    <div class="modal-content">
-      <div class="bg-warning rounded-top p-2">
-        <h3 class="text-white font-weight-bold mb-0 ms-2">Create An Account</h3>
-      </div>
-
-      <div class="rounded-bottom-md border-top-0">
-        <div class="p-3">
-          <form action="#" method="POST" role="form">
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="Name" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="User name" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="Phone" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="password" class="form-control border" placeholder="Password" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="password" class="form-control border" placeholder="Re-Password" required="">
-            </div>
-
-            <div class="form-group">
-              <button type="submit" class="btn btn-danger text-uppercase w-100">Register</button>
-            </div>
-
-            <div class="form-group text-center text-secondary mb-0">
-              <p class="mb-0">Allready have an account? <a class="text-danger" href="javascript:void(0)">Log in</a></p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Enroll -->
-<div class="modal fade" id="modal-enrolAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-sm rounded" role="document">
-    <div class="modal-content">
-      <div class="bg-pink rounded-top p-2">
-        <h3 class="text-white font-weight-bold mb-0 ms-2">Create An Account</h3>
-      </div>
-
-      <div class="rounded-bottom-md border-top-0">
-        <div class="p-3">
-          <form action="#" method="POST" role="form">
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="Name" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="User name" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="text" class="form-control border" placeholder="Phone" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="password" class="form-control border" placeholder="Password" required="">
-            </div>
-
-            <div class="form-group form-group-icon">
-              <input type="password" class="form-control border" placeholder="Re-Password" required="">
-            </div>
-
-            <div class="form-group">
-              <button type="submit" class="btn btn-pink text-uppercase text-white w-100">Register</button>
-            </div>
-
-            <div class="form-group text-center text-secondary mb-0">
-              <p class="mb-0">Allready have an account? <a class="text-pink" href="javascript:void(0)">Log in</a></p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Products -->
-<div class="modal fade" id="modal-products" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header border-0">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-6 col-xs-12">
-            <img class="img-fluid d-block mx-auto" src="assets/img/products/products-preview01.jpg" alt="preview01.jpg">
-          </div>
-          <div class="col-sm-6 col-xs-12">
-            <div class="product-single">
-              <h1>Barbie Racing Car</h1>
-
-              <span class="pricing font-size-55">$50 <del>$60</del></span>
-
-              <p class="mb-7">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-
-              <div class="add-cart mb-0">
-                <div class="count-input">
-                  <input class="quantity btn-primary" type="text" value="1">
-                  <a class="incr-btn incr-up" data-action="decrease" href="#"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-                  <a class="incr-btn incr-down" data-action="increase" href="#"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                </div>
-                <button type="button" class="btn btn-danger text-uppercase" onclick="location.href='product-cart.html';">Add to cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!--scrolling-->
 <div class="">

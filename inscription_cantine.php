@@ -346,7 +346,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -388,7 +388,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                  <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
                 <li>
@@ -407,7 +407,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
             </li>
 
             <li class="nav-item dropdown bg-info">
-              <a class="nav-link" href="javascript:void(0)"
+              <a class="nav-link active" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
                 <span>Intendance</span>
@@ -451,7 +451,7 @@ $db_found = mysqli_select_db($db_handle, $database);*/
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>

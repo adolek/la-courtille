@@ -498,7 +498,7 @@ if (isset($_POST["chTarif"])){
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -540,7 +540,7 @@ if (isset($_POST["chTarif"])){
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                  <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
                 <li>
@@ -603,7 +603,7 @@ if (isset($_POST["chTarif"])){
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
@@ -645,7 +645,7 @@ if (isset($_POST["chTarif"])){
 
             <?php if($_SESSION['email']): ?>
               <li class="nav-item dropdown bg-secondary">
-              <a class="nav-link" href="admin.php">
+              <a class="nav-link active" href="admin.php">
                 <i class="fas fa-user-circle nav-icon" style="color:#6c757d;font-size:2.4em;" aria-hidden="true"></i>
                 <span>Admin</span>
               </a>
