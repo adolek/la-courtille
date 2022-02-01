@@ -1,10 +1,11 @@
 <?php
-  //identifier le nom de base de données
-  $database = "la_courtille";
-  //connectez-vous dans votre BDD
-  //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
-  $db_handle = mysqli_connect('localhost', 'root', '' );
-  $db_found = mysqli_select_db($db_handle, $database);
+
+///LOCALHOST///
+//identifier votre BDD
+$database = "la_courtille";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
 ///SERVEUR WEB///
 //identifier votre BDD
@@ -14,39 +15,81 @@ $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegre
 $db_found = mysqli_select_db($db_handle, $database);*/
 
 session_start();
-   
-   //si le BDD existe, faire le traitement
-  if ($db_found) {
-    $sql = "SELECT * FROM `articles` ORDER BY `articles`.`date` DESC";
-    $result = mysqli_query($db_handle, $sql);
-   
-   while ($article = mysqli_fetch_assoc($result)) {
-    $articles[]=$article;
-    
-   }//end while
-   $users=[];
-   $i=0;
-   foreach($articles as $article){
-    $idUser = $article['idUser'];
-    $sql2 = "SELECT * FROM users WHERE idUser like '$idUser'";
-    $result2 = mysqli_query($db_handle, $sql2);
-    $user = mysqli_fetch_assoc($result2);
-    $users[$i] = $user['nom'];
-    $i = $i+1;
-   }
- 
-   
-  }//end if
-  //si le BDD n'existe pas
-  else {
-   echo "Database not found";
-  }//end else
-  //fermer la connection
-  mysqli_close($db_handle);
-  $count=-1;
-  $current=-1;
-?>
 
+if ($db_found) {
+
+  $sql = "SELECT * FROM activites";
+  $result = mysqli_query($db_handle, $sql);
+  while ($activite = mysqli_fetch_assoc($result)) { 
+       $activites[] = $activite; 
+     }
+
+  if (isset($_POST["savemodif"])){
+
+      for($i=9; $i<10; $i++)//jusqu'au nombre de modification
+      {
+        $modi = "modif".$i;
+        $textmodif1 = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST[$modi])); 
+
+        $y=$i+1;
+        $req = "UPDATE modification SET textModif = '$textmodif1' WHERE idModif = '$y'";
+        $update = mysqli_query($db_handle, $req);
+
+      }
+        
+        echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+        Page modifiée avec succès !
+       <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+       </div>";
+
+      }
+
+    $sql = "SELECT * FROM modification";
+    $result = mysqli_query($db_handle, $sql);
+    while ($modif = mysqli_fetch_assoc($result)) { 
+        $modifs[] = $modif; 
+      }
+      
+  }//end if
+  
+
+  error_reporting(0);
+  $id_session = $_SESSION['id'];
+  $edit=$_GET['edit'];
+  
+  
+
+  $req = "SELECT * FROM users WHERE idUser = '$id_session'";
+  $res = mysqli_query($db_handle, $req);
+  $user = mysqli_fetch_assoc($res);
+
+    $type = $user['type'];
+    error_reporting(E_ALL);
+    foreach ($modifs as $key => $modif) {
+      # code...
+      if ($modif['idModif'] == $key+1)
+      {
+        
+        $tid=$modif['idModif'];
+        $ttext=$modif['textModif'];
+        $idm[$key] = $tid;
+        $m[$key] = $ttext;
+      }
+    }
+    /*foreach ($idm as $idms) {
+    echo $idms.' '; // Avec insertion d'un espace entre 2 valeurs
+}*/
+
+    /*foreach ($modifs as $modif) {
+      if ($modif['idModif'] == "1")
+      {
+        $idm1 = $modif['idModif'];
+        $m1 = $modif['textModif'];
+      }
+    }*/
+    //echo "$m1";
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +100,7 @@ session_start();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Actualités - La Courtille</title>
+  <title>CDI - La Courtille</title>
 
   <!-- Plugins css Style -->
   <link href='assets/css/all.min.css' rel='stylesheet'>
@@ -110,6 +153,22 @@ session_start();
   <!-- ====================================
   ——— HEADER
   ===================================== -->
+
+  <?php if($type == "admin" && $edit != "1") : ?>
+    <div class="boutonModifier">
+      <a href="cdi.php?edit=1">
+      <button class="btn mt-6 btn-primary" >Modifier</button>
+    </a>
+  </div>
+<?php endif ?>
+<?php if($edit == "1") : ?>
+    <div class="boutonTerminer">
+      <a href="cdi.php">
+      <button class="btn mt-6 btn-danger" >Terminer</button>
+    </a>
+  </div>
+<?php endif ?>
+
   <header class="header" id="pageTop">
     <!-- Top Color Bar -->
     <div class="color-bars">
@@ -132,11 +191,12 @@ session_start();
     </div>
 
 
-       <!-- Navbar -->
+
+      <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80" >
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80">
         </a>
 
         
@@ -203,7 +263,7 @@ session_start();
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link active" href="actualites.php">
+              <a class="nav-link " href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
                 <span>Actualités</span>
               </a>
@@ -275,7 +335,7 @@ session_start();
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="cdi.php">
+              <a class="nav-link active" href="cdi.php">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>
@@ -307,204 +367,206 @@ session_start();
       </div>
     </nav>
   </header>
-
-  <div class="main-wrapper blog-grid">
-
-
+  <div class="main-wrapper faq"> 
+    
     <!-- ====================================
-    ——— BREADCRUMB
+    ———	BREADCRUMB
     ===================================== -->
     <section class="breadcrumb-bg" style="background-image: url(assets/img/tableau.jpg); ">
       <div class="container">
         <div class="breadcrumb-holder">
           <div>
-            <h1 class="breadcrumb-title">Actualités</h1>
+            <h1 class="breadcrumb-title">FabScience</h1>
             <ul class="breadcrumb breadcrumb-transparent">
               <li class="breadcrumb-item">
-                <a class="text-white" href="index.html">Accueil</a>
+                <a class="text-white" href="index.php">Accueil</a>
               </li>
               <li class="breadcrumb-item text-white active" aria-current="page">
-                Actualités
+              Présentation
+              </li>
+              <li class="breadcrumb-item text-white active" aria-current="page">
+              FabScience
               </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
-  
-  <!-- ====================================
-  ——— BLOG GRID
-  ===================================== -->
-  <section class="py-8 py-md-10">
-    <div class="container">
-      <div class="row">
-              
-  
-        <?php foreach ($articles as $article) : ?>
 
-          <?php $count = $count + 1;
-          $current = $current + 1;
-        $count = $count % 6;
-        if($count==0){$color="primary";}
-        elseif($count==1){$color="success";}
-        elseif($count==2){$color="danger";}
-        elseif($count==3){$color="info";}
-        elseif($count==4){$color="purple";}
-        elseif($count==5){$color="pink";}
-        
-        ?>
+    <!-- ====================================
+——— ABOUT MEDIA
+===================================== -->
 
-        <div class="col-md-6 col-lg-4">
-          <div class="card">
-             <div class="position-relative">
-                <a href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
-                  <img class="card-img-top" src="assets/img/<?php echo $article['image']; ?>" alt="Card image">
-               </a>
-                <div class="card-img-overlay p-0">
-                  <span class="badge bg-<?php echo $color;?> badge-rounded m-4"> <?php echo $article['date'];?></span>
-                </div>
-              </div>
-  
-            <div class="card-body border-top-5 px-3 rounded-bottom border-<?php echo $color;?>">
-              <h3 class="card-title">
-                <a class="text-<?php echo $color;?> text-capitalize d-block text-truncate" href="pageArticle.php?id=<?php echo $article['idArticle'];?>"><?php echo $article['titre'];?></a>
-              </h3>
-                  <ul class="list-unstyled d-flex mb-1">
-                    <li class="me-2">
-                        <i class="fa fa-user me-2" aria-hidden="true"></i><?php echo $users[$current]; ?>
-                  
-                    </li>
-                  </ul>
-              <p class="mb-2"> 
-                  <script type="text/javascript">  
-                    var texte = "<?php echo $article['texte'];?>";
-                    document.write(texte.slice(0, 150)+"...");
-                  </script>
-              </p>
-              
-              <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
-                <i class="fa fa-angle-double-right me-1" aria-hidden="true"></i> Voir l'article
-              </a>
+<?php if($edit == "1") : ?>
+<form action="FabScience.php?edit=1" method="post">
+<?php endif ?>
 
-            </div>
+<section class="py-7 py-md-10"">
+  <div class="container">
+    <div class="row wow fadeInUp">
+      <div class="col-sm-6 col-xs-12 pe-5">
+          <div class="section-title mb-4 wow fadeInUp">
+            <h2 class="text-danger">L'atelier FabScience : </h2>
           </div>
-        </div>
+          <div class="align-items-baseline mb-4 px-5">
+          <p class="text-dark font-size-15 mb-4">Nous sommes 2 enseignantes, <strong class="text-danger">Technologie et Sciences physique</strong> en co-animation et nous avons 3 groupes de 15 élèves par semaine durant 1h chacun sur la pause méridienne. </p>
+          <p class="text-dark font-size-15">
+          Nous organisons nos séances en veillant à ce qu'<strong class="text-danger">un principe technique ou un principe physique ou les 2 soient mis en avant.</strong>
+          Nous proposons à nos élèves des expérimentations ou des démarches d'investigation durant lesquelles ils réinvestissent les compétences acquises durant les enseignements. </p>
+          <p class="text-dark font-size-15">
+          Nous permettons également à nos élèves de <strong class="text-danger">proposer des expériences ou fabrications qu'ils souhaiteraient réaliser</strong> dans le but de développer une appétence pour les sciences et technologies et conserver un aspect ludique de l'atelier.
+          </p>
 
-
-  <?php endforeach?>
+          </div>
         
-  
-            
-      </div>
     </div>
-  </section>
+    <div class="col-sm-6 col-xs-12">
+        <div>
+          <img class="img-fluid rounded" src="assets/img/collegeLaCourtille.jpg" width="100%" allowfullscreen="" loading="lazy">
+        </div>
+        
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="bg-light py-7 py-md-10"">
+  <div class="container">
+    <div class="row wow fadeInUp">
+
+      <div class="col-sm-5 col-xs-12">
+        <div>
+          <img class="img-fluid rounded" src="assets/img/collegeLaCourtille.jpg" width="100%" allowfullscreen="" loading="lazy">
+        </div>
+        
+    </div>
+
+      <div class="col-sm-7 col-xs-12 pe-5">
+          <div class="section-title mb-4 wow fadeInUp">
+            <h2 class="text-danger">Exemples de séances proposés <i>pour</i> ou <i>par </i> les élèves</h2>
+          </div>
+          <ul class="list-unstyled mb-5">
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Eruption volcanique , avec fabrication d'un volcan et réaction chimique pour provoquer l'éruption</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Fabrication assisté par ordinateur  de porte clefs/ pancarte/ déco de noël avec  usinage à la machine outil à commande numérique</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Conception assistée par ordinateur et impression 3D</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Fabrication de slim</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Fabrication de balles anti stress</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Réalisation d'un arc en ciel sur le principe de la densité</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Réalisation de lampe à lave</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Fabrication de différents véhicules (voitures, fusée...) avec différents moyens de propulsions ( réactions chimiques, pression...)</p>
+            </li>
+            <li class="d-flex align-items-baseline text-muted">
+              <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+              <p>Et bien d'autres !</p>
+            </li>
+          </ul>
+    </div>
+
+          <p class="text-dark font-size-15 mb-4">
+          Nous réalisons également en fin d'année <strong class="text-danger"> une exposition afin de présenter l'atelier</strong> ce qui nécessite également du matériel et des consommables ( feuilles, carton plume, feutres, cartouches d'imprimantes....).
+          </p> 
+    
+  </div>
+</div>
+</section>
+
+<section class="pt-4 pt-md-6 pb-10">
+  <div class="container">
+     <div class="section-title mb-4 wow fadeInUp">
+        <h2 class="text-danger">Le matériel :</h2>
+    </div>
+    <div class="align-items-baseline mb-4 px-5">
+          <p class="text-dark font-size-15 mb-4">Nous utilisons différents produits pour les différentes <strong class="text-danger">réactions chimiques</strong> (bicarbonate, colorant, sel, vinaigre, lessive, ....) et différents matériaux pour les fabrications des <strong class="text-danger"> objets techniques</strong> ( plaque de pvc , plaque de Pmma, bobine pour impression 3D, crochets, peinture, ficelle, colle, ruban adhésifs, pailles, bois, carton plume.....). </p>
+          <p class="text-dark font-size-15 mb-4">
+          Nous avons également besoin de matériel pour la réalisation des <strong class="text-danger"> expériences </strong>(  bécher, petit pot, balance, pipette, agitateur.....) et d'outils pour les fabrications ( tourne vis, multimètre, mocn, imprimante 3D, fer à souder, étain, marteau, perceuse, forets....).</p>
+
+          
+  </div>
+    
+  </div>
+</section>
+
+
   
-  </div> <!-- element wrapper ends -->
-  
+      <?php if($edit == "1") : ?>
+        <div class="boutonModifier">
+           <button class="btn mt-6 btn-primary" name="savemodif" type="submit">Enregistrer</button>
+        </div>
+        </form>
+    <?php endif?>
+
+
+    </div> <!-- element wrapper ends -->
+
 <!-- ====================================
-——— FOOTER
+———	FOOTER
 ===================================== -->
 <footer class="footer-bg-img">
-  <!-- Footer Color Bar -->
-  <div class="color-bar">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col color-bar bg-warning"></div>
-        <div class="col color-bar bg-danger"></div>
-        <div class="col color-bar bg-success"></div>
-        <div class="col color-bar bg-info"></div>
-        <div class="col color-bar bg-purple"></div>
-        <div class="col color-bar bg-pink"></div>
-        <div class="col color-bar bg-warning d-none d-md-block"></div>
-        <div class="col color-bar bg-danger d-none d-md-block"></div>
-        <div class="col color-bar bg-success d-none d-md-block"></div>
-        <div class="col color-bar bg-info d-none d-md-block"></div>
-        <div class="col color-bar bg-purple d-none d-md-block"></div>
-        <div class="col color-bar bg-pink d-none d-md-block"></div>
-      </div>
+<!-- Footer Color Bar -->
+<div class="color-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col color-bar bg-warning"></div>
+      <div class="col color-bar bg-danger"></div>
+      <div class="col color-bar bg-success"></div>
+      <div class="col color-bar bg-info"></div>
+      <div class="col color-bar bg-purple"></div>
+      <div class="col color-bar bg-pink"></div>
+      <div class="col color-bar bg-warning d-none d-md-block"></div>
+      <div class="col color-bar bg-danger d-none d-md-block"></div>
+      <div class="col color-bar bg-success d-none d-md-block"></div>
+      <div class="col color-bar bg-info d-none d-md-block"></div>
+      <div class="col color-bar bg-purple d-none d-md-block"></div>
+      <div class="col color-bar bg-pink d-none d-md-block"></div>
     </div>
   </div>
+</div>
 
-  <div class="pt-8  bg-repeat" style="background-image: url(assets/img/enfantheureux.jpg);">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-sm col-lg col-xs">
-          <h4 class="section-title-sm font-weight-bold text-white mb-6">Infos contact</h4>
-          <ul class="list-unstyled">
-            <li class="mb-4">
-                <i class="fas fa-phone-square-alt me-2" aria-hidden="true"></i>Téléphone : 01 86 78 34 30
-            </li>
-            <li class="mb-4">
-                <i class="fas fa-envelope-square me-2" aria-hidden="true"></i>Mail : <a href="mailto:roedianto.yohann@gmail.com">ecole@gmail.com</a>
-            </li>
-            <li class="mb-4">
-                <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>12 Rue Jacques Vache, 93200 Saint Denis
-            </li>
-            <li class="mb-3">
-                  <table>
-                    <thead>
-                        <tr>
+<!-- Copy Right -->
 
-                            <th colspan="2"><h4 class="section-title-sm font-weight-bold text-white">Horaires d'ouverture du secrétariat :</h4></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>8h30 - 17h30</td>
-                            <td>lundi, mardi et vendredi</td>
-                        </tr>
-                        <tr>
-                            <td>8h30 - 12h30</td>
-                            <td>mercredi et jeudi</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </li>
+<div class="copyright">
+  <div class="container">
+    <div class="row py-4 align-items-center">
+      <div class="col-sm-7 col-xs-12 order-1 order-md-0">
+        <p class="copyright-text"><span id="copy-year"></span> © Copyright Collège La Courtille. Tous droits réservés.</a></p>
+      </div>
 
-            
-          </ul>
-        </div>
-
-        <div class="col-sm col-lg col-xs">
-          <h4 class="section-title-sm font-weight-bold text-white mb-6">Adresse</h4>
-
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3760.14170228514!2d2.3788464799816476!3d48.9401035485792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66bf96ad25cab%3A0xaf44150bdcedc736!2sColl%C3%A8ge%20la%20Courtille!5e0!3m2!1sfr!2sfr!4v1641385695534!5m2!1sfr!2sfr" width="100%" height="75%" allowfullscreen="" loading="lazy"></iframe>
-                
-        </div>
-
-        
-  </div>
-
-  <!-- Copy Right -->
-  
     </div>
   </div>
-
-  <div class="copyright">
-    <div class="container">
-      <div class="row py-4 align-items-center">
-        <div class="col-sm-7 col-xs-12 order-1 order-md-0">
-          <p class="copyright-text"><span id="copy-year"></span> © Copyright Collège La Courtille. Tous droits réservés.</a></p>
-        </div>
-      </div>
-      </div>
-      </div>
- 
- 
+</div>
 
 </footer>
-  
-  <!--scrolling-->
-  <div class="">
-    <a href="#pageTop" class="back-to-top" id="back-to-top" style="opacity: 1;">
-      <i class="fas fa-arrow-up" aria-hidden="true"></i>
-    </a>
-  </div>
 
-  <!-- Javascript -->
+
+
+
+<!-- Javascript -->
 <script src='assets/js/jquery.min.js'></script>
 <script src='assets/js/bootstrap.bundle.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script src='assets/js/jquery.fancybox.min.js'></script>
 <script src='assets/js/isotope.min.js'></script>
@@ -525,18 +587,17 @@ session_start();
 <script src='assets/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js'></script>
 <script src='assets/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js'></script>
 <script src='assets/plugins/revolution/js/extensions/revolution.extension.navigation.min.js'></script> 
- -->
+-->
 
 <script src='assets/js/wow.min.js'></script>
 
 <script>
-  var d = new Date();
-  var year = d.getFullYear();
-  document.getElementById("copy-year").innerHTML = year;
+var d = new Date();
+var year = d.getFullYear();
+document.getElementById("copy-year").innerHTML = year;
 </script>
 <script src='assets/js/main.js'></script>
 
 </body>
 
 </html>
-

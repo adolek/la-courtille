@@ -294,74 +294,71 @@
 ===================================== -->
 <section class="bg-light py-8 py-md-10">
   <div class="container">
-     <div class="section-title mb-4 wow fadeInUp">
-        <h2 class="text-danger">Bourse collège :</h2>
-    </div>
     <h3 style="font-family: dosis, sans-serif; font-weight: bold;">Retrouvez <a href="assets/pdf/bourses_college_flyer.pdf">ici</a> la procédure de demande de bourse</h3>
    
    <h3 class="text-danger mt-5 mb-3" style="font-family: dosis, sans-serif; font-weight: bold; font-style: italic;">Les justificatifs à fournir</h3>
    <ul class="list-unstyled mb-5">
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>La fiche de renseignements</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>L’attestation sur l’honneur</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Le règlement intérieur de l’infirmerie signé par les parents et l’élève</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie du livret de famille dans son intégralité.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie d’une pièce d’identité de l’élève  recto verso  (ou passeport) (Celle-ci sera obligatoire pour passer le Diplôme National du Brevet)</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie d’une pièce d’identité du ou des responsable(s) légaux ou du tuteur. </p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie de l’attestation de sécurité sociale.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie de la carte vitale.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie d’un justificatif de domicile (quittance de loyer, EDF…).</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photos d’identité de l’élève.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie des pages du carnet de vaccination de l’élève.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Photocopie en cas de divorce, de la décision du jugement précisant la personne ayant la garde.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>L’attestation CAF de calcul du quotient familial (obligatoire pour le calcul de la tarification de la restauration scolaire).</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Un Relevé d’Identité Bancaire, en prévision des demandes de bourses  « Collège »</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>RAPPEL : FOURNIR CES DOCUMENTS NE CONSTITUE PAS UNE DEMANDE DE BOURSE. IL FAUDRA EN FAIRE LA DEMANDE EN LIGNE AU MOMENT DE L’OUVERTURE DE LA CAMPAGNE DONT LA DATE VOUS SERA COMMUNIQUÉE ULTERIEUREMENT.</p>
             </li>
-            <li class="d-flex align-items-baseline text-muted mb-2">
+            <li class="d-flex align-items-baseline text-muted mb-1">
               <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
               <p>Attestation d’assurance « responsabilité civile » couvrant l’année scolaire 2021-2022  (se renseigner auprès de votre assureur d’habitation ou de la MAE)</p>
             </li>
