@@ -14800,12 +14800,14 @@ to {
     position: relative;
     height: 105px;
     margin-bottom: 3rem;
+    margin-top:40px;
 }
 @media(min-width:768px) {
     .progress-wizard>.progress-wizard-step {
-    margin-bottom: 0;
+    margin: 0;
     height: 100px;
 }
+
 }.progress-wizard>.progress-wizard-step>.progress {
     position: relative;
     border-radius: 0;
@@ -14916,14 +14918,9 @@ to {
     .progress-wizard .progress-info {
     margin: 4.38rem 0 0 .9375rem;
 }
-}@media(min-width:992px) {
-    .progress-wizard .progress-info {
-    margin: 4.38rem 0 0 -.9375rem;
-}
-}@media(min-width:1200px) {
-    .progress-wizard .progress-info {
-    margin: 4.38rem 0 0 -2.5rem;
-}
+
+
+
 }.table td span {
     font-family: dosis, sans-serif;
 }

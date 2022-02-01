@@ -136,7 +136,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -190,7 +190,7 @@ session_start();
             </li>
 
             <li class="nav-item dropdown bg-danger">
-              <a class="nav-link " href="actualites.php">
+              <a class="nav-link active" href="actualites.php">
                 <i class="far fa-newspaper nav-icon" aria-hidden="true"></i>
                 <span>Actualités</span>
               </a>
@@ -330,7 +330,7 @@ session_start();
           </li>
         </ul>
         <?php endif ?>
-        <p class="card-text text-justify mb-6"><?php echo $article['texte'];?></p>
+        <p class="card-text text-justify mb-6"><?php echo nl2br($article['texte']);?></p>
       </div>
     </div>
 </section>
