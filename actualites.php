@@ -376,10 +376,7 @@ session_start();
                     </li>
                   </ul>
               <p class="mb-2"> 
-                  <script type="text/javascript">  
-                    var texte = "<?php echo $article['texte'];?>";
-                    document.write(texte.slice(0, 150)+"...");
-                  </script>
+                  <?php $var=$article['texte']; echo substr(nl2br($var),0,150)."...";?>
               </p>
               
               <a class="btn btn-link text-hover-<?php echo $color;?> ps-0" href="pageArticle.php?id=<?php echo $article['idArticle'];?>">
