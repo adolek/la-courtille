@@ -244,7 +244,7 @@ for ($i=0; $i<3; $i++) {
                   <a class="dropdown-item " href="index-v2.html">Inscription Ramadan</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Tarification particulière</a>
+                  <a class="dropdown-item " href="tarification-particuliere.php">Tarification particulière</a>
                 </li>
               </ul>
             </li>
