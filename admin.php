@@ -99,8 +99,9 @@ if (isset($_POST["ajoutArticle"])){
   $extensionFichier2 = $elementsChemin2['extension'];
   $extensionsAutorisees2 = array("mp3", "ogg", "wma");
   $extensionsAutorisees = array("jpeg", "jpg", "JPG", "JPEG", "gif", "png", "webp", "svg");
-
+  $importe="";
   $nomDestination2="";  
+  $nomDestination="";
 
   if (!(in_array($extensionFichier2, $extensionsAutorisees2))) {
     echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
@@ -133,7 +134,9 @@ if (isset($_POST["ajoutArticle"])){
       L'image téléchargée n'a pas l'extension attendue ou vous avez omis d'ajouter une image.
      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
      </div>";
-  } else {    
+  } 
+  
+  else {    
       
       // Copie dans le repertoire du script avec un nom
       $repertoireDestination = dirname(__FILE__)."/assets/img/";
@@ -141,47 +144,56 @@ if (isset($_POST["ajoutArticle"])){
 
       if (move_uploaded_file($_FILES["monfichier"]["tmp_name"], $repertoireDestination.$nomDestination)) {
 
-        if(empty($titre)||empty($texte))
-        {
-            echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-            Un champ ou plusieurs champs obligatoires sont vides.
-           <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-           </div>";
-        
-        }
-        else{
-        
-            $id = $_SESSION['id'];
-        
-             $sql="SELECT * FROM  articles where titre like '$titre' AND idUser like '$id'";
-             $result = mysqli_query($db_handle, $sql);
+      }
       
-            if (mysqli_num_rows($result) != 0) 
-             {
-                echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-                Article déjà ajouté !
-               <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-               </div>";
-      
-             }else 
-                 {
-                    $sql = "INSERT INTO articles(idUser, titre, texte, image, audio, date, projet) VALUES('$id', '$titre', '$texte','$nomDestination','$nomDestination2',DATE(NOW()), '$projetBool')";
-                    $result = mysqli_query($db_handle, $sql);
-                    echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-                    Nouvel article ajouté avec succès.
-                   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-                   </div>";
-                  }
-            }
-
-      } else {
+      else {
           echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
           L'image est trop volumineuse pour être importée.
         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
         </div>";
+        $importe=0;
       }
   }
 
+  if(empty($titre)||empty($texte))
+  {
+      echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+      Un champ ou plusieurs champs obligatoires sont vides.
+     <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+     </div>";
+  
+  }
+  else{
+  
+      $id = $_SESSION['id'];
+  
+       $sql="SELECT * FROM  articles where titre like '$titre' AND idUser like '$id'";
+       $result = mysqli_query($db_handle, $sql);
+
+      if (mysqli_num_rows($result) != 0) 
+       {
+          echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+          Article déjà ajouté !
+         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+         </div>";
+
+       }else 
+           {
+              if($importe==0){
+                $sql = "INSERT INTO articles(idUser, titre, texte, image, audio, date, projet) VALUES('$id', '$titre', '$texte','facade_avant.jpg','$nomDestination2',DATE(NOW()), '$projetBool')";
+
+              }
+              else{
+                $sql = "INSERT INTO articles(idUser, titre, texte, image, audio, date, projet) VALUES('$id', '$titre', '$texte','$nomDestination','$nomDestination2',DATE(NOW()), '$projetBool')";
+
+              }
+              $result = mysqli_query($db_handle, $sql);
+              echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+              Nouvel article ajouté avec succès.
+             <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+             </div>";
+            }
+      }
 
 }
 
