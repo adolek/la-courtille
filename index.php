@@ -165,11 +165,7 @@ for ($i=0; $i<3; $i++) {
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établissement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v3.html">Sorties</a>
+                  <a class="dropdown-item " href="presentation.html">L'établissement</a>
                 </li>
 
                 <li>
@@ -177,7 +173,7 @@ for ($i=0; $i<3; $i++) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projets et ateliers</a>
+                  <a class="dropdown-item " href="projets-ateliers.php">Projets et ateliers</a>
                 </li>
 
                 <li>
@@ -185,11 +181,11 @@ for ($i=0; $i<3; $i++) {
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Règlement</a>
+                  <a class="dropdown-item " href="reglement.html">Règlement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Organigramme</a>
+                  <a class="dropdown-item " href="organigramme.html">Organigramme</a>
                 </li>
 
                 <li>
@@ -238,10 +234,10 @@ for ($i=0; $i<3; $i++) {
                   </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Inscription Noël</a>
+                  <a class="dropdown-item " href="noel.html">Inscription Noël</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Inscription Ramadan</a>
+                  <a class="dropdown-item " href="ramadan.html">Inscription Ramadan</a>
                 </li>
                 <li>
                   <a class="dropdown-item " href="tarification-particuliere.php">Tarification particulière</a>
@@ -250,16 +246,23 @@ for ($i=0; $i<3; $i++) {
             </li>
 
             <li class="nav-item dropdown bg-success">
-              <a class="nav-link " href="faq.html">
+              <a class="nav-link " href="javascript:void(0)">
                 <i class="fas fa-user-edit nav-icon" aria-hidden="true"></i>
                 <span>Secrétariat</span>
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <li>
+                    <a class="dropdown-item " href="https://connexion.enthdf.fr/">Accès ENT</a>
+                  </li>
+                <li>
+                    <a class="dropdown-item " href="modification_mdp_ent.html">Modification mot de passe ENT</a>
+                  </li>
+                  
                   <li>
                     <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
+                    <a class="dropdown-item " href="convention-de-stage.php">Convention de stage</a>
                   </li>
                   <li>
                   <a class="dropdown-item " href="les-dates-importantes.php">
