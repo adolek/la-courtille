@@ -92,6 +92,7 @@ if (isset($_POST["ajoutArticle"])){
 
   $titre = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['titre'])); 
   $texte = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['texte'])); 
+  $projetBool = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['projetBool'])); 
 
   $nomOrigine2 = $_FILES['monaudio']['name'];
   $elementsChemin2 = pathinfo($nomOrigine2);
@@ -164,7 +165,7 @@ if (isset($_POST["ajoutArticle"])){
       
              }else 
                  {
-                    $sql = "INSERT INTO articles(idUser, titre, texte, image, audio, date) VALUES('$id', '$titre', '$texte','$nomDestination','$nomDestination2',DATE(NOW()))";
+                    $sql = "INSERT INTO articles(idUser, titre, texte, image, audio, date, projet) VALUES('$id', '$titre', '$texte','$nomDestination','$nomDestination2',DATE(NOW()), '$projetBool')";
                     $result = mysqli_query($db_handle, $sql);
                     echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
                     Nouvel article ajouté avec succès.
@@ -873,6 +874,13 @@ $current=-1;
                 <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
                 Image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monfichier" /></br></br>
                 Audio (formats autorisés : mp3, ogg)</br><input type="file" name="monaudio" /></br>
+
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="projetBool" value="1" id="flexCheckDefault" >
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Projets ou ateliers (cochez si vous souhaitez que cet article apparaisse sur la page des <a href="projets-ateliers.php">projets</a>)
+                  </label>
+                </div>
                 <button class="btn mt-6 btn-primary" name="ajoutArticle" type="submit">Ajouter</button>
               </form>
               </div>

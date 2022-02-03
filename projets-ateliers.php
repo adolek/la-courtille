@@ -1,17 +1,17 @@
 <?php
   //identifier le nom de base de données
-  $database = "la_courtille";
+ /* $database = "la_courtille";
   //connectez-vous dans votre BDD
   //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
   $db_handle = mysqli_connect('localhost', 'root', '' );
-  $db_found = mysqli_select_db($db_handle, $database);
+  $db_found = mysqli_select_db($db_handle, $database);*/
 
 ///SERVEUR WEB///
 //identifier votre BDD
-/*$database = "dbs5254611";
+$database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_found = mysqli_select_db($db_handle, $database);
 
 session_start();
    
