@@ -316,25 +316,23 @@ for ($i=0; $i<3; $i++) {
 
       <div class="carousel-single owl-carousel owl-drag owl-theme cover">
             
-        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/img-1.jpg');">
+      <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/cours.jpg');">
           <div class="container">
               <div class="row">
                   <div class="col text-center text-white">
-                      <h2 class="h1 text-uppercase"><strong>Slide #1</strong></h2>
-                      <p class="text-uppercase small">Shine bright like a diamond</p>
-                      <a href="#" class="btn btn-primary">Read more</a>
+                  <h2 class="h1 text-uppercase"><strong>Bienvenue sur le site du collège La Courtille</strong></h2>
+                      <a href="presentation.php" class="btn btn-primary mt-3">Voir la page Présentation</a>
                   </div>
               </div>
           </div>
         </div>
         
-        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/img-1.jpg');">
+        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/cdi.jpg');">
           <div class="container">
               <div class="row">
                   <div class="col text-center text-white">
-                      <h2 class="h1 text-uppercase "><strong>Slide #2</strong></h2>
-                      <p class="text-uppercase small">Like diamonds in the sky</p>
-                      <a href="#" class="btn btn-primary">Read more</a>
+                  <h2 class="h1 text-uppercase "><strong>Le CDI vous accueille</strong></h2>
+                      <a href="cdi.php" class="btn btn-primary mt-3">Voir la page CDI</a>
                   </div>
               </div>
           </div>
