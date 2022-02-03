@@ -25,6 +25,9 @@ $mail = '
  </head>
  <body>
  <div>
+ <p><strong>Nouvelle demande de modification de mot de passe ENT</strong></p>
+ </div>
+ <div>
  Nom : ';
  $mail.=$nom;
  $mail.=
@@ -50,6 +53,11 @@ $header.='Content-Type:text/html; charset="uft-8"'."\n";
 $header.='Content-Transfer-Encoding: 8bit';
 
 mail("adrien.oleksiak.66@gmail.com", "Demande de modification de mot de passe ENT", $mail, $header);
+
+echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+        Votre demande a bien été soumise.
+       <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+       </div>";
 }
 ?>
 <!DOCTYPE html>
