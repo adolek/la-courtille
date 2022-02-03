@@ -370,6 +370,9 @@ session_start();
               </figure>
           </li>
         </ul>
+        <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
+                Nouvelle image (formats autorisés : jpg, png, webp, gif)</br><input type="file" name="monfichier" /></br></br>
+                Nouvel audio (formats autorisés : mp3, ogg)</br><input type="file" name="monaudio" /></br></br>
           <textarea class="form-control card-text text-justify mb-6" name="texte" style="height: 600px" ><?php echo $article['texte'];?></textarea>
       </div>
       <input type="text" style="visibility:hidden;" name="id" value="<?php echo $article['idArticle'];?>">
