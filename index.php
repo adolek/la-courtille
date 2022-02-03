@@ -2,16 +2,16 @@
 
 <!--Actualité -->
 <?php
-  /*//identifier le nom de base de données
+  //identifier le nom de base de données
   $database = "la_courtille";
   //connectez-vous dans votre BDD
   //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
   $db_handle = mysqli_connect('localhost', 'root', '' );
-  $db_found = mysqli_select_db($db_handle, $database);*/
-  $database = "dbs5254611";
+  $db_found = mysqli_select_db($db_handle, $database);
+  /*$database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
-$db_found = mysqli_select_db($db_handle, $database);
+$db_found = mysqli_select_db($db_handle, $database);*/
    
    //si le BDD existe, faire le traitement
   if ($db_found) {
@@ -262,17 +262,17 @@ for ($i=0; $i<3; $i++) {
                     <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des brevets blancs</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Date du DNB</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Planning de la rentrée scolaire</a>
-                  </li>
+                  <a class="dropdown-item " href="les-dates-importantes.php">
+                    Les dates importantes <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="les-dates-importantes.php#conseils-de-classe">Conseils de classe</a></li>
+                    <li><a class="" href="les-dates-importantes.php#brevets-blanc">Brevets blancs</a></li>
+                    <li><a class="" href="les-dates-importantes.php#DNB">DNB</a></li>
+                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">rentrée scolaire</a></li>
+                  
+                  </ul>
+                </li>
                 </ul>
             </li>
 
