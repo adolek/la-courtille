@@ -3,15 +3,15 @@
 <!--Actualité -->
 <?php
   //identifier le nom de base de données
-  $database = "la_courtille";
+  /*$database = "la_courtille";
   //connectez-vous dans votre BDD
   //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
   $db_handle = mysqli_connect('localhost', 'root', '' );
-  $db_found = mysqli_select_db($db_handle, $database);
-  /*$database = "dbs5254611";
+  $db_found = mysqli_select_db($db_handle, $database);*/
+  $database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_found = mysqli_select_db($db_handle, $database);
    
    //si le BDD existe, faire le traitement
   if ($db_found) {
@@ -255,7 +255,7 @@ for ($i=0; $i<3; $i++) {
                     <a class="dropdown-item " href="https://connexion.enthdf.fr/">Accès ENT</a>
                   </li>
                 <li>
-                    <a class="dropdown-item " href="modification_mdp_ent.html">Modification mot de passe ENT</a>
+                    <a class="dropdown-item " href="modification_mdp_ent.php">Modification mot de passe ENT</a>
                   </li>
                   
                   <li>
@@ -539,7 +539,7 @@ for ($i=0; $i<3; $i++) {
   
 
   <div class="pt-8" style="
-    background:linear-gradient(rgba(0,0,0,0.05), black), url(assets/img/footer2.png); background-size: cover; background-repeat: no-repeat;">
+    background:linear-gradient(rgba(0,0,0,0.1), #041319), url(assets/img/footer2.png); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
       <div class="row">
         
