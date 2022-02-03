@@ -313,23 +313,25 @@ for ($i=0; $i<3; $i++) {
 
       <div class="carousel-single owl-carousel owl-drag owl-theme cover">
             
-        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/cours.jpg');">
+        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/img-1.jpg');">
           <div class="container">
               <div class="row">
                   <div class="col text-center text-white">
-                      <h2 class="h1 text-uppercase"><strong>Bienvenue sur le site du collège La Courtille</strong></h2>
-                      <a href="presentation.php" class="btn btn-primary mt-3">Voir la page Présentation</a>
+                      <h2 class="h1 text-uppercase"><strong>Slide #1</strong></h2>
+                      <p class="text-uppercase small">Shine bright like a diamond</p>
+                      <a href="#" class="btn btn-primary">Read more</a>
                   </div>
               </div>
           </div>
         </div>
         
-        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/cdi.jpg');">
+        <div class="carousel-item w-100 d-flex align-items-center" style="background-image: url('assets/img/img-1.jpg');">
           <div class="container">
               <div class="row">
                   <div class="col text-center text-white">
-                      <h2 class="h1 text-uppercase "><strong>Le CDI vous accueille</strong></h2>
-                      <a href="cdi.php" class="btn btn-primary mt-3">Voir la page CDI</a>
+                      <h2 class="h1 text-uppercase "><strong>Slide #2</strong></h2>
+                      <p class="text-uppercase small">Like diamonds in the sky</p>
+                      <a href="#" class="btn btn-primary">Read more</a>
                   </div>
               </div>
           </div>
@@ -533,40 +535,24 @@ for ($i=0; $i<3; $i++) {
 ===================================== -->
 <footer class="footer-bg-img">
   <!-- Footer Color Bar -->
-  <div class="color-bar">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col color-bar bg-warning"></div>
-        <div class="col color-bar bg-danger"></div>
-        <div class="col color-bar bg-success"></div>
-        <div class="col color-bar bg-info"></div>
-        <div class="col color-bar bg-purple"></div>
-        <div class="col color-bar bg-pink"></div>
-        <div class="col color-bar bg-warning d-none d-md-block"></div>
-        <div class="col color-bar bg-danger d-none d-md-block"></div>
-        <div class="col color-bar bg-success d-none d-md-block"></div>
-        <div class="col color-bar bg-info d-none d-md-block"></div>
-        <div class="col color-bar bg-purple d-none d-md-block"></div>
-        <div class="col color-bar bg-pink d-none d-md-block"></div>
-      </div>
-    </div>
-  </div>
+  
 
-  <div class="pt-8  bg-repeat" style="background-image: url(assets/img/enfantheureux.jpg);">
+  <div class="pt-8" style="
+    background:linear-gradient(rgba(0,0,0,0.05), black), url(assets/img/footer2.png); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
       <div class="row">
         
         <div class="col-sm col-lg col-xs">
           <h4 class="section-title-sm font-weight-bold text-white mb-6">Infos contact</h4>
-          <ul class="list-unstyled">
+          <ul class="list-unstyled text-white">
             <li class="mb-4">
-                <i class="fas fa-phone-square-alt me-2" aria-hidden="true"></i>Téléphone : 01 86 78 34 30
+                <i class="fas fa-phone-square-alt me-2 text-white" aria-hidden="true"></i>Téléphone : 01 86 78 34 30
             </li>
             <li class="mb-4">
-                <i class="fas fa-envelope-square me-2" aria-hidden="true"></i>Mail : <a href="mailto:roedianto.yohann@gmail.com">ecole@gmail.com</a>
+                <i class="fas fa-envelope-square me-2 text-white" aria-hidden="true "></i>Mail : <a href="mailto:ce.0931490p@ac-creteil.fr">ce.0931490p@ac-creteil.fr</a>
             </li>
             <li class="mb-4">
-                <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>12 Rue Jacques Vache, 93200 Saint Denis
+                <i class="fas fa-map-marker-alt me-2 text-white" aria-hidden="true"></i>12 Rue Jacques Vache, 93200 Saint Denis
             </li>
             <li class="mb-3">
                   <table>
