@@ -137,7 +137,7 @@ if ($db_found) {
   ——— HEADER
   ===================================== -->
 
-  <?php if($type == "admin" && $edit != "1") : ?>
+  <?php if(($type == "admin" || $type == "mediateur") && $edit != "1") : ?>
     <div class="boutonModifier">
       <a href="cafe-des-parents.php?edit=1">
       <button class="btn mt-6 btn-primary" >Modifier</button>

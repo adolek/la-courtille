@@ -952,7 +952,7 @@ $current=-1;
 
 <?php 
 
-$req3 = "SELECT * FROM users where type = 'prof' OR type = 'documentaliste' OR type = 'secretariat'";
+$req3 = "SELECT * FROM users where type = 'prof' OR type = 'documentaliste' OR type = 'secretariat' OR type = 'mediateur'";
 $res3 = mysqli_query($db_handle, $req3);
 while ($prof = mysqli_fetch_assoc($res3)) { 
 $profs[] = $prof; 
@@ -1018,6 +1018,13 @@ $profs[] = $prof;
                       <input class="form-check-input" type="checkbox" name="type[]" value="secretariat" id="flexCheckDefault">
                       <label class="form-check-label" for="flexCheckDefault">
                         Secrétariat
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="type[]" value="mediateur" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Médiateur
                       </label>
                     </div>
 

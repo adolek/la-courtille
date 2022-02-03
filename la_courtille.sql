@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db5006292334.hosting-data.io
--- Généré le : lun. 31 jan. 2022 à 14:26
+-- Généré le : jeu. 03 fév. 2022 à 09:31
 -- Version du serveur : 5.7.36-log
 -- Version de PHP : 7.0.33-0+deb9u12
 
@@ -39,8 +39,8 @@ CREATE TABLE `activites` (
 
 INSERT INTO `activites` (`idActivite`, `image`) VALUES
 (1, 'affichePlanningSilenceOnLit.jpg'),
-(2, 'AfficheSiestesContÃ©es.jpg'),
-(3, 'Ouvrir l\'Ã©cole aux parents pour la rÃ©ussite des enfants.jpg');
+(2, 'AfficheSiestesContees.jpg'),
+(3, 'Ouvrir.jpg');
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE `articles` (
   `idArticle` int(11) NOT NULL,
   `idUser` int(11) DEFAULT NULL,
   `titre` varchar(50) NOT NULL,
-  `texte` varchar(3000) NOT NULL,
+  `texte` longtext NOT NULL,
   `image` varchar(255) NOT NULL,
   `audio` varchar(255) NOT NULL,
   `date` date NOT NULL
@@ -63,10 +63,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`idArticle`, `idUser`, `titre`, `texte`, `image`, `audio`, `date`) VALUES
-(2, 1, 'La cantine', 'La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv La cantine est un espace ou les eleve peuvent manger ljfnvlsnfg:nxvjlbnxlfknglkdf,bln xjcv ', '', '', '2022-01-05'),
-(9, 1, 'Les cousins', 'ljnlk,l', 'Les couzzz.JPG', '', '2022-01-12'),
-(23, 1, 'les Classe de neige', 'La classe est un espace ou les eleve peuvent ï¿½tudier', '', '', '2022-01-05'),
-(24, 1, 'actu 1', 'dsfxcgvbhjncfvgbhnjdctfvgybhunj', 'actu 1.jpeg', '', '2022-01-24');
+(27, 1, 'Des ruches dans mon collège ', 'PUBLIC CONCERNÉ \r\nToutes classes de la 6e à la 3è et classes SEGPA. \r\n\r\nOBJECTIFS \r\n• Faire prendre conscience des enjeux pesant sur la biodiversité aux collégien.ne.s et aux équipes des collèges.\r\n• Utiliser des outils innovants pour répondre aux programmes pédagogiques de l\'Éducation nationale.\r\n\r\nTechniques\r\n• Favoriser la biodiversité en milieu urbain et au sein du collège.\r\n• Mener des études sur la vie de l\'abeille en ville. en lien avec différentes institutions et chercheur.e.s.\r\n\r\nDESCRIPTIF \r\nLa disparition des abeilles est un fait connu de tou.te.s aujourd\'hui. Elle est intimement liée à la perte de biodiversité. Mais des études montrent que les abeilles se sentent mieux en ville (moins de pollutions agricoles, climat plus doux, grandes variétés de fleurs.). C\'est pourquoi il est intéressant d\'implanter des ruches sur les collèges en Seine-Saint-Denis, en milieu urbain dense. L\'installation de ruches est un levier utile pour sensibiliser les jeunes à un mode d\'organisation sociale animale. D\'autre part, l\'utilisation pédagogique de la ruche est un élément innovant pour intéresser les collégien.ne.s à cette biodiversité et ainsi répondre aux programmes de l\'Éducation nationale. \r\n\r\nDéroulement du parcours \r\n• En amont. construction du projet pédagogique avec les collégien.ne.s, conditions nécessaires à la vie des abeilles (espèces mellifères proches du collège, point d\'eau, espace pour le décollage…), conditions de sécurité (toitures-terrasses accessibles mais sécurisées. espaces vert clos...), rencontre avec l\'apiculteur envisageable. \r\n• Installation de la ruche la première année : événement ludique et festif avec inauguration et séance pédagogique autour des ruches. \r\n• Suivi de la ruche : implication de la ruche dans les processus éducatifs (liens avec les programmes et surveillance de la ruche par l\'apiculteur. \r\n• Récolte du miel tous les ans : journée portes ouvertes du collège, événement ludique et festif avec présentation d\'une exposition liée au projet ou tout autre outil crée dans le cadre du parcours, et restitution des temps forts autour des ruches.\r\n• Des temps d\'animations spécifiques sont prévus. \r\n\r\nCONDITIONS D\'INSCRIPTION \r\nConstruire un projet pédagogique pertinent autour de l\'installation des ruches au sein de l\'établissement; puis contacter le service du Projet éducatif et de la jeunesse afin d\'examiner les critères logistiques nécessaires à l\'installation. \r\n\r\nMODE DE FINANCEMENT \r\nLe parcours est pris en charge par le Département pendant 2 ans.', 'Des ruches dans mon collège .jpg', '', '2022-01-31');
 
 -- --------------------------------------------------------
 
@@ -106,7 +103,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `type` enum('admin','prof','secretariat','documentaliste') NOT NULL,
+  `type` enum('admin','prof','secretariat','documentaliste','mediateur') NOT NULL,
   `token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
@@ -164,7 +161,7 @@ ALTER TABLE `activites`
 -- AUTO_INCREMENT pour la table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pour la table `modification`
