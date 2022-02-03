@@ -1,18 +1,18 @@
 <?php
 
-///LOCALHOST///
+/*///LOCALHOST///
 //identifier votre BDD
 $database = "la_courtille";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
+$db_found = mysqli_select_db($db_handle, $database);*/
 
 ///SERVEUR WEB///
 //identifier votre BDD
-/*$database = "dbs5254611";
+$database = "dbs5254611";
 //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
 $db_handle = mysqli_connect('db5006292334.hosting-data.io', 'dbu1630546', 'zegregh56ozfl');
-$db_found = mysqli_select_db($db_handle, $database);*/
+$db_found = mysqli_select_db($db_handle, $database);
 
 session_start();
 
@@ -401,7 +401,7 @@ if ($db_found) {
 <section class="pt-7 pt-md-10">
   <div class="container">
     <div class="row wow fadeInUp">
-      <div class="col-sm-8 col-xs-12 pe-5">
+      <div class="col-sm-7 col-xs-12 pe-5">
           <div class="section-title mb-4 wow fadeInUp">
             <h2 class="text-danger">Tout savoir sur le CDI</h2>
           </div>
@@ -434,9 +434,9 @@ if ($db_found) {
           </div>
         
     </div>
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-5 col-xs-12">
         <div>
-          <img class="img-fluid rounded" src="assets/img/collegeLaCourtille.jpg" width="100%" allowfullscreen="" loading="lazy">
+          <img class="img-fluid rounded" src="assets/img/cdi.jpg" width="100%" allowfullscreen="" loading="lazy">
         </div>
         
     </div>
