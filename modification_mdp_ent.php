@@ -52,7 +52,7 @@ $header.='From:<'.$email.'>'."\n";
 $header.='Content-Type:text/html; charset="uft-8"'."\n";
 $header.='Content-Transfer-Encoding: 8bit';
 
-mail("adrien.oleksiak.66@gmail.com", "Demande de modification de mot de passe ENT", $mail, $header);
+mail("ce.0931490p@ac-creteil.fr", "Demande de modification de mot de passe ENT", $mail, $header);
 
 echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
         Votre demande a bien été soumise.
