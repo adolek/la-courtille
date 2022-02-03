@@ -219,7 +219,7 @@ for ($i=0; $i<3; $i++) {
                     Bourse <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </a>
                   <ul class="sub-menu">
-                    <li><a class="" href="bourse-college.html">Collège</a></li>
+                    <li><a class="" href="bourse-college.php">Collège</a></li>
                     <li><a class="" href="bourse-lycee.html">Lycée</a></li>
                   </ul>
                 </li>
