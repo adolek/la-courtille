@@ -136,7 +136,7 @@ session_start();
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80" >
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80">
         </a>
 
         
@@ -149,25 +149,21 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link " href="index.php">
+              <a class="nav-link" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
             </li>
 
             <li class="nav-item dropdown bg-purple">
-              <a class="nav-link text-blue" href="javascript:void(0)"
+              <a class="nav-link text-blue active" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <i class="fas fa-school nav-icon" aria-hidden="true"></i>
                 <span>Présentation</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établissement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v3.html">Sorties</a>
+                  <a class="dropdown-item " href="presentation.html">L'établissement</a>
                 </li>
 
                 <li>
@@ -179,15 +175,15 @@ session_start();
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">FabLab</a>
+                  <a class="dropdown-item " href="FabScience.php">FabScience</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Règlement</a>
+                  <a class="dropdown-item " href="reglement.html">Règlement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Organigramme</a>
+                  <a class="dropdown-item " href="organigramme.html">Organigramme</a>
                 </li>
 
                 <li>
@@ -221,7 +217,7 @@ session_start();
                     Bourse <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </a>
                   <ul class="sub-menu">
-                    <li><a class="" href="bourse-college.html">Collège</a></li>
+                    <li><a class="" href="bourse-college.php">Collège</a></li>
                     <li><a class="" href="bourse-lycee.html">Lycée</a></li>
                   </ul>
                 </li>
@@ -236,41 +232,48 @@ session_start();
                   </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Inscription Noël</a>
+                  <a class="dropdown-item " href="noel.html">Inscription Noël</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Inscription Ramadan</a>
+                  <a class="dropdown-item " href="ramadan.html">Inscription Ramadan</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Tarification particulière</a>
+                  <a class="dropdown-item " href="tarification-particuliere.php">Tarification particulière</a>
                 </li>
               </ul>
             </li>
 
             <li class="nav-item dropdown bg-success">
-              <a class="nav-link " href="faq.html">
+              <a class="nav-link " href="javascript:void(0)">
                 <i class="fas fa-user-edit nav-icon" aria-hidden="true"></i>
                 <span>Secrétariat</span>
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <li>
+                    <a class="dropdown-item " href="https://connexion.enthdf.fr/">Accès ENT</a>
+                  </li>
+                <li>
+                    <a class="dropdown-item " href="modification_mdp_ent.php">Modification mot de passe ENT</a>
+                  </li>
+                  
                   <li>
                     <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
+                    <a class="dropdown-item " href="convention-de-stage.php">Convention de stage</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des brevets blancs</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Date du DNB</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Planning de la rentrée scolaire</a>
-                  </li>
+                  <a class="dropdown-item " href="les-dates-importantes.php">
+                    Les dates importantes <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="les-dates-importantes.php#conseils-de-classe">Conseils de classe</a></li>
+                    <li><a class="" href="les-dates-importantes.php#brevets-blanc">Brevets blancs</a></li>
+                    <li><a class="" href="les-dates-importantes.php#DNB">DNB</a></li>
+                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">rentrée scolaire</a></li>
+                  
+                  </ul>
+                </li>
                 </ul>
             </li>
 

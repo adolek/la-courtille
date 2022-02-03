@@ -85,9 +85,9 @@
 
        <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
-      <div class="container">
+      <div class="container p-0">
         <a class="navbar-brand" href="index.php">
-          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="100" width="100">
+          <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80">
         </a>
 
         
@@ -100,7 +100,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link active" href="index.php">
+              <a class="nav-link" href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -114,43 +114,31 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">L'établlissement</a>
+                  <a class="dropdown-item " href="presentation.html">L'établissement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Sortie</a>
+                  <a class="dropdown-item " href="association-sportive.php">Association sportive</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Association sportive</a>
+                  <a class="dropdown-item " href="projets-ateliers.php">Projets et ateliers</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v3.html">Projet et atelier</a>
+                  <a class="dropdown-item " href="FabScience.php">FabScience</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">FabLab</a>
+                  <a class="dropdown-item " href="reglement.html">Règlement</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Restauration</a>
+                  <a class="dropdown-item " href="organigramme.html">Organigramme</a>
                 </li>
 
                 <li>
-                  <a class="dropdown-item " href="index-v4.html">Règlement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Engagement de l'établisement</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Organigramme</a>
-                </li>
-
-                <li>
-                  <a class="dropdown-item " href="index-v4.html">Café des parents</a>
+                  <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
                 <li>
@@ -169,7 +157,7 @@
             </li>
 
             <li class="nav-item dropdown bg-info">
-              <a class="nav-link" href="javascript:void(0)"
+              <a class="nav-link active" href="javascript:void(0)"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-scroll nav-icon" aria-hidden="true"></i>
                 <span>Intendance</span>
@@ -180,7 +168,7 @@
                     Bourse <i class="fa fa-chevron-right" aria-hidden="true"></i>
                   </a>
                   <ul class="sub-menu">
-                    <li><a class="" href="bourse-college.html">Collège</a></li>
+                    <li><a class="" href="bourse-college.php">Collège</a></li>
                     <li><a class="" href="bourse-lycee.html">Lycée</a></li>
                   </ul>
                 </li>
@@ -190,49 +178,55 @@
                   </a>
                   <ul class="sub-menu">
                     <li><a class="" href="inscription_cantine.php">Inscription</a></li>
-                    <li><a class="" href="bourse-lycee.html">Paiement</a></li>
+                    <li><a class="" href="paiement_cantine.html">Paiement</a></li>
+                    <li><a class="" href="reglement_cantine.html">Règlement</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Inscription Noël</a>
+                  <a class="dropdown-item " href="noel.html">Inscription Noël</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Inscription Ramadan</a>
+                  <a class="dropdown-item " href="ramadan.html">Inscription Ramadan</a>
                 </li>
                 <li>
-                  <a class="dropdown-item " href="index-v2.html">Tarification particulière</a>
+                  <a class="dropdown-item " href="tarification-particuliere.php">Tarification particulière</a>
                 </li>
               </ul>
             </li>
 
             <li class="nav-item dropdown bg-success">
-              <a class="nav-link " href="faq.html">
+              <a class="nav-link " href="javascript:void(0)">
                 <i class="fas fa-user-edit nav-icon" aria-hidden="true"></i>
                 <span>Secrétariat</span>
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <li>
+                    <a class="dropdown-item " href="https://connexion.enthdf.fr/">Accès ENT</a>
+                  </li>
+                <li>
+                    <a class="dropdown-item " href="modification_mdp_ent.php">Modification mot de passe ENT</a>
+                  </li>
+                  
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Inscription administrative</a>
+                    <a class="dropdown-item " href="inscription-administrative.html">Inscription administrative</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Convention de stage</a>
+                    <a class="dropdown-item " href="convention-de-stage.php">Convention de stage</a>
                   </li>
                   <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des conseils de classe</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Dates des brevets blancs</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Date du DNB</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item " href="index-v2.html">Planning de la rentrée scolaire</a>
-                  </li>
+                  <a class="dropdown-item " href="les-dates-importantes.php">
+                    Les dates importantes <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </a>
+                  <ul class="sub-menu">
+                    <li><a class="" href="les-dates-importantes.php#conseils-de-classe">Conseils de classe</a></li>
+                    <li><a class="" href="les-dates-importantes.php#brevets-blanc">Brevets blancs</a></li>
+                    <li><a class="" href="les-dates-importantes.php#DNB">DNB</a></li>
+                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">rentrée scolaire</a></li>
+                  
+                  </ul>
+                </li>
                 </ul>
             </li>
-
-          
 
             <li class="nav-item dropdown bg-pink">
               <a class="nav-link " href="cdi.php">
@@ -248,15 +242,20 @@
                   </li>
                 </ul>
             </li>
-
             <li class="nav-item dropdown bg-blue">
               <a class="nav-link" href="contact.html">
                 <i class="fas fa-phone nav-icon" aria-hidden="true"></i>
                 <span>Contact</span>
               </a>
             </li>
-
-
+            <?php if($_SESSION['email']): ?>
+              <li class="nav-item dropdown bg-secondary">
+              <a class="nav-link" href="admin.php">
+                <i class="fas fa-user-circle nav-icon" style="color:#6c757d;font-size:2.4em;" aria-hidden="true"></i>
+                <span>Admin</span>
+              </a>
+            </li>
+            <?php endif ?>
           </ul>
         </div>
       </div>

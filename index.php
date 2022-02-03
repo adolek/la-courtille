@@ -189,6 +189,10 @@ for ($i=0; $i<3; $i++) {
                 </li>
 
                 <li>
+                  <a class="dropdown-item " href="role-du-mediateur.php">Rôle du médiateur</a>
+                </li>
+
+                <li>
                   <a class="dropdown-item " href="cafe-des-parents.php">Café des parents</a>
                 </li>
 
