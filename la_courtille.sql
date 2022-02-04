@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.9
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : db5006292334.hosting-data.io
--- Généré le : jeu. 03 fév. 2022 à 14:13
--- Version du serveur : 5.7.36-log
--- Version de PHP : 7.0.33-0+deb9u12
+-- Hôte : 127.0.0.1:3306
+-- Généré le : ven. 04 fév. 2022 à 15:23
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `dbs5254611`
+-- Base de données : `la_courtille`
 --
 
 -- --------------------------------------------------------
@@ -28,10 +27,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `activites`
 --
 
-CREATE TABLE `activites` (
-  `idActivite` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS `activites`;
+CREATE TABLE IF NOT EXISTS `activites` (
+  `idActivite` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`idActivite`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Déchargement des données de la table `activites`
@@ -48,16 +49,19 @@ INSERT INTO `activites` (`idActivite`, `image`) VALUES
 -- Structure de la table `articles`
 --
 
-CREATE TABLE `articles` (
-  `idArticle` int(11) NOT NULL,
+DROP TABLE IF EXISTS `articles`;
+CREATE TABLE IF NOT EXISTS `articles` (
+  `idArticle` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` int(11) DEFAULT NULL,
   `titre` varchar(50) NOT NULL,
   `texte` longtext NOT NULL,
   `image` varchar(255) NOT NULL,
   `audio` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `projet` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `projet` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`idArticle`),
+  KEY `idUser` (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Déchargement des données de la table `articles`
@@ -72,10 +76,12 @@ INSERT INTO `articles` (`idArticle`, `idUser`, `titre`, `texte`, `image`, `audio
 -- Structure de la table `modification`
 --
 
-CREATE TABLE `modification` (
-  `idModif` int(11) NOT NULL,
-  `textModif` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS `modification`;
+CREATE TABLE IF NOT EXISTS `modification` (
+  `idModif` int(11) NOT NULL AUTO_INCREMENT,
+  `textModif` text,
+  PRIMARY KEY (`idModif`)
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
 -- Déchargement des données de la table `modification`
@@ -98,7 +104,77 @@ INSERT INTO `modification` (`idModif`, `textModif`) VALUES
 (14, '10.00 euros'),
 (15, '30.00 euros'),
 (16, '1er renouvellement 5.00 euros'),
-(17, '2Ã¨me renouvellement 10.00 euros');
+(17, '2Ã¨me renouvellement 10.00 euros'),
+(18, 'date 1'),
+(19, 'date 2'),
+(20, 'date 3'),
+(21, 'date 4'),
+(22, 'heure 1'),
+(23, 'heure 2'),
+(24, 'heure 3'),
+(25, 'heure4'),
+(26, 'jeudi'),
+(27, 'vendredi'),
+(28, 'date uno'),
+(29, 'date dos'),
+(30, 'date tres'),
+(31, 'heure 1'),
+(32, 'heur 2 '),
+(33, 'heur 3'),
+(34, '-'),
+(35, '-'),
+(36, '-'),
+(37, '-'),
+(38, '-'),
+(39, '-'),
+(40, '-'),
+(41, '-'),
+(42, '-'),
+(43, '-'),
+(44, '-'),
+(45, '-'),
+(46, '-'),
+(47, '-'),
+(48, '-'),
+(49, '-'),
+(50, '-'),
+(51, '-'),
+(52, '-'),
+(53, '-'),
+(54, '-'),
+(55, '-'),
+(56, '-'),
+(57, '-'),
+(58, '-'),
+(59, '-'),
+(60, '7777'),
+(61, '-'),
+(62, '-'),
+(63, '-'),
+(64, '-'),
+(65, '-'),
+(66, '-'),
+(67, '-'),
+(68, '-'),
+(69, '-'),
+(70, '-'),
+(71, '-'),
+(72, '-'),
+(73, '-'),
+(74, '-'),
+(75, '-'),
+(76, '-'),
+(77, '-'),
+(78, '-'),
+(79, '-'),
+(80, '-'),
+(81, '-'),
+(82, '-'),
+(83, '-'),
+(84, '-'),
+(85, '-'),
+(86, '-'),
+(87, '-');
 
 -- --------------------------------------------------------
 
@@ -106,14 +182,16 @@ INSERT INTO `modification` (`idModif`, `textModif`) VALUES
 -- Structure de la table `users`
 --
 
-CREATE TABLE `users` (
-  `idUser` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `idUser` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `type` enum('admin','prof','secretariat','documentaliste','mediateur') NOT NULL,
-  `token` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Déchargement des données de la table `users`
@@ -126,63 +204,6 @@ INSERT INTO `users` (`idUser`, `email`, `mdp`, `nom`, `type`, `token`) VALUES
 (12, 'yes', '$2y$12$0PogDeZ/IFoa09rdx.GKNOn/hCReWUTauCHGEAXUlSdgZwqCa5tSW', 'secretaire', 'secretariat', NULL),
 (13, '1', '$2y$12$Et8xsURhmTrqZBP4Rab1xusC43Mii2G0Ft.Euxzb/z0E5h.3ZFGFS', 'elle', 'documentaliste', NULL),
 (14, 'blaisemiz@hotmail.fr', '$2y$12$XX0yPkWDU750GABTZ45a..UkiZmkkZ97At4lMypVCdJqH9jLehQDq', 'Blaise Misere', 'mediateur', NULL);
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `activites`
---
-ALTER TABLE `activites`
-  ADD PRIMARY KEY (`idActivite`);
-
---
--- Index pour la table `articles`
---
-ALTER TABLE `articles`
-  ADD PRIMARY KEY (`idArticle`),
-  ADD KEY `idUser` (`idUser`);
-
---
--- Index pour la table `modification`
---
-ALTER TABLE `modification`
-  ADD PRIMARY KEY (`idModif`);
-
---
--- Index pour la table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`idUser`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `activites`
---
-ALTER TABLE `activites`
-  MODIFY `idActivite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT pour la table `articles`
---
-ALTER TABLE `articles`
-  MODIFY `idArticle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT pour la table `modification`
---
-ALTER TABLE `modification`
-  MODIFY `idModif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
