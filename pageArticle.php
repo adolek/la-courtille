@@ -119,8 +119,8 @@ session_start();
 
 
 
-      <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md navbar-scrollUp navbar-sticky navbar-white">
       <div class="container p-0">
         <a class="navbar-brand" href="index.php">
           <img class="d-inline-block" src="assets/img/logo-la-courtille.jpg" alt="La Courtille" height="80">
@@ -136,7 +136,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-lg-auto">
               <li class="nav-item dropdown bg-primary">
-              <a class="nav-link" href="index.php">
+              <a class="nav-link " href="index.php">
                 <i class="fas fa-laptop-house nav-icon" aria-hidden="true"></i>
                 <span>Accueil</span>
               </a>
@@ -171,6 +171,10 @@ session_start();
 
                 <li>
                   <a class="dropdown-item " href="organigramme.html">Organigramme</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item " href="role-du-mediateur.php">Rôle du médiateur</a>
                 </li>
 
                 <li>
@@ -257,7 +261,7 @@ session_start();
                     <li><a class="" href="les-dates-importantes.php#conseils-de-classe">Conseils de classe</a></li>
                     <li><a class="" href="les-dates-importantes.php#brevets-blanc">Brevets blancs</a></li>
                     <li><a class="" href="les-dates-importantes.php#DNB">DNB</a></li>
-                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">rentrée scolaire</a></li>
+                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">Rentrée scolaire</a></li>
                   
                   </ul>
                 </li>
@@ -265,7 +269,7 @@ session_start();
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="cdi.php">
+              <a class="nav-link " href="javascript:void(0)">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>

@@ -276,7 +276,7 @@ for ($i=0; $i<3; $i++) {
                     <li><a class="" href="les-dates-importantes.php#conseils-de-classe">Conseils de classe</a></li>
                     <li><a class="" href="les-dates-importantes.php#brevets-blanc">Brevets blancs</a></li>
                     <li><a class="" href="les-dates-importantes.php#DNB">DNB</a></li>
-                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">rentrée scolaire</a></li>
+                    <li><a class="" href="les-dates-importantes.php#rentree-scolaire">Rentrée scolaire</a></li>
                   
                   </ul>
                 </li>
@@ -284,7 +284,7 @@ for ($i=0; $i<3; $i++) {
             </li>
 
             <li class="nav-item dropdown bg-pink">
-              <a class="nav-link " href="cdi.php">
+              <a class="nav-link " href="javascript:void(0)">
                 <i class="fas fa-book nav-icon" aria-hidden="true"></i>
                 <span>CDI</span>
               </a>
