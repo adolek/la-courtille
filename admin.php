@@ -197,6 +197,71 @@ if (isset($_POST["ajoutArticle"])){
 
 }
 
+if (isset($_POST["docs"])){
+
+  $nomOrigine = $_FILES['pdf1']['name'];
+  $elementsChemin = pathinfo($nomOrigine);
+  $extensionFichier = $elementsChemin['extension'];
+  $nomOrigine2 = $_FILES['pdf2']['name'];
+  $elementsChemin2 = pathinfo($nomOrigine2);
+  $extensionFichier2 = $elementsChemin2['extension'];
+  $extensionsAutorisees = array("pdf");
+  $nomDestination2="";  
+  $nomDestination="";
+
+  if (!(in_array($extensionFichier, $extensionsAutorisees))) {
+    echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+    Le fichier téléchargé n'a pas l'extension attendue.
+   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+   </div>";
+} else {    
+    
+    // Copie dans le repertoire du script avec un nom
+    $repertoireDestination = dirname(__FILE__)."/assets/pdf/";
+    $nomDestination = "coupon-élèves1651.".$extensionFichier;
+
+    if (move_uploaded_file($_FILES["pdf1"]["tmp_name"], $repertoireDestination.$nomDestination)) {
+      echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+      Fichier Noël modifié avec succès !
+    <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+    </div>";
+    }
+    else {
+        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+        Le fichier est trop volumineux pour être importé.
+      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+      </div>";
+    }
+}
+
+  if (!(in_array($extensionFichier2, $extensionsAutorisees))) {
+    echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+    Le fichier téléchargé n'a pas l'extension attendue.
+   <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+   </div>";
+} else {    
+    
+    // Copie dans le repertoire du script avec un nom
+    $repertoireDestination2 = dirname(__FILE__)."/assets/pdf/";
+    $nomDestination2 = "ramadan.".$extensionFichier2;
+
+    if (move_uploaded_file($_FILES["pdf2"]["tmp_name"], $repertoireDestination2.$nomDestination2)) {
+      echo " <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+      Fichier Ramadan modifié avec succès !
+    <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+    </div>";
+    }
+    else {
+        echo " <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+        Le fichier est trop volumineux pour être importé.
+      <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+      </div>";
+    }
+}
+
+
+}
+
 if (isset($_POST["ajoutActivite"])){
 
   $titre = mysqli_real_escape_string($db_handle,htmlspecialchars($_POST['titre'])); 
@@ -1088,6 +1153,31 @@ $profs[] = $prof;
                 <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
                 Fichier PDF</br><input type="file" name="pdf" /></br></br>
                 <button class="btn mt-6 btn-primary" name="chTarif" type="submit">Appliquer la nouvelle tarification</button>
+              </form>
+              </div>
+            </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="pb-8 pb-md-10">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-12">
+              <div class="mb-8">
+                <h3 class="element-title">Documents Noël / Ramadan</h3>
+                <p><strong>Documents en PDF acceptés uniquement !</strong> Il est possible de modifier les 2 documents ou un seul à la fois.</p>
+              <form action="admin.php" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="MAX_FILE_SIZE" value="50000000" />
+                <p>PDF Inscription Noël (<a href="assets/pdf/coupon-élèves1651.pdf">voir le document actuel</a>)</p>
+                <input type="file" name="pdf1" /></br></br>
+                <p>PDF Inscription Ramadan (<a href="assets/pdf/ramadan.pdf">voir le document actuel</a>)</p>
+                <input type="file" name="pdf2" /></br></br>
+
+                <button class="btn mt-6 btn-primary" name="docs" type="submit">Ajouter le(s) nouveau(x) document(s)</button>
               </form>
               </div>
             </div>
